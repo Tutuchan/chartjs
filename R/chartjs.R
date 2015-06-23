@@ -6,14 +6,28 @@
 #' @import htmltools
 #'
 #' @export
-chartjs <- function(dataframe, width = NULL, height = NULL) {
+chartjs <- function(x, y, width = NULL, height = NULL, type = "line") {
 
+  # Get y data
+  listY <- y
+  if (length(listY) > 6) stop("Too many series. Please plot 6 or less.")
+  labels <- names(y)
 
+  # Handle colors
+#   vecColors <- switch(type,
+#          line = {
+#
+#          })
+
+  vecColors <- RColorBrewer::brewer.pal(12, "Paired")[seq(2,12,2)]
+  print(x)
   # forward options using x
-  x = list(
-    x = dataframe$x,
-    y = dataframe$y
-  )
+  x = list(x = x,
+           y = unname(listY),
+           type = Hmisc::capitalize(type),
+           colors = vecColors,
+           labels = labels)
+  print(listY)
 
   # create widget
   htmlwidgets::createWidget(
