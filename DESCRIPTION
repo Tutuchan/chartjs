@@ -1,9 +1,11 @@
 Package: chartjs
 Type: Package
-Title: What the Package Does (Title Case)
+Title: An implementation of the Chart.js library
 Version: 0.1
-Date: 2015-06-19
-Authors@R: person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Date: 2015-08-06
+Authors@R: as.person(c(
+    "Pierre Formont <pfo@datapole.com> [aut, cre]"))
+Description: An implementation of the Chart.js visualization library.
+License: file LICENCE
 LazyData: TRUE
+Suggests: testthat

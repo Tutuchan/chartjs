@@ -5,3 +5,4 @@ dependencies:
     script:
       - Chart.js
       - Chart.min.js
+    stylesheet: chartjs.css

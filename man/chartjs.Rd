@@ -4,9 +4,26 @@
 \alias{chartjs}
 \title{chartjs}
 \usage{
-chartjs(dataframe, width = NULL, height = NULL)
+chartjs(x, y, width = NULL, height = NULL, type = "line",
+  options = NULL)
+}
+\arguments{
+\item{x}{a vector of numerics or characters : the labels on the x-axis}
+
+\item{y}{a named list of the y-axis data}
+
+\item{width}{the width of the widget}
+
+\item{height}{the height of the widget}
+
+\item{type}{a character : the type of the widget, currently supports \code{line} or \code{bar}.}
+
+\item{options}{a list of options to customize the graph}
 }
 \description{
-Test
+Draw a graph using the Chart.js library
+}
+\details{
+See the documentation of Chart.js at \url{http://www.chartjs.org/docs}.
 }
 

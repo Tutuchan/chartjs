@@ -10,20 +10,21 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
 
-    console.log(x.y[0]);
-    console.log(x);
+    helpers = Chart.helpers;
 
     var datasets = [];
 
     for (i = 0, len = x.y.length; i < len; i ++){
       datasets.push({
           label: x.labels[i],
-          strokeColor: x.colors[i],
-          fillColor: "rgba(0,0,0,0)",
-          pointColor: x.colors[i],
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: x.colors[i],
+          strokeColor: x.colors.strokeColor[i],
+          fillColor: x.colors.fillColor[i],
+          highlightStroke: x.colors.highlightStroke[i],
+          highlightFill: x.colors.highlightFill[i],
+          pointColor: x.colors.pointColor[i],
+          pointStrokeColor: x.colors.pointStrokeColor[i],
+          pointHighlightFill: x.colors.pointHighlightFill[i],
+          pointHighlightStroke: x.colors.pointHighlightStroke[i],
           data: x.y[i]
       });
     }
@@ -34,18 +35,52 @@ HTMLWidgets.widget({
       labels: x.x,
       datasets: datasets
     };
-
-    var ctx = document.getElementById(el.id).getContext("2d");
+    var canvas = document.getElementById(el.id);
+    var ctx = canvas.getContext("2d");
 
     if (x.type === "Bar"){
-      instance.chart = new Chart(ctx).Bar(data);
+      outChart = new Chart(ctx).Bar(data);
     } else if (x.type === "Line"){
-      instance.chart = new Chart(ctx).Line(data, {
+      outChart = new Chart(ctx).Line(data, {
         responsive : true,
         animation: true,
         multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
       });
     }
+
+    // Generate legend and add mouseover event
+    var legendHolder = document.createElement('div');
+    legendHolder.innerHTML = outChart.generateLegend();
+
+
+    if (x.type === "Bar"){
+      // When the series is mouseovered in the legend, highlight the corresponding bars
+      helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
+  			helpers.addEvent(legendNode, 'mouseover', function(){
+  				var activeBars = outChart.datasets[index].bars;
+  				for (var barsIndex = 0; barsIndex < activeBars.length; barsIndex++) {
+    				var activeBar = activeBars[barsIndex];
+    				activeBar.save();
+    				activeBar.fillColor = activeBar.highlightFill;
+    				activeBar.strokeColor = activeBar.highlightStroke;
+  				}
+  				outChart.draw();
+  			});
+  		});
+  		// Remove highlight after mouseout
+  		helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
+  			helpers.addEvent(legendNode, 'mouseout', function(){
+    			var activeBars = outChart.datasets[index].bars;
+    			for (var barsIndex = 0; barsIndex < activeBars.length; barsIndex++) {
+      			var activeBar = activeBars[barsIndex];
+      			activeBar.restore();
+    			}
+    			outChart.draw();
+  			});
+  		});
+    }
+
+    canvas.parentNode.appendChild(legendHolder.firstChild);
 
 
 
@@ -53,8 +88,8 @@ HTMLWidgets.widget({
   },
 
   resize: function(el, width, height, instance) {
-    if (instance.chart)
-      instance.chart.resize();
+    if (outChart)
+      outChart.resize();
   }
 
 });
