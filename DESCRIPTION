@@ -8,4 +8,5 @@ Authors@R: as.person(c(
 Description: An implementation of the Chart.js visualization library.
 License: file LICENCE
 LazyData: TRUE
-Suggests: testthat
+Suggests: testthat, magrittr
+Imports: RColorBrewer

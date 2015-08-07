@@ -5,7 +5,7 @@
 \title{chartjs}
 \usage{
 chartjs(x, y, width = NULL, height = NULL, type = "line",
-  options = NULL)
+  chartOptions = NULL)
 }
 \arguments{
 \item{x}{a vector of numerics or characters : the labels on the x-axis}
@@ -18,7 +18,7 @@ chartjs(x, y, width = NULL, height = NULL, type = "line",
 
 \item{type}{a character : the type of the widget, currently supports \code{line} or \code{bar}.}
 
-\item{options}{a list of options to customize the graph}
+\item{chartOptions}{a list of chartOptions to customize the graph}
 }
 \description{
 Draw a graph using the Chart.js library
