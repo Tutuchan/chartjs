@@ -23,6 +23,11 @@ chartjs <- function(x, y, width = NULL, height = NULL, type = "line", chartOptio
   listY <- y
   lY <- length(listY)
   if (lY > 6) stop("Too many series. Please plot 6 or less.")
+
+  # Handle names
+  if (is.null(names(y))) names(y) <- paste0("var", 1:lY) else {
+    if (any(is.na(y))) names(y)[is.na(names(y))] <- paste0("var", 1:lY)[is.na(names(y))]
+  }
   labels <- names(y)
 
   #### Handle chartOptions

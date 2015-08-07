@@ -1,7 +1,7 @@
-.bar-legend {
+[class$="-legend"] {
   list-style: none;
 }
-.bar-legend li {
+[class$="-legend"] li {
   display: block;
   padding-left: 30px;
   position: relative;
@@ -14,10 +14,10 @@
   -o-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out;
 }
-.bar-legend li:hover {
+[class$="-legend"] li:hover {
   background-color: #fafafa;
 }
-.bar-legend li span {
+[class$="-legend"] li span {
   display: block;
   position: absolute;
   left: 0;

@@ -20,7 +20,7 @@ lineChart <- function(chartjs, colours = NULL){
     )
   } else colours[[colorType]])
 
-  names(listColors) <- .colorTypes
+  names(listColors) <- chartjs:::.colorTypes
   listColors <- listColors[!is.null(listColors)]
   chartjs$x$colors <- listColors
   chartjs$x$type <- "Line"

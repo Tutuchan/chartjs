@@ -6,7 +6,7 @@ Date: 2015-08-06
 Authors@R: as.person(c(
     "Pierre Formont <pfo@datapole.com> [aut, cre]"))
 Description: An implementation of the Chart.js visualization library.
-License: file LICENCE
+License: MIT
 LazyData: TRUE
 Suggests: testthat, magrittr
 Imports: RColorBrewer
