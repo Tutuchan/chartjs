@@ -58,7 +58,9 @@ HTMLWidgets.widget({
 
     switch(x.type){
       case "Bar":
-        outChart = new Chart(ctx).Bar(data);
+        outChart = new Chart(ctx).Bar(data, {
+          responsive : true,
+          animation: true});
       break;
       case "Line":
         outChart = new Chart(ctx).Line(data, {
@@ -85,8 +87,8 @@ HTMLWidgets.widget({
     legendHolder.innerHTML = outChart.generateLegend();
 
     // When the series is mouseovered in the legend, highlight the corresponding elements
-    helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
-    	helpers.addEvent(legendNode, 'mouseover', function(){
+    /*helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
+    	//helpers.addEvent(legendNode, 'mouseover', function(){
     	  switch(x.type){
           case "Bar":
     		    var activeBars = outChart.datasets[index].bars;
@@ -115,7 +117,7 @@ HTMLWidgets.widget({
       			break;
     	  }
       });
-    });
+    });*/
 
     canvas.parentNode.appendChild(legendHolder.firstChild);
 
