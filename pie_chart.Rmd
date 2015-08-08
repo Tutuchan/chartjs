@@ -1,0 +1,14 @@
+---
+title: "Pie Charts"
+---
+
+
+```{r, warning=FALSE, error=FALSE, message=FALSE}
+library(chartjs)
+library(magrittr)
+cyls <- dplyr::count(mtcars, cyl)
+listCyls <- as.list(cyls$n)
+names(listCyls) <- cyls$cyl
+chartjs(listCyls) %>% 
+  pieChart
+```

@@ -43,4 +43,5 @@ There are several things on my todo list :
 + make it possible to pass options to graphs for more customization,
 + implement the [Chart.StackedBar](https://github.com/Regaddi/Chart.StackedBar.js) extension,
 + the legend for Bar Charts can be mouseovered to highlight the corresponding series, I would like to extend this functionality to the other graph types,
-+ make it possible to have a *subdue* mode for graphs where the strong color is present by default and highlighting turns the colors of the non-highlighted elements to the light color. This would make the elements stand out more in the default state.
++ make it possible to have a *subdue* mode for graphs where the strong color is present by default and highlighting turns the colors of the non-highlighted elements to the light color. This would make the elements stand out more in the default state,
++ a better definition of the inputs for a graph, possibly using NSE.
