@@ -1,10 +1,10 @@
 Package: chartjs
 Type: Package
 Title: An implementation of the Chart.js library
-Version: 0.1
+Version: 0.1.9001
 Date: 2015-08-06
 Authors@R: as.person(c(
-    "Pierre Formont <pfo@datapole.com> [aut, cre]"))
+    "Pierre Formont <pierre.formont@gmail.com> [aut, cre]"))
 Description: An implementation of the Chart.js visualization library.
 License: MIT
 LazyData: TRUE
