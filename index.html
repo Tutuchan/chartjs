@@ -45,6 +45,32 @@ body {
 <link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #2a211c; color: #bdae9d; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #2a211c; color: #bdae9d; border-right: 1px solid #bdae9d; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #bdae9d; background-color: #2a211c; }
+code > span.kw { color: #43a8ed; font-weight: bold; }
+code > span.dt { text-decoration: underline; }
+code > span.dv { color: #44aa43; }
+code > span.bn { color: #44aa43; }
+code > span.fl { color: #44aa43; }
+code > span.ch { color: #049b0a; }
+code > span.st { color: #049b0a; }
+code > span.co { color: #0066ff; font-style: italic; }
+code > span.al { color: #ffff00; }
+code > span.fu { color: #ff9358; font-weight: bold; }
+code > span.er { font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
 
 
 </head>
@@ -76,11 +102,11 @@ img {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">chartjs</a>
+      <a class="navbar-brand" href="index.html">chartjs</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/chartjs">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li class="dropdown">
           <a href="charts" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -103,7 +129,46 @@ img {
 </div>
 
 
-<p>chartjs is an implementation of the popular JavaScript vizualisation library <strong>Chart.js</strong>.</p>
+<hr />
+<p>chartjs is an implementation of the popular JavaScript vizualisation library <a href="www.chartjs.org"><strong>Chart.js</strong></a>.</p>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>The package can be installed from GitHub <em>via</em> the <strong>devtools</strong> package:</p>
+<pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">&quot;tutuchan/chartjs&quot;</span>)</code></pre>
+</div>
+<div id="charts" class="section level2">
+<h2>Charts</h2>
+<p>The 6 charts types available in <strong>Chart.js</strong> are implemented :</p>
+<ul>
+<li>bar charts,</li>
+<li>line charts,</li>
+<li>pie charts,</li>
+<li>doughnut charts,</li>
+<li>radar charts,</li>
+<li>polar area charts</li>
+</ul>
+</div>
+<div id="improvements" class="section level2">
+<h2>Improvements</h2>
+<div id="colors" class="section level3">
+<h3>Colors</h3>
+<p>Base colors imported from the Paired palette of <a href="http://www.colorbrewer2.org">ColorBrewer</a> are available by default. It allows having a light color to represent the data which turns into a stronger color when highlighted.</p>
+</div>
+<div id="legends" class="section level3">
+<h3>Legends</h3>
+<p>Legends can be generated in <strong>Chart.js</strong> but this has to be done manually. Here, legends are automatically generated and placed in a separate container next to the graph.</p>
+</div>
+<div id="future-improvements" class="section level3">
+<h3>Future improvements</h3>
+<p>There are several things on my todo list :</p>
+<ul>
+<li>make it possible to pass options to graphs for more customization,</li>
+<li>implement the <a href="https://github.com/Regaddi/Chart.StackedBar.js">Chart.StackedBar</a> extension,</li>
+<li>the legend for Bar Charts can be mouseovered to highlight the corresponding series, I would like to extend this functionality to the other graph types,</li>
+<li>make it possible to have a <em>subdue</em> mode for graphs where the strong color is present by default and highlighting turns the colors of the non-highlighted elements to the light color. This would make the elements stand out more in the default state.</li>
+</ul>
+</div>
+</div>
 
 
 </div>

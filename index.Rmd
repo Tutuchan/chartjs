@@ -2,4 +2,45 @@
 title: "chartjs - A Chart.js implementation in R"
 ---
 
-chartjs is an implementation of the popular JavaScript vizualisation library **Chart.js**.
+***
+
+chartjs is an implementation of the popular JavaScript vizualisation library [**Chart.js**](www.chartjs.org).
+
+## Installation
+
+The package can be installed from GitHub *via* the **devtools** package: 
+
+```{r, eval=FALSE}
+devtools::install_github("tutuchan/chartjs")
+```
+
+
+## Charts
+
+The 6 charts types available in **Chart.js** are implemented : 
+
++ bar charts,
++ line charts,
++ pie charts,
++ doughnut charts,
++ radar charts,
++ polar area charts
+
+## Improvements
+
+### Colors
+
+Base colors imported from the Paired palette of [ColorBrewer](http://www.colorbrewer2.org) are available by default. It allows having a light color to represent the data which turns into a stronger color when highlighted.
+
+### Legends
+
+Legends can be generated in **Chart.js** but this has to be done manually. Here, legends are automatically generated and placed in a separate container next to the graph.
+
+### Future improvements
+
+There are several things on my todo list : 
+
++ make it possible to pass options to graphs for more customization,
++ implement the [Chart.StackedBar](https://github.com/Regaddi/Chart.StackedBar.js) extension,
++ the legend for Bar Charts can be mouseovered to highlight the corresponding series, I would like to extend this functionality to the other graph types,
++ make it possible to have a *subdue* mode for graphs where the strong color is present by default and highlighting turns the colors of the non-highlighted elements to the light color. This would make the elements stand out more in the default state.
