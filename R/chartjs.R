@@ -4,41 +4,44 @@
 #'
 #' See the documentation of Chart.js at \url{http://www.chartjs.org/docs}.
 #'
-#' @param x a vector of numerics or characters : the labels on the x-axis
-#' @param y a named list of the y-axis data
+#' @param data a named list of the y-axis data
+#' @param labels a vector of numerics or characters : the labels of the data points.
+#' Not needed for Pie, Doughnut and PolarArea charts.
 #' @param width the width of the widget
 #' @param height the height of the widget
-#' @param type a character : the type of the widget, currently supports \code{line} or \code{bar}.
 #' @param chartOptions a list of chartOptions to customize the graph
-#'
-#'
 #'
 #' @import htmlwidgets
 #' @import htmltools
 #'
 #' @export
-chartjs <- function(x, y, width = NULL, height = NULL, type = "line", chartOptions = NULL) {
+chartjs <- function(data, labels = NULL, width = NULL, height = NULL, chartOptions = NULL) {
 
-  # Get y data
-  listY <- y
-  lY <- length(listY)
-  if (lY > 6) stop("Too many series. Please plot 6 or less.")
+  # Get data
+  len <- length(data)
+  if (len > 6) stop("Too many series. Please plot 6 or less.")
 
-  # Handle names
-  if (is.null(names(y))) names(y) <- paste0("var", 1:lY) else {
-    if (any(is.na(y))) names(y)[is.na(names(y))] <- paste0("var", 1:lY)[is.na(names(y))]
+  # Handle dataLabels
+  if (is.null(names(data))) names(data) <- paste0("var", 1:len) else {
+    if (any(is.na(data))) names(data)[is.na(names(data))] <- paste0("var", 1:len)[is.na(names(data))]
   }
-  labels <- names(y)
+  dataLabels <- names(data)
+
+  # Handle labels
+  if (is.null(labels)){
+    # Find out the longest series in data
+    labels <- rep("", max(sapply(data, length)))
+  }
 
   #### Handle chartOptions
   if(is.null(chartOptions)){
     chartOptions <- list()
   }
 
-  # forward chartOptions using x
-  x = list(x = x,
-           y = unname(listY),
-           labels = labels)
+  # forward data using x
+  x = list(labels = labels,
+           data = unname(data),
+           dataLabels = dataLabels)
 
   # create widget
   htmlwidgets::createWidget(

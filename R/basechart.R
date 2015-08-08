@@ -1,6 +1,4 @@
-#' Draw a base chart
-#'
-#' Base function for charts
+
 .vecColors <- RColorBrewer::brewer.pal(12, "Paired")
 
 .colorTypes <- c("strokeColor", "fillColor", "highlightStroke", "highlightFill",
@@ -9,7 +7,7 @@
 
 baseChart <- function(chartjs, type, colours = NULL){
   # Add colors to the color list if they are not present
-  vecColors <- .vecColors[1:(2*length(chartjs$x$y))]
+  vecColors <- .vecColors[1:(2*length(chartjs$x$data))]
   lColors <- length(vecColors)
 
   listColors <- lapply(.colorTypes, function(colorType) if (!colorType %in% names(colours)){

@@ -1,12 +1,12 @@
 library(chartjs)
 library(magrittr)
 
-x <- LETTERS[1:10]
-y <- list(y = round(runif(10),2), z= round(runif(10),2))
-chartjs(x, y) %>%
-  barChart
+labels <- LETTERS[1:10]
+data <- list(y = round(runif(10),2), z= round(runif(10),2))
+chartjs(data, labels) %>%
+  radarChart
 
-# x <- LETTERS[1:4]
-# y <- list(4,3,1,2)
-# chartjs(x, y) %>%
-#   polarAreaChart
+
+data <- list(4,3,1,2)
+chartjs(data) %>%
+  pieChart

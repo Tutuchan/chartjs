@@ -18,9 +18,9 @@ HTMLWidgets.widget({
       case "Bar":
       case "Line":
       case "Radar":
-        for (i = 0, len = x.y.length; i < len; i ++){
+        for (i = 0, len = x.data.length; i < len; i ++){
           datasets.push({
-              label: x.labels[i],
+              label: x.dataLabels[i],
               strokeColor: x.colors.strokeColor[i],
               fillColor: x.colors.fillColor[i],
               highlightStroke: x.colors.highlightStroke[i],
@@ -29,23 +29,23 @@ HTMLWidgets.widget({
               pointStrokeColor: x.colors.pointStrokeColor[i],
               pointHighlightFill: x.colors.pointHighlightFill[i],
               pointHighlightStroke: x.colors.pointHighlightStroke[i],
-              data: x.y[i]
+              data: x.data[i]
           });
         }
         data  = {
-          labels: x.x,
+          labels: x.labels,
           datasets: datasets
         };
         break;
       case "Pie":
       case "Doughnut":
       case "PolarArea":
-        for (i = 0, len = x.y.length; i < len; i ++){
+        for (i = 0, len = x.data.length; i < len; i ++){
           datasets.push({
-              label: x.labels[i],
+              label: x.dataLabels[i],
               color: x.colors.color[i],
               highlight: x.colors.highlight[i],
-              value: x.y[i]
+              value: x.data[i]
           });
         }
         data = datasets;
@@ -60,7 +60,8 @@ HTMLWidgets.widget({
       case "Bar":
         outChart = new Chart(ctx).Bar(data, {
           responsive : true,
-          animation: true});
+          animation: true
+        });
       break;
       case "Line":
         outChart = new Chart(ctx).Line(data, {
@@ -70,15 +71,22 @@ HTMLWidgets.widget({
         });
       break;
       case "Radar":
-        outChart = new Chart(ctx).Radar(data);
+        outChart = new Chart(ctx).Radar(data, {
+          responsive : true,
+          animation: true});
       break;
       case "Pie":
         outChart = new Chart(ctx).Pie(data, {
-          percentageInnerCutout: x.inner
+          percentageInnerCutout: x.inner,
+          responsive : true,
+          animation: true
         });
       break;
       case "PolarArea":
-        outChart = new Chart(ctx).PolarArea(data);
+        outChart = new Chart(ctx).PolarArea(data, {
+          responsive : true,
+          animation: true
+        });
       break;
     }
 
@@ -87,8 +95,8 @@ HTMLWidgets.widget({
     legendHolder.innerHTML = outChart.generateLegend();
 
     // When the series is mouseovered in the legend, highlight the corresponding elements
-    /*helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
-    	//helpers.addEvent(legendNode, 'mouseover', function(){
+    helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
+    	helpers.addEvent(legendNode, 'mouseover', function(){
     	  switch(x.type){
           case "Bar":
     		    var activeBars = outChart.datasets[index].bars;
@@ -117,7 +125,7 @@ HTMLWidgets.widget({
       			break;
     	  }
       });
-    });*/
+    });
 
     canvas.parentNode.appendChild(legendHolder.firstChild);
 

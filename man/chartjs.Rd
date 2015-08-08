@@ -4,19 +4,18 @@
 \alias{chartjs}
 \title{chartjs}
 \usage{
-chartjs(x, y, width = NULL, height = NULL, type = "line",
+chartjs(data, labels = NULL, width = NULL, height = NULL,
   chartOptions = NULL)
 }
 \arguments{
-\item{x}{a vector of numerics or characters : the labels on the x-axis}
+\item{data}{a named list of the y-axis data}
 
-\item{y}{a named list of the y-axis data}
+\item{labels}{a vector of numerics or characters : the labels of the data points.
+Not needed for Pie, Doughnut and PolarArea charts.}
 
 \item{width}{the width of the widget}
 
 \item{height}{the height of the widget}
-
-\item{type}{a character : the type of the widget, currently supports \code{line} or \code{bar}.}
 
 \item{chartOptions}{a list of chartOptions to customize the graph}
 }
