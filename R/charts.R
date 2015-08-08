@@ -15,6 +15,7 @@ NULL
 #' @export
 barChart <- function(chartjs, colours = NULL){
   chartjs <- baseChart(chartjs, "Bar", colours)
+  chartjs
 }
 
 #' @rdname charts
@@ -42,5 +43,12 @@ doughnutChart <- function(chartjs, colours = NULL, inner = 50){
 #' @export
 radarChart <- function(chartjs, colours = NULL){
   chartjs <- baseChart(chartjs, "Radar", colours)
+  chartjs
+}
+
+#' @rdname charts
+#' @export
+polarAreaChart <- function(chartjs, colours = NULL){
+  chartjs <- baseChart(chartjs, "PolarArea", colours)
   chartjs
 }

@@ -39,6 +39,7 @@ HTMLWidgets.widget({
         break;
       case "Pie":
       case "Doughnut":
+      case "PolarArea":
         for (i = 0, len = x.y.length; i < len; i ++){
           datasets.push({
               label: x.labels[i],
@@ -73,6 +74,9 @@ HTMLWidgets.widget({
         outChart = new Chart(ctx).Pie(data, {
           percentageInnerCutout: x.inner
         });
+      break;
+      case "PolarArea":
+        outChart = new Chart(ctx).PolarArea(data);
       break;
     }
 

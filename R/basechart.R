@@ -44,6 +44,9 @@ baseChart <- function(chartjs, type, colours = NULL){
            },
            Doughnut =  {
              if(colorType %in% c("color")) vecColors[seq(1,lColors,2)] else vecColors[seq(2,lColors,2)]
+           },
+           PolarArea = {
+             if(colorType %in% c("color")) vecColors[seq(1,lColors,2)] else vecColors[seq(2,lColors,2)]
            })
   } else colours[[colorType]])
 
