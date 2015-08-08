@@ -25,6 +25,17 @@ baseChart <- function(chartjs, type, colours = NULL){
                     pointHighlightStroke = rep("rgba(0,0,0,1)",lColors/2),
                     pointHighlightFill = vecColors[seq(1,lColors,2)])
            },
+           Radar = {
+             switch(colorType,
+                    strokeColor = vecColors[seq(2,lColors,2)],
+                    pointColor = vecColors[seq(2,lColors,2)],
+                    fillColor = apply(col2rgb(vecColors[seq(1,12,2)]), 2, function(x) paste0("rgba(", x[1], ", ", x[2], ", ", x[3], ", 0.2)")),
+                    highlightStroke = rep("rgba(0,0,0,0)",lColors/2),
+                    highlightFill = vecColors[seq(1,lColors,2)],
+                    pointStrokeColor = rep("rgba(0,0,0,0)",lColors/2),
+                    pointHighlightStroke = rep("rgba(0,0,0,1)",lColors/2),
+                    pointHighlightFill = vecColors[seq(1,lColors,2)])
+           },
            Bar = {
              if(colorType %in% c("strokeColor", "fillColor")) vecColors[seq(1,lColors,2)] else vecColors[seq(2,lColors,2)]
            },

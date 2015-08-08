@@ -6,6 +6,7 @@
 \alias{doughnutChart}
 \alias{lineChart}
 \alias{pieChart}
+\alias{radarChart}
 \title{Draw charts}
 \usage{
 barChart(chartjs, colours = NULL)
@@ -15,6 +16,8 @@ lineChart(chartjs, colours = NULL)
 pieChart(chartjs, colours = NULL, inner = 0)
 
 doughnutChart(chartjs, colours = NULL, inner = 50)
+
+radarChart(chartjs, colours = NULL)
 }
 \arguments{
 \item{chartjs}{a \code{\link{chartjs}} object}

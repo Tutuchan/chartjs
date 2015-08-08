@@ -17,6 +17,7 @@ HTMLWidgets.widget({
     switch(x.type){
       case "Bar":
       case "Line":
+      case "Radar":
         for (i = 0, len = x.y.length; i < len; i ++){
           datasets.push({
               label: x.labels[i],
@@ -64,6 +65,9 @@ HTMLWidgets.widget({
           animation: true,
           multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
         });
+      break;
+      case "Radar":
+        outChart = new Chart(ctx).Radar(data);
       break;
       case "Pie":
         outChart = new Chart(ctx).Pie(data, {

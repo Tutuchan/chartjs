@@ -37,3 +37,10 @@ pieChart <- function(chartjs, colours = NULL, inner = 0){
 doughnutChart <- function(chartjs, colours = NULL, inner = 50){
   pieChart(chartjs, colours, inner)
 }
+
+#' @rdname charts
+#' @export
+radarChart <- function(chartjs, colours = NULL){
+  chartjs <- baseChart(chartjs, "Radar", colours)
+  chartjs
+}

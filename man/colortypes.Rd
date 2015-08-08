@@ -25,6 +25,6 @@
 \item{highlight}{}
 }
 \description{
-Color types
+Allowed color types
 }
 
