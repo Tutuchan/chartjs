@@ -10,7 +10,7 @@
 
 
 
-<title>chartjs - A Chart.js implementation in R</title>
+<title>Bar Charts</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,6 +18,11 @@
 <script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<script src="libs/htmlwidgets-0.5/htmlwidgets.js"></script>
+<link href="libs/Chart.js-1.0.2/chartjs.css" rel="stylesheet" />
+<script src="libs/Chart.js-1.0.2/Chart.js"></script>
+<script src="libs/Chart.js-1.0.2/Chart.min.js"></script>
+<script src="libs/chartjs-binding-0.1.9002/chartjs.js"></script>
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
@@ -117,11 +122,20 @@ img {
 </div><!--/.navbar -->
 
 <div id="header">
-<h1 class="title">chartjs - A Chart.js implementation in R</h1>
+<h1 class="title">Bar Charts</h1>
 </div>
 
 
-<p>chartjs is an implementation of the popular JavaScript vizualisation library <strong>Chart.js</strong>.</p>
+<p>Bar charts are used to represent data as bars. <strong>Chart.js</strong> only allows the creation of dodged bar charts at the moment.</p>
+<pre class="r"><code>library(chartjs)
+library(magrittr)</code></pre>
+<pre><code>## Warning: package &#39;magrittr&#39; was built under R version 3.1.3</code></pre>
+<pre class="r"><code>chartjs(row.names(mtcars), list(mpg = mtcars$mpg, cyl = mtcars$cyl)) %&gt;% 
+  barChart</code></pre>
+<p><div class="chart-container">
+<canvas id="htmlwidget-7756" class="chartjs"></canvas>
+</div>
+<script type="application/json" data-for="htmlwidget-7756">{"x":{"x":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],"y":[[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],[6,6,4,6,8,6,8,4,4,6,6,8,8,8,8,8,8,4,4,4,4,8,8,8,8,4,4,4,8,6,8,4]],"labels":["mpg","cyl"],"colors":{"strokeColor":["#A6CEE3","#B2DF8A"],"fillColor":["#A6CEE3","#B2DF8A"],"highlightStroke":["#1F78B4","#33A02C"],"highlightFill":["#1F78B4","#33A02C"],"pointColor":["#1F78B4","#33A02C"],"pointStrokeColor":["#1F78B4","#33A02C"],"pointHighlightFill":["#1F78B4","#33A02C"],"pointHighlightStroke":["#1F78B4","#33A02C"],"color":["#1F78B4","#33A02C"],"highlight":["#1F78B4","#33A02C"]},"type":"Bar"},"evals":[]}</script></p>
 
 
 </div>

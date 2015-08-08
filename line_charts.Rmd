@@ -1,0 +1,13 @@
+---
+title: "Line Charts"
+---
+
+Line charts are used to represent data as lines.
+
+```{r}
+library(chartjs)
+library(magrittr)
+chartjs(row.names(mtcars), list(mpg = mtcars$mpg, cyl = mtcars$cyl)) %>% 
+  lineChart
+```
+

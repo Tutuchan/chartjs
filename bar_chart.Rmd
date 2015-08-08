@@ -1,0 +1,13 @@
+---
+title: "Bar Charts"
+---
+
+Bar charts are used to represent data as bars. **Chart.js** only allows the creation of dodged bar charts at the moment.
+
+```{r}
+library(chartjs)
+library(magrittr)
+chartjs(row.names(mtcars), list(mpg = mtcars$mpg, cyl = mtcars$cyl)) %>% 
+  barChart
+```
+

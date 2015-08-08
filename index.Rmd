@@ -1,0 +1,5 @@
+---
+title: "chartjs - A Chart.js implementation in R"
+---
+
+chartjs is an implementation of the popular JavaScript vizualisation library **Chart.js**.
