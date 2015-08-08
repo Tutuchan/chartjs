@@ -49,6 +49,7 @@ There are several things on my todo list :
 ## Acknowledgments
 
 Many thanks to : 
+
 + the RStudio team and Ramnath Vaidyanathan for the [htmlwidgets](http://www.htmlwidgets.org/) framework,
 + Nick Downie for the [Chart.js](http://www.chartjs.org) library
 + the Rstudio team for the [rmarkdown](http:/rmarkdown.rstudio.com/) package and the website template that I shamelessly ripped.
