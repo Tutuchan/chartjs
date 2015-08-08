@@ -4,7 +4,7 @@ title: "Line Charts"
 
 Line charts are used to represent data as lines.
 
-```{r}
+```{r, warning=FALSE, error=FALSE, message=FALSE}
 library(chartjs)
 library(magrittr)
 chartjs(row.names(mtcars), list(mpg = mtcars$mpg, cyl = mtcars$cyl)) %>% 
