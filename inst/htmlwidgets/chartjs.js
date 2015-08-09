@@ -85,20 +85,29 @@ HTMLWidgets.widget({
     	  switch(x.type){
           case "Bar":
     		    var activeBars = outChart.datasets[index].bars;
-      				for (var barsIndex = 0; barsIndex < activeBars.length; barsIndex++) {
-        				var activeBar = activeBars[barsIndex];
+      			  for (var barsIndex = 0; barsIndex < activeBars.length; barsIndex++) {
+        			  var activeBar = activeBars[barsIndex];
         				activeBar.save();
         				activeBar.fillColor = activeBar.highlightFill;
         				activeBar.strokeColor = activeBar.highlightStroke;
       				}
-    				outChart.draw();
+      				outChart.draw();
+
     			  break;
-    	    }
+    			case "Pie":
+    			case "PolarArea":
+    			  var activeSegment = outChart.segments[index];
+      		    activeSegment.save();
+      			  activeSegment.fillColor = activeSegment.highlightColor;
+      			  outChart.showTooltip([activeSegment]);
+      			  activeSegment.restore();
+      		break;
+        }
     	});
     });
     		// Remove highlight after mouseout
     helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
-    	helpers.addEvent(legendNode, 'mouseout', function(){
+        helpers.addEvent(legendNode, 'mouseout', function(){
     	  switch(x.type){
           case "Bar":
       			var activeBars = outChart.datasets[index].bars;
