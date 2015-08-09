@@ -34,14 +34,19 @@ chartjs <- function(data, labels = NULL, width = NULL, height = NULL, chartOptio
   }
 
   #### Handle chartOptions
+  baseOptions <- list(responsive = TRUE, animation = TRUE)
   if(is.null(chartOptions)){
-    chartOptions <- list()
+    chartOptions <- baseOptions
+  } else {
+    commonNames <-  names(baseOptions) %in% names(chartOptions)
+    chartOptions <- c(chartOptions, baseOptions[!commonNames])
   }
 
   # forward data using x
   x = list(labels = labels,
            data = unname(data),
-           dataLabels = dataLabels)
+           dataLabels = dataLabels,
+           options = chartOptions)
 
   # create widget
   htmlwidgets::createWidget(

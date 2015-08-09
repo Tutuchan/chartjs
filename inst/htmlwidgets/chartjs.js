@@ -55,38 +55,23 @@ HTMLWidgets.widget({
     console.log(data);
     var canvas = document.getElementById(el.id);
     var ctx = canvas.getContext("2d");
+    var chartOptions = x.options
 
     switch(x.type){
       case "Bar":
-        outChart = new Chart(ctx).Bar(data, {
-          responsive : true,
-          animation: true
-        });
+        outChart = new Chart(ctx).Bar(data, chartOptions);
       break;
       case "Line":
-        outChart = new Chart(ctx).Line(data, {
-          responsive : true,
-          animation: true,
-          multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
-        });
+        outChart = new Chart(ctx).Line(data, chartOptions);
       break;
       case "Radar":
-        outChart = new Chart(ctx).Radar(data, {
-          responsive : true,
-          animation: true});
+        outChart = new Chart(ctx).Radar(data, chartOptions);
       break;
       case "Pie":
-        outChart = new Chart(ctx).Pie(data, {
-          percentageInnerCutout: x.inner,
-          responsive : true,
-          animation: true
-        });
+        outChart = new Chart(ctx).Pie(data, chartOptions);
       break;
       case "PolarArea":
-        outChart = new Chart(ctx).PolarArea(data, {
-          responsive : true,
-          animation: true
-        });
+        outChart = new Chart(ctx).PolarArea(data, chartOptions);
       break;
     }
 

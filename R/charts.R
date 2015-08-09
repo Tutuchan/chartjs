@@ -29,7 +29,7 @@ lineChart <- function(chartjs, colours = NULL){
 #' @export
 pieChart <- function(chartjs, colours = NULL, inner = 0){
   chartjs <- baseChart(chartjs, "Pie", colours)
-  chartjs$x$inner <- inner
+  chartjs$x$options$percentageInnerCutout <- inner
   chartjs
 }
 
