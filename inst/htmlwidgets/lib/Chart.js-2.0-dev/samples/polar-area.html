@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Polar Area Chart</title>
+    <script src="../Chart.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="canvas-holder" style="width:50%" width="50%">
+        <canvas id="chart-area"></canvas>
+    </div>
+    <button id="randomizeData">Randomize Data</button>
+    <button id="addData">Add Data</button>
+    <button id="removeData">Remove Data</button>
+    <div>
+        <h3>Legend</h3>
+        <div id="legendContainer">
+            
+        </div>
+    </div>
+    <script>
+    var randomScalingFactor = function() {
+        return Math.round(Math.random() * 100);
+    };
+    var randomColorFactor = function() {
+        return Math.round(Math.random() * 255);
+    };
+    var randomColor = function(opacity) {
+        return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
+    };
+
+    var config = {
+        data: {
+            datasets: [{
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                ],
+                backgroundColor: [
+                    "#F7464A",
+                    "#46BFBD",
+                    "#FDB45C",
+                    "#949FB1",
+                    "#4D5360",
+                ],
+            }],
+            labels: [
+                "Red",
+                "Green",
+                "Yellow",
+                "Grey",
+                "Dark Grey"
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("chart-area");
+        window.myPolarArea = Chart.PolarArea(ctx, config);
+        updateLegend();
+    };
+
+    function updateLegend() {
+        $legendContainer = $('#legendContainer');
+        $legendContainer.empty();
+        $legendContainer.append(window.myPolarArea.generateLegend());
+    }
+
+    $('#randomizeData').click(function() {
+        $.each(config.data.datasets, function(i, piece) {
+            $.each(piece.data, function(j, value) {
+                config.data.datasets[i].data[j] = randomScalingFactor();
+                config.data.datasets[i].backgroundColor[j] = randomColor();
+            });
+        });
+        window.myPolarArea.update();
+        updateLegend();
+    });
+
+    $('#addData').click(function() {
+        if (config.data.datasets.length > 0) {
+            config.data.labels.push('dataset #' + config.data.labels.length);
+
+            for (var index = 0; index < config.data.datasets.length; ++index) {
+                config.data.datasets[index].backgroundColor.push(randomColor());
+                window.myPolarArea.addData(randomScalingFactor(), index);
+            }
+
+            updateLegend();
+        }
+    });
+
+    $('#removeData').click(function() {
+        config.data.labels.splice(-1, 1); // remove the label first
+
+        config.data.datasets.forEach(function(dataset, datasetIndex) {
+            dataset.backgroundColor.splice(-1, 1);
+            window.myPolarArea.removeData(datasetIndex, -1);
+        });
+
+        updateLegend();
+    });
+    </script>
+</body>
+
+</html>

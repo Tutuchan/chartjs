@@ -62,7 +62,11 @@ HTMLWidgets.widget({
         outChart = new Chart(ctx).Bar(data, chartOptions);
       break;
       case "Line":
-        outChart = new Chart(ctx).Line(data, chartOptions);
+        outChart = new Chart(ctx, {
+          type: 'line',
+          data: data,
+          options: chartOptions
+        });
       break;
       case "Radar":
         outChart = new Chart(ctx).Radar(data, chartOptions);
