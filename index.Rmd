@@ -26,21 +26,25 @@ The 6 charts types available in **Chart.js** are implemented :
 + radar charts,
 + polar area charts
 
-## Improvements
+## Features
 
 ### Colors
 
 Base colors imported from the Paired palette of [ColorBrewer](http://www.colorbrewer2.org) are available by default. It allows having a light color to represent the data which turns into a stronger color when highlighted.
 
+```{r Colors, echo=FALSE, fig.height=4, fig.width = 15}
+RColorBrewer::display.brewer.pal(12, "Paired")
+```
+
+
 ### Legends
 
-Legends can be generated in **Chart.js** but this has to be done manually. Here, legends are automatically generated and placed in a separate container next to the graph.
+Legends are automatically generated and placed in a separate container next to the graph.
 
 ### Future improvements
 
 There are several things on my todo list : 
 
-+ make it possible to pass options to graphs for more customization,
 + implement the [Chart.StackedBar](https://github.com/Regaddi/Chart.StackedBar.js) extension,
 + the legend for Bar Charts can be mouseovered to highlight the corresponding series, I would like to extend this functionality to the other graph types,
 + make it possible to have a *subdue* mode for graphs where the strong color is present by default and highlighting turns the colors of the non-highlighted elements to the light color. This would make the elements stand out more in the default state,
@@ -52,4 +56,4 @@ Many thanks to :
 
 + the RStudio team and Ramnath Vaidyanathan for the [htmlwidgets](http://www.htmlwidgets.org/) framework,
 + Nick Downie for the [Chart.js](http://www.chartjs.org) library
-+ the Rstudio team for the [rmarkdown](http://rmarkdown.rstudio.com/) package and the website template that I shamelessly ripped.
++ the RStudio team for the [rmarkdown](http://rmarkdown.rstudio.com/) package and the website template that I shamelessly ripped.
