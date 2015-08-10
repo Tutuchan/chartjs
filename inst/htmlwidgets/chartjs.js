@@ -21,14 +21,12 @@ HTMLWidgets.widget({
         for (i = 0, len = x.data.length; i < len; i ++){
           datasets.push({
               label: x.dataLabels[i],
-              strokeColor: x.colors.strokeColor[i],
-              fillColor: x.colors.fillColor[i],
-              highlightStroke: x.colors.highlightStroke[i],
-              highlightFill: x.colors.highlightFill[i],
-              pointColor: x.colors.pointColor[i],
-              pointStrokeColor: x.colors.pointStrokeColor[i],
-              pointHighlightFill: x.colors.pointHighlightFill[i],
-              pointHighlightStroke: x.colors.pointHighlightStroke[i],
+              borderColor: x.colors.borderColor[i],
+              backgroundColor: x.colors.backgroundColor[i],
+              pointBorderColor: x.colors.pointBorderColor[i],
+              pointBackgroundColor: x.colors.pointBackgroundColor[i],
+              pointHoverBorderColor: x.colors.pointHoverBorderColor[i],
+              pointHoverBackgroundColor: x.colors.pointHoverBackgroundColor[i],
               data: x.data[i]
           });
         }
@@ -55,7 +53,7 @@ HTMLWidgets.widget({
     console.log(data);
     var canvas = document.getElementById(el.id);
     var ctx = canvas.getContext("2d");
-    var chartOptions = x.options
+    var chartOptions = x.options;
 
     switch(x.type){
       case "Bar":
@@ -78,9 +76,10 @@ HTMLWidgets.widget({
         outChart = new Chart(ctx).PolarArea(data, chartOptions);
       break;
     }
+    console.log(outChart);
 
     // Generate legend and add mouseover event
-    var legendHolder = document.createElement('div');
+    /*var legendHolder = document.createElement('div');
     legendHolder.innerHTML = outChart.generateLegend();
 
     // When the series is mouseovered in the legend, highlight the corresponding elements
@@ -125,7 +124,7 @@ HTMLWidgets.widget({
       });
     });
 
-    canvas.parentNode.appendChild(legendHolder.firstChild);
+    canvas.parentNode.appendChild(legendHolder.firstChild);*/
 
 
 

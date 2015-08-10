@@ -1,9 +1,8 @@
 
 .vecColors <- RColorBrewer::brewer.pal(12, "Paired")
 
-.colorTypes <- c("strokeColor", "fillColor", "highlightStroke", "highlightFill",
-                 "pointColor", "pointStrokeColor", "pointHighlightFill", "pointHighlightStroke",
-                 "color", "highlight")
+.colorTypes <- c("borderColor", "backgroundColor", "pointBorderColor", "pointBackgroundColor",
+                 "pointHoverBorderColor", "pointHoverBackgroundColor")
 
 baseChart <- function(chartjs, type, colours = NULL){
   # Add colors to the color list if they are not present
@@ -14,14 +13,13 @@ baseChart <- function(chartjs, type, colours = NULL){
     switch(type,
            Line = {
              switch(colorType,
-                    strokeColor = vecColors[seq(2,lColors,2)],
-                    pointColor = vecColors[seq(2,lColors,2)],
-                    fillColor = rep("rgba(0,0,0,0)",lColors/2),
-                    highlightStroke = rep("rgba(0,0,0,0)",lColors/2),
-                    highlightFill = vecColors[seq(1,lColors,2)],
-                    pointStrokeColor = rep("rgba(0,0,0,0)",lColors/2),
-                    pointHighlightStroke = rep("rgba(0,0,0,1)",lColors/2),
-                    pointHighlightFill = vecColors[seq(1,lColors,2)])
+                    borderColor = vecColors[seq(2,lColors,2)],
+                    backgroundColor = apply(col2rgb(vecColors[seq(1,lColors,2)]), 2, function(x) paste0("rgba(", x[1], ", ", x[2], ", ", x[3], ", 0.2)")),
+                    pointBorderColor = vecColors[seq(2,lColors,2)],
+                    pointBackgroundColor = vecColors[seq(2,lColors,2)],
+                    pointHoverBorderColor = vecColors[seq(1,lColors,2)],
+                    pointHoverBackgroundColor = rep("rgba(0,0,0,0)",lColors/2)
+                    )
            },
            Radar = {
              switch(colorType,
@@ -52,6 +50,7 @@ baseChart <- function(chartjs, type, colours = NULL){
   listColors <- listColors[!is.null(listColors)]
   chartjs$x$colors <- listColors
   chartjs$x$type <- type
+  print(listColors)
   chartjs
 }
 

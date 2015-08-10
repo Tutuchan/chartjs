@@ -34,7 +34,7 @@ chartjs <- function(data, labels = NULL, width = NULL, height = NULL, chartOptio
   }
 
   #### Handle chartOptions
-  baseOptions <- list(responsive = TRUE, animation = TRUE)
+  baseOptions <- list(responsive = TRUE)
   if(is.null(chartOptions)){
     chartOptions <- baseOptions
   } else {
