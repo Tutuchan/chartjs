@@ -10,4 +10,4 @@ devtools::install_github("tutuchan/chartjs")
 
 ## Documentation
 
-See [the dedicated website](http://www.tutuchan.github.io/chartjs/)
+See [the dedicated website](http://tutuchan.github.io/chartjs/).

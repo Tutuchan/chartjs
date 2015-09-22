@@ -1,12 +1,14 @@
 Package: chartjs
 Type: Package
 Title: An implementation of the Chart.js library
-Version: 0.1.9003
-Date: 2015-08-08
+Version: 0.1.0.9004
+Date: 2015-09-18
 Authors@R: as.person(c(
     "Pierre Formont <pierre.formont@gmail.com> [aut, cre]"))
 Description: An implementation of the Chart.js visualization library.
 License: MIT
 LazyData: TRUE
 Suggests: testthat, magrittr
-Imports: RColorBrewer
+Imports: RColorBrewer, htmltools, htmlwidgets
+Author: Pierre Formont [aut, cre]
+Maintainer: Pierre Formont <pierre.formont@gmail.com>
