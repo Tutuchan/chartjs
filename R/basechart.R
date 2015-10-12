@@ -38,22 +38,31 @@ baseChart <- function(chartjs, type, colours = NULL){
            },
            Pie = {
              switch(colorType,
-                    borderColor = vecColors[seq(2,lColors,2)],
-                    backgroundColor = apply(col2rgb(vecColors[seq(1,lColors,2)]), 2, function(x) paste0("rgba(", x[1], ", ", x[2], ", ", x[3], ", 0.2)")),
+                    borderColor = rep("rgba(0,0,0,0)",lColors/2),
+                    backgroundColor = vecColors[seq(1,lColors,2)],
                     hoverBorderColor = vecColors[seq(1,lColors,2)],
-                    hoverBackgroundColor = rep("rgba(0,0,0,0)",lColors/2)
+                    hoverBackgroundColor = vecColors[seq(2,lColors,2)]
              )
            },
            Doughnut =  {
-             if(colorType %in% c("color")) vecColors[seq(1,lColors,2)] else vecColors[seq(2,lColors,2)]
+             switch(colorType,
+                    borderColor = rep("rgba(0,0,0,0)",lColors/2),
+                    backgroundColor = vecColors[seq(1,lColors,2)],
+                    hoverBorderColor = vecColors[seq(1,lColors,2)],
+                    hoverBackgroundColor = vecColors[seq(2,lColors,2)]
+             )
            },
            PolarArea = {
-             if(colorType %in% c("color")) vecColors[seq(1,lColors,2)] else vecColors[seq(2,lColors,2)]
+             switch(colorType,
+                    borderColor = rep("rgba(0,0,0,0)",lColors/2),
+                    backgroundColor = vecColors[seq(1,lColors,2)],
+                    hoverBorderColor = vecColors[seq(1,lColors,2)],
+                    hoverBackgroundColor = vecColors[seq(2,lColors,2)])
            })
   } else colours[[colorType]])
 
   names(listColors) <- .colorTypes
-  listColors <- listColors[!is.null(listColors)]
+  listColors <- listColors[!unname(unlist(lapply(listColors, is.null)))]
   chartjs$x$colors <- listColors
   chartjs$x$type <- type
   print(listColors)

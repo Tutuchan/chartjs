@@ -38,17 +38,33 @@ HTMLWidgets.widget({
       case "Pie":
       case "Doughnut":
       case "PolarArea":
-        for (i = 0, len = x.data.length; i < len; i ++){
+        if(x.data[0].length > 1){
+          for (i = 0, len = x.data[0].length; i < len; i ++){
+            var tempData = [];
+            for (j = 0, lenj = x.data.length; j < lenj; j ++){
+              tempData.push(x.data[j][i]);
+            }
+            console.log(tempData);
+            datasets.push({
+                borderColor: x.colors.borderColor,
+                backgroundColor: x.colors.backgroundColor,
+                hoverBorderColor: x.colors.hoverBorderColor,
+                hoverBackgroundColor: x.colors.hoverBackgroundColor,
+                data: tempData
+            });
+          }
+        } else {
           datasets.push({
-              label: x.dataLabels[i],
-              borderColor: x.colors.borderColor[i],
-              backgroundColor: x.colors.backgroundColor[i],
-              hoverBorderColor: x.colors.hoverBorderColor[i],
-              hoverBackgroundColor: x.colors.hoverBackgroundColor[i],
-              data: x.data[i]
-          });
+                borderColor: x.colors.borderColor,
+                backgroundColor: x.colors.backgroundColor,
+                hoverBorderColor: x.colors.hoverBorderColor,
+                hoverBackgroundColor: x.colors.hoverBackgroundColor,
+                data: x.data});
         }
-        data = datasets;
+        data  = {
+          labels: x.labels,
+          datasets: datasets
+        };
         break;
     }
 
