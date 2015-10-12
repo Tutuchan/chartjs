@@ -41,9 +41,11 @@ HTMLWidgets.widget({
         for (i = 0, len = x.data.length; i < len; i ++){
           datasets.push({
               label: x.dataLabels[i],
-              color: x.colors.color[i],
-              highlight: x.colors.highlight[i],
-              value: x.data[i]
+              borderColor: x.colors.borderColor[i],
+              backgroundColor: x.colors.backgroundColor[i],
+              hoverBorderColor: x.colors.hoverBorderColor[i],
+              hoverBackgroundColor: x.colors.hoverBackgroundColor[i],
+              data: x.data[i]
           });
         }
         data = datasets;
@@ -57,7 +59,11 @@ HTMLWidgets.widget({
 
     switch(x.type){
       case "Bar":
-        outChart = new Chart(ctx).Bar(data, chartOptions);
+        outChart = new Chart(ctx, {
+          type: 'bar',
+          data: data,
+          options: chartOptions
+          });
       break;
       case "Line":
         outChart = new Chart(ctx, {
@@ -67,13 +73,25 @@ HTMLWidgets.widget({
         });
       break;
       case "Radar":
-        outChart = new Chart(ctx).Radar(data, chartOptions);
+        outChart = new Chart(ctx, {
+          type: 'radar',
+          data: data,
+          options: chartOptions
+        });
       break;
       case "Pie":
-        outChart = new Chart(ctx).Pie(data, chartOptions);
+        outChart = new Chart(ctx, {
+          type: 'pie',
+          data: data,
+          options: chartOptions
+        });
       break;
       case "PolarArea":
-        outChart = new Chart(ctx).PolarArea(data, chartOptions);
+        outChart = new Chart(ctx, {
+          type: 'polararea',
+          data: data,
+          options: chartOptions
+        });
       break;
     }
     console.log(outChart);
