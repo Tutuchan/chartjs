@@ -34,21 +34,18 @@ baseChart <- function(chartjs, type, colours = NULL){
              )
            },
            Bar = {
-             if(colorType %in% c("backgroundColor", "borderColor")) vecColors[seq(1,lColors,2)] else vecColors[seq(2,lColors,2)]
+             switch(colorType,
+                    borderColor = rep("#000000",lColors/2),
+                    backgroundColor = vecColors[seq(1,lColors,2)],
+                    hoverBorderColor =  rep("rgba(255,255,255,1)",lColors/2),
+                    hoverBackgroundColor = vecColors[seq(2,lColors,2)]
+             )
            },
            Pie = {
              switch(colorType,
                     borderColor = rep("rgba(0,0,0,0)",lColors/2),
                     backgroundColor = vecColors[seq(1,lColors,2)],
-                    hoverBorderColor = vecColors[seq(1,lColors,2)],
-                    hoverBackgroundColor = vecColors[seq(2,lColors,2)]
-             )
-           },
-           Doughnut =  {
-             switch(colorType,
-                    borderColor = rep("rgba(0,0,0,0)",lColors/2),
-                    backgroundColor = vecColors[seq(1,lColors,2)],
-                    hoverBorderColor = vecColors[seq(1,lColors,2)],
+                    hoverBorderColor = rep("rgba(0,0,0,0)",lColors/2),
                     hoverBackgroundColor = vecColors[seq(2,lColors,2)]
              )
            },

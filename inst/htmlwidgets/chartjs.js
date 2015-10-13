@@ -14,8 +14,28 @@ HTMLWidgets.widget({
 
     var datasets = [];
     var data = [];
+    var testdata = [];
+    helpers.each(x.colors, function(color) {
+      testdata.push({
+        color: color
+      })}, this);
+      console.log(testdata);
+
+
+
     switch(x.type){
       case "Bar":
+        for (i = 0, len = x.data.length; i < len; i ++){
+          datasets.push({
+              label: x.dataLabels[i],
+              borderColor: x.colors.borderColor[i],
+              backgroundColor: x.colors.backgroundColor[i],
+              hoverBorderColor: x.colors.hoverBorderColor[i],
+              hoverBackgroundColor: x.colors.hoverBackgroundColor[i],
+              data: x.data[i]
+          });
+        }
+        break;
       case "Line":
       case "Radar":
         for (i = 0, len = x.data.length; i < len; i ++){
@@ -30,10 +50,6 @@ HTMLWidgets.widget({
               data: x.data[i]
           });
         }
-        data  = {
-          labels: x.labels,
-          datasets: datasets
-        };
         break;
       case "Pie":
       case "Doughnut":
@@ -50,6 +66,7 @@ HTMLWidgets.widget({
                 backgroundColor: x.colors.backgroundColor,
                 hoverBorderColor: x.colors.hoverBorderColor,
                 hoverBackgroundColor: x.colors.hoverBackgroundColor,
+                borderWidth: x.options.borderWidth,
                 data: tempData
             });
           }
@@ -61,12 +78,13 @@ HTMLWidgets.widget({
                 hoverBackgroundColor: x.colors.hoverBackgroundColor,
                 data: x.data});
         }
-        data  = {
-          labels: x.labels,
-          datasets: datasets
-        };
         break;
     }
+
+    data  = {
+      labels: x.labels,
+      datasets: datasets
+    };
 
     console.log(data);
     var canvas = document.getElementById(el.id);
