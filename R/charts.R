@@ -12,9 +12,14 @@
 NULL
 
 #' @rdname charts
+#' @param stacked a logical, defaults to FALSE. If TRUE, bars will be stacked
+#' at each x value.
 #' @export
-barChart <- function(chartjs, colours = NULL){
+barChart <- function(chartjs, colours = NULL, stacked = FALSE){
   chartjs <- baseChart(chartjs, "Bar", colours)
+  if (stacked){
+    chartjs$x$stacked = TRUE
+  }
   chartjs
 }
 
@@ -50,5 +55,15 @@ radarChart <- function(chartjs, colours = NULL){
 #' @export
 polarAreaChart <- function(chartjs, colours = NULL){
   chartjs <- baseChart(chartjs, "PolarArea", colours)
+  chartjs
+}
+
+#' @rdname charts
+#' @export
+scatterChart <- function(chartjs, colours = NULL){
+  chartjs <- baseChart(chartjs, "Scatter", colours)
+  chartjs$x$data <- lapply(chartjs$x$data, function(mat) {
+    apply(mat, 1, function(rw) list(x = rw[1], y = rw[2]))
+  })
   chartjs
 }

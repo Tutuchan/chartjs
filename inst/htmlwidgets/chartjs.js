@@ -9,19 +9,11 @@ HTMLWidgets.widget({
   },
 
   renderValue: function(el, x, instance) {
-
     helpers = Chart.helpers;
 
     var datasets = [];
     var data = [];
-    var testdata = [];
-    helpers.each(x.colors, function(color) {
-      testdata.push({
-        color: color
-      })}, this);
-      console.log(testdata);
-
-
+    console.log(x);
 
     switch(x.type){
       case "Bar":
@@ -66,7 +58,6 @@ HTMLWidgets.widget({
                 backgroundColor: x.colors.backgroundColor,
                 hoverBorderColor: x.colors.hoverBorderColor,
                 hoverBackgroundColor: x.colors.hoverBackgroundColor,
-                borderWidth: x.options.borderWidth,
                 data: tempData
             });
           }
@@ -77,6 +68,18 @@ HTMLWidgets.widget({
                 hoverBorderColor: x.colors.hoverBorderColor,
                 hoverBackgroundColor: x.colors.hoverBackgroundColor,
                 data: x.data});
+        }
+        break;
+        case "Scatter":
+        for (i = 0, len = x.data.length; i < len; i ++){
+          datasets.push({
+              label: x.dataLabels[i],
+              borderColor: x.colors.borderColor[i],
+              backgroundColor: x.colors.backgroundColor[i],
+              pointBorderColor: x.colors.pointBorderColor[i],
+              pointBackgroundColor: x.colors.pointBackgroundColor[i],
+              data: x.data[i]
+          });
         }
         break;
     }
@@ -93,6 +96,16 @@ HTMLWidgets.widget({
 
     switch(x.type){
       case "Bar":
+        if (x.stacked){
+          chartOptions.scales = {
+             xAxes: [{
+               stacked: true,
+               }],
+               yAxes: [{
+                 stacked: true
+                 }]
+          };
+        }
         outChart = new Chart(ctx, {
           type: 'bar',
           data: data,
@@ -127,6 +140,11 @@ HTMLWidgets.widget({
           options: chartOptions
         });
       break;
+      case "Scatter":
+        outChart = Chart.Scatter(ctx, {
+          data: data,
+          options: chartOptions
+        });
     }
     console.log(outChart);
 

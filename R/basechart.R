@@ -16,11 +16,11 @@ baseChart <- function(chartjs, type, colours = NULL){
            Line = {
              switch(colorType,
                     borderColor = vecColors[seq(2,lColors,2)],
-                    backgroundColor = apply(col2rgb(vecColors[seq(1,lColors,2)]), 2, function(x) paste0("rgba(", x[1], ", ", x[2], ", ", x[3], ", 0.2)")),
-                    pointBorderColor = vecColors[seq(2,lColors,2)],
+                    backgroundColor = rep("rgba(0,0,0,0)",lColors/2),
+                    pointBorderColor = vecColors[seq(1,lColors,2)],
                     pointBackgroundColor = vecColors[seq(2,lColors,2)],
-                    pointHoverBorderColor = vecColors[seq(1,lColors,2)],
-                    pointHoverBackgroundColor = rep("rgba(0,0,0,0)",lColors/2)
+                    pointHoverBorderColor = vecColors[seq(2,lColors,2)],
+                    pointHoverBackgroundColor = vecColors[seq(1,lColors,2)]
                     )
            },
            Radar = {
@@ -55,6 +55,14 @@ baseChart <- function(chartjs, type, colours = NULL){
                     backgroundColor = vecColors[seq(1,lColors,2)],
                     hoverBorderColor = vecColors[seq(1,lColors,2)],
                     hoverBackgroundColor = vecColors[seq(2,lColors,2)])
+           },
+           Scatter = {
+             switch(colorType,
+                    borderColor = vecColors[seq(2,lColors,2)],
+                    backgroundColor = rep("rgba(0,0,0,0)",lColors/2),
+                    pointBorderColor = vecColors[seq(1,lColors,2)],
+                    pointBackgroundColor = vecColors[seq(2,lColors,2)]
+             )
            })
   } else colours[[colorType]])
 
