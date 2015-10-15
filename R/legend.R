@@ -15,7 +15,7 @@ cjsLegend <- function(chartjs, position = 'right', title = "", template = NULL){
   if (is.null(template)) template <- switch(chartjs$x$type,
                                             Line = paste0('<ul class="<%=config.type.toLowerCase()%>-legend"><li><b>', title, '</b></li><% for (var i = 0; i < data.datasets.length; i++){%><li><span style="background-color:<%=data.datasets[i].borderColor%>"></span><%if(data.datasets[i].label){%><%=data.datasets[i].label%><%}%></li><%}%></ul>'),
                                             Bar = paste0('<ul class="<%=config.type.toLowerCase()%>-legend"><li><b>', title, '</b></li><% for (var i = 0; i < data.datasets.length; i++){%><li><span style="background-color:<%=data.datasets[i].backgroundColor%>"></span><%if(data.datasets[i].label){%><%=data.datasets[i].label%><%}%></li><%}%></ul>'))
-
+  chartjs$x$enableLegend <- TRUE
   chartjs$x$options$legendTemplate <- template
   chartjs
 }

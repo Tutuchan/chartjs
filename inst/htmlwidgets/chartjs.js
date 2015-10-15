@@ -158,10 +158,13 @@ HTMLWidgets.widget({
 
 
 
-    // Generate legend and add mouseover event
-    var legendHolder = document.createElement('div');
-    legendHolder.innerHTML = outChart.generateLegend();
-    canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+    // Generate legend
+    if (x.enableLegend){
+      var legendHolder = document.createElement('div');
+      legendHolder.innerHTML = outChart.generateLegend();
+      canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+    }
+
 
     // When the series is mouseovered in the legend, highlight the corresponding elements
     /*helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){

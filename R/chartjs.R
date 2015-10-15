@@ -46,7 +46,8 @@ chartjs <- function(data, labels = NULL, title = NULL, width = NULL, height = NU
   x = list(labels = labels,
            data = unname(data),
            dataLabels = dataLabels,
-           options = chartOptions)
+           options = chartOptions,
+           enableLegend = FALSE)
 
   x$title <- if (!is.null(title)) title else "Title"
 
@@ -62,7 +63,7 @@ chartjs <- function(data, labels = NULL, title = NULL, width = NULL, height = NU
 
 #' @export
 chartjs_html <- function(id, style, class, ...){
-  tags$div(class = "chart-container", tags$canvas(id = id, class = class))
+  tags$div(class = "htmlwidget_container", tags$div(class = "chart-container", tags$canvas(id = id, class = class)))
 }
 
 #' Widget output function for use in Shiny
