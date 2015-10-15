@@ -1,4 +1,15 @@
-
+#' Base chart creation
+#'
+#' This is a low-level function called by the charts creation functions. It adds
+#' colors and chart type to the object that will be interpreted by the Chart.js
+#' library.
+#'
+#' @param chartjs a \code{\link{chartjs}} object
+#' @param type a character, the type of chart
+#' @param colours an optional list of colours. If NULL, default colors from the
+#' \strong{Paired} palette of the RColorBrewer package will be used.
+#' @name baseChart
+#' @keywords internal
 .vecColors <- RColorBrewer::brewer.pal(12, "Paired")
 
 .colorTypes <- c("borderColor", "backgroundColor",
@@ -7,6 +18,7 @@
                  "pointHoverBorderColor", "pointHoverBackgroundColor")
 
 baseChart <- function(chartjs, type, colours = NULL){
+  if(!type %in% c("Bar", "Line", "Pie", "PolarArea", "Radar", "Scatter")) stop("incorrect type")
   # Add colors to the color list if they are not present
   vecColors <- .vecColors[1:(2*length(chartjs$x$data))]
   lColors <- length(vecColors)
@@ -70,7 +82,6 @@ baseChart <- function(chartjs, type, colours = NULL){
   listColors <- listColors[!unname(unlist(lapply(listColors, is.null)))]
   chartjs$x$colors <- listColors
   chartjs$x$type <- type
-  print(listColors)
   chartjs
 }
 

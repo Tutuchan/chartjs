@@ -3,12 +3,46 @@
 #' These functions are used to draw the different types of graphs.
 #'
 #' For \code{colours}, the names of the list must be among those in \code{\link{colortypes}}.
-#' The base colours are obtained from the \strong{Paired} palette from the \code{\link[RColorBrewer]{RColorBrewer}} package.
+#' The default colours are obtained from the \strong{Paired} palette from the
+#' \code{\link[RColorBrewer]{RColorBrewer}} package.
 #'
 #' @param chartjs a \code{\link{chartjs}} object
 #' @param colours an optional list of colours.
-#' @param inner the optional percentage of the inner cutout for Pie and Doughnut charts (default 0 for Pie and 50 for Doughnuts)
 #' @name charts
+#' @examples
+#' labels <- row.names(mtcars)
+#' data <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
+#' dataPie <- mtcars %>%
+#'   dplyr::count(cyl)
+#' dataScatter <- list(y = matrix(round(runif(20),2), ncol = 2), z =matrix(round(runif(20),2), ncol = 2))
+#'
+#' # Draw a bar chart
+#' chartjs(data, labels) %>%
+#'   barChart
+#'
+#' # Draw a stacked bar chart
+#' chartjs(data, labels) %>%
+#'   barChart(stacked = TRUE)
+#'
+#' # Draw a line chart
+#' chartjs(data, labels) %>%
+#'   lineChart
+#'
+#' # Draw a radar chart
+#' chartjs(data, labels) %>%
+#'   radarChart
+#'
+#' # Draw a pie chart
+#' chartjs(as.list(dataPie$n), labels = dataPie$cyl) %>%
+#'   pieChart
+#'
+#' # Draw a doughnut chart
+#' chartjs(as.list(dataPie$n), labels = dataPie$cyl) %>%
+#'   doughnutChart
+#'
+#' # Draw a scatter chart
+#' chartjs(dataScatter) %>%
+#'   scatterChart
 NULL
 
 #' @rdname charts
@@ -17,9 +51,7 @@ NULL
 #' @export
 barChart <- function(chartjs, colours = NULL, stacked = FALSE){
   chartjs <- baseChart(chartjs, "Bar", colours)
-  if (stacked){
-    chartjs$x$stacked = TRUE
-  }
+  chartjs$x$stacked = stacked
   chartjs
 }
 
@@ -31,6 +63,8 @@ lineChart <- function(chartjs, colours = NULL){
 }
 
 #' @rdname charts
+#' @param inner the optional percentage of the inner cutout for Pie and Doughnut
+#' charts (defaults to 0 for Pie and 50 for Doughnut)
 #' @export
 pieChart <- function(chartjs, colours = NULL, inner = 0){
   chartjs <- baseChart(chartjs, "Pie", colours)

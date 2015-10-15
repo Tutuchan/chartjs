@@ -4,21 +4,21 @@
 \alias{colortypes}
 \title{Color types}
 \arguments{
-\item{borderColor}{}
+\item{borderColor}{for all charts}
 
-\item{backgroundColor}{}
+\item{backgroundColor}{for all charts}
 
-\item{pointBorderColor}{}
+\item{pointBorderColor}{for Line, Radar and Scatter charts}
 
-\item{pointBackgroundColor}{}
+\item{pointBackgroundColor}{for Line, Radar and Scatter charts}
 
-\item{hoverBorderColor}{}
+\item{hoverBorderColor}{for Bar, Pie, Doughnut and PolarArea charts}
 
-\item{hoverBackgroundColor}{}
+\item{hoverBackgroundColor}{for Bar, Pie, Doughnut and PolarArea charts}
 
-\item{pointHoverBorderColor}{}
+\item{pointHoverBorderColor}{for Line, Radar and Scatter charts}
 
-\item{pointHoverBackgroundColor}{}
+\item{pointHoverBackgroundColor}{for Line, Radar and Scatter charts}
 }
 \description{
 Allowed color types

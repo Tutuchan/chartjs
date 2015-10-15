@@ -35,4 +35,13 @@ The allowed values in \code{...} are :
   multiKeyBackground \tab character, defaults to '#fff' \cr
 }
 }
+\examples{
+labels <- row.names(mtcars)
+data <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
+
+# Change tooltip title color
+chartjs(data, labels) \%>\%
+  barChart \%>\%
+  cjsTooltips(titleFontColor = "#f0f")
+}
 

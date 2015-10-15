@@ -27,6 +27,14 @@
 #' }
 #' @export
 #' @name tooltips
+#' @examples
+#' labels <- row.names(mtcars)
+#' data <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
+#'
+#' # Change tooltip title color
+#' chartjs(data, labels) %>%
+#'   barChart %>%
+#'   cjsTooltips(titleFontColor = "#f0f")
 cjsTooltips <- function(chartjs, ...){
   ldots <- list(...)
   chartjs$x$options$tooltips <- ldots
