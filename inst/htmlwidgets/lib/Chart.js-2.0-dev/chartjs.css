@@ -24,11 +24,5 @@
   top: 0;
   width: 20px;
   height: 100%;
-}
-
-.chart-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  border-radius: 5px;
 }

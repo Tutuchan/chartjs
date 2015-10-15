@@ -4,7 +4,7 @@
 \alias{chartjs}
 \title{chartjs}
 \usage{
-chartjs(data, labels = NULL, width = NULL, height = NULL,
+chartjs(data, labels = NULL, title = NULL, width = NULL, height = NULL,
   chartOptions = NULL)
 }
 \arguments{

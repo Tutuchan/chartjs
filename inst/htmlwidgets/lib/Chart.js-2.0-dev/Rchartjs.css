@@ -1,0 +1,31 @@
+#htmlwidget_container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.chart-container {
+  position: relative;
+  width: 85%;
+}
+
+[class$="-legend"] {
+  list-style: none;
+  position: relative;
+  width: 10%;
+  font-family:  Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+}
+
+[class$="-legend"] li span {
+  border-radius: 0;
+}
+
+.chart-title {
+  position: relative;
+  width: 80%;
+  font-weight: bold;
+  font-family:  Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  text-align: center;
+  font-size: 200%;
+}

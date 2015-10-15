@@ -91,6 +91,13 @@ HTMLWidgets.widget({
 
     console.log(data);
     var canvas = document.getElementById(el.id);
+
+    // Generate title
+    var titleHolder = document.createElement('div');
+    titleHolder.innerHTML = x.title;
+    titleHolder.className = "chart-title";
+    canvas.parentNode.parentNode.insertBefore(titleHolder, canvas.parentNode.parentNode.childNodes[0]);
+
     var ctx = canvas.getContext("2d");
     var chartOptions = x.options;
 
@@ -147,13 +154,17 @@ HTMLWidgets.widget({
         });
     }
     console.log(outChart);
+    console.log(outChart.generateLegend());
+
+
 
     // Generate legend and add mouseover event
-    /*var legendHolder = document.createElement('div');
+    var legendHolder = document.createElement('div');
     legendHolder.innerHTML = outChart.generateLegend();
+    canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
 
     // When the series is mouseovered in the legend, highlight the corresponding elements
-    helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
+    /*helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
     	helpers.addEvent(legendNode, 'mouseover', function(){
     	  switch(x.type){
           case "Bar":

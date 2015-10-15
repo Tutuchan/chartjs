@@ -15,7 +15,7 @@
 #' @import htmltools
 #'
 #' @export
-chartjs <- function(data, labels = NULL, width = NULL, height = NULL, chartOptions = NULL) {
+chartjs <- function(data, labels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL) {
 
   # Get data
   len <- length(data)
@@ -47,6 +47,8 @@ chartjs <- function(data, labels = NULL, width = NULL, height = NULL, chartOptio
            data = unname(data),
            dataLabels = dataLabels,
            options = chartOptions)
+
+  x$title <- if (!is.null(title)) title else "Title"
 
   # create widget
   htmlwidgets::createWidget(

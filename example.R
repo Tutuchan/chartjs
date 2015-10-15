@@ -1,12 +1,15 @@
 library(chartjs)
 library(magrittr)
 
-labels <- LETTERS[1:10]
-data <- list(y = round(runif(10),2), z= round(runif(10),2))
+labels <- row.names(mtcars)
+data <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
 
-chartjs(data, labels) %>%
-  lineChart %>%
-  cjsTooltips(titleFontColor = "#0f0")
+chartjs(data, labels, title = "mpg and qsec in the mtcars dataset") %>%
+  barChart %>%
+  cjsTooltips(titleFontColor = "#4F92C4", fontFamily = "Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif",
+              titleFontFamily = "Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif",
+              cornerRadius = 0) %>%
+  cjsLegend(title = "Variables")
 
 chartjs(data, labels) %>%
   barChart(stacked = TRUE)
