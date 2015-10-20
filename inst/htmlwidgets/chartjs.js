@@ -88,18 +88,29 @@ HTMLWidgets.widget({
       labels: x.labels,
       datasets: datasets
     };
-
-    console.log(data);
     var canvas = document.getElementById(el.id);
 
-    // Generate title
-    var titleHolder = document.createElement('div');
-    titleHolder.innerHTML = x.title;
-    titleHolder.className = "chart-title";
-    canvas.parentNode.parentNode.insertBefore(titleHolder, canvas.parentNode.parentNode.childNodes[0]);
+    // If a previous chart exists, destroy it
+    if (instance.cjs) {
+      instance.cjs.destroy();
+      instance.cjs = null;
+    }
+
+    // Generate title if necessary
+    if (canvas.parentNode.parentNode.firstChild.className === "chart-title"){
+      canvas.parentNode.parentNode.firstChild.innerHTML = x.title;
+    } else {
+      var titleHolder = document.createElement('div');
+      titleHolder.innerHTML = x.title;
+      titleHolder.className = "chart-title";
+      canvas.parentNode.parentNode.insertBefore(titleHolder, canvas.parentNode.parentNode.childNodes[0]);
+    }
+
 
     var ctx = canvas.getContext("2d");
     var chartOptions = x.options;
+
+
 
     switch(x.type){
       case "Bar":
@@ -113,56 +124,58 @@ HTMLWidgets.widget({
                  }]
           };
         }
-        outChart = new Chart(ctx, {
+        instance.cjs = new Chart(ctx, {
           type: 'bar',
           data: data,
           options: chartOptions
           });
       break;
       case "Line":
-        outChart = new Chart(ctx, {
+        instance.cjs = new Chart(ctx, {
           type: 'line',
           data: data,
           options: chartOptions
         });
       break;
       case "Radar":
-        outChart = new Chart(ctx, {
+        instance.cjs = new Chart(ctx, {
           type: 'radar',
           data: data,
           options: chartOptions
         });
       break;
       case "Pie":
-        outChart = new Chart(ctx, {
+        instance.cjs = new Chart(ctx, {
           type: 'pie',
           data: data,
           options: chartOptions
         });
       break;
       case "PolarArea":
-        outChart = new Chart(ctx, {
+        instance.cjs = new Chart(ctx, {
           type: 'polararea',
           data: data,
           options: chartOptions
         });
       break;
       case "Scatter":
-        outChart = Chart.Scatter(ctx, {
+        instance.cjs = Chart.Scatter(ctx, {
           data: data,
           options: chartOptions
         });
     }
-    console.log(outChart);
-    console.log(outChart.generateLegend());
 
 
 
-    // Generate legend
+    // Generate legend. If it already exists, only modify the HTML.
     if (x.enableLegend){
-      var legendHolder = document.createElement('div');
-      legendHolder.innerHTML = outChart.generateLegend();
-      canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+      if (canvas.parentNode.parentNode.children.length == 2){
+        var legendHolder = document.createElement('div');
+        legendHolder.innerHTML = instance.cjs.generateLegend();
+        canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+      } else {
+        canvas.parentNode.nextSibling.innerHTML = instance.cjs.generateLegend();
+      }
     }
 
 
@@ -216,8 +229,8 @@ HTMLWidgets.widget({
   },
 
   resize: function(el, width, height, instance) {
-    if (outChart)
-      outChart.resize();
+    if (instance.cjs)
+      instance.cjs.resize();
   }
 
 });
