@@ -13,6 +13,7 @@ HTMLWidgets.widget({
 
     var datasets = [];
     var data = [];
+
     console.log(x);
 
     switch(x.type){

@@ -1,24 +1,38 @@
 #' chartjs
 #'
-#' Draw a graph using the Chart.js library
+#' Draw a graph using the Chart.js library. \code{chartjs} uses NSE to draw specific columns from a data.frame
+#' while \code{chartjs_} draws all columns from a data.frame.
 #'
 #' See the documentation of Chart.js at \url{http://www.chartjs.org/docs}.
 #'
-#' @param data a named list of the y-axis data
+#' @param dataframe a dataframe,
+#' @param ... unquoted names of the columns to plot,
+#' @param data a dataframe;
 #' @param labels a vector of numerics or characters : the labels of the data points.
-#' Not needed for Pie, Doughnut and PolarArea charts.
-#' @param width the width of the widget
-#' @param height the height of the widget
-#' @param chartOptions a list of chartOptions to customize the graph
+#' Not needed for Pie, Doughnut and PolarArea charts,
+#' @param title the title of the chart,
+#' @param width the width of the widget,
+#' @param height the height of the widget,
+#' @param chartOptions a list of chartOptions to customize the graph,
 #'
 #' @import htmlwidgets
 #' @import htmltools
 #'
+#' @name chartjs
 #' @export
-chartjs <- function(data, labels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL) {
+
+chartjs <- function(dataframe, ..., labels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL){
+  ldots <- lazyeval::lazy_dots(...)
+  chartjs:::chartjs_(data = dataframe %>% dplyr::select_(.dots = ldots),
+           labels, title, width, height, chartOptions)
+}
+
+#' @rdname chartjs
+#' @export
+chartjs_ <- function(data, labels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL) {
 
   # Get data
-  len <- length(data)
+  len <- ncol(data)
   if (len > 6) stop("Too many series. Please plot 6 or less.")
 
   # Handle dataLabels
