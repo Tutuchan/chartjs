@@ -14,6 +14,8 @@ HTMLWidgets.widget({
     var datasets = [];
     var data = [];
 
+    console.log(x);
+
     switch(x.type){
       case "Bar":
         for (i = 0, len = x.data.length; i < len; i ++){
@@ -87,6 +89,8 @@ HTMLWidgets.widget({
       labels: x.labels,
       datasets: datasets
     };
+
+    console.log(data);
     var canvas = document.getElementById(el.id);
 
     // If a previous chart exists, destroy it

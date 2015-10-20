@@ -11,33 +11,29 @@
 #' @name charts
 #' @examples
 #' labels <- row.names(mtcars)
-#' data <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
-#' dataPie <- mtcars %>%
-#'   dplyr::count(cyl)
-#' dataScatter <- list(y = matrix(round(runif(20),2), ncol = 2), z =matrix(round(runif(20),2), ncol = 2))
 #'
 #' # Draw a bar chart
-#' chartjs(data, labels) %>%
+#' chartjs(mtcars, mpg, qsec, labels = labels) %>%
 #'   barChart
 #'
 #' # Draw a stacked bar chart
-#' chartjs(data, labels) %>%
+#' chartjs(mtcars, mpg, qsec, labels = labels) %>%
 #'   barChart(stacked = TRUE)
 #'
 #' # Draw a line chart
-#' chartjs(data, labels) %>%
+#' chartjs(mtcars, mpg, qsec, labels = labels) %>%
 #'   lineChart
 #'
 #' # Draw a radar chart
-#' chartjs(data, labels) %>%
+#' chartjs(mtcars, mpg, qsec, labels = labels) %>%
 #'   radarChart
 #'
 #' # Draw a pie chart
-#' chartjs(as.list(dataPie$n), labels = dataPie$cyl) %>%
+#' chartjs(mtcars[1,], mpg, qsec) %>%
 #'   pieChart
 #'
 #' # Draw a doughnut chart
-#' chartjs(as.list(dataPie$n), labels = dataPie$cyl) %>%
+#' chartjs(mtcars[1,], mpg, qsec) %>%
 #'   doughnutChart
 #'
 #' # Draw a scatter chart
@@ -67,6 +63,7 @@ lineChart <- function(chartjs, colours = NULL){
 #' charts (defaults to 0 for Pie and 50 for Doughnut)
 #' @export
 pieChart <- function(chartjs, colours = NULL, inner = 0){
+  if (all(chartjs$x$labels == "")) chartjs$x$labels <- chartjs$x$dataLabels
   chartjs <- baseChart(chartjs, "Pie", colours)
   chartjs$x$options$cutoutPercentage <- inner
   chartjs

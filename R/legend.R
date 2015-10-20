@@ -12,9 +12,21 @@
 #'   barChart %>%
 #'   cjsLegend(title = "Variables")
 cjsLegend <- function(chartjs, position = 'right', title = "", template = NULL){
+  basicTemplate <- c('<ul class="<%=config.type.toLowerCase()%>-legend"><li><b>', title, '</b></li><% for (var i = 0; i < data.datasets.length; i++){%><li><span style="background-color:<%=data.datasets[i].', "" , '%>"></span><%if(data.datasets[i].label){%><%=data.datasets[i].label%><%}%></li><%}%></ul>')
   if (is.null(template)) template <- switch(chartjs$x$type,
-                                            Line = paste0('<ul class="<%=config.type.toLowerCase()%>-legend"><li><b>', title, '</b></li><% for (var i = 0; i < data.datasets.length; i++){%><li><span style="background-color:<%=data.datasets[i].borderColor%>"></span><%if(data.datasets[i].label){%><%=data.datasets[i].label%><%}%></li><%}%></ul>'),
-                                            Bar = paste0('<ul class="<%=config.type.toLowerCase()%>-legend"><li><b>', title, '</b></li><% for (var i = 0; i < data.datasets.length; i++){%><li><span style="background-color:<%=data.datasets[i].backgroundColor%>"></span><%if(data.datasets[i].label){%><%=data.datasets[i].label%><%}%></li><%}%></ul>'))
+                                            Line = {
+                                              tpl <- basicTemplate
+                                              tpl[4] <- "borderColor"
+                                              paste(tpl, collapse = "")
+                                            },
+                                            Bar = {
+                                              tpl <- basicTemplate
+                                              tpl[4] <- "backgroundColor"
+                                              paste(tpl, collapse = "")
+                                            },
+                                            Pie = {
+                                              paste0('<ul class="<%=config.type.toLowerCase()%>-legend"><li><b>', title, '</b></li><% for (var i = 0; i < data.datasets[0].data.length; i++){%><li><span style="background-color:<%=data.datasets[0].backgroundColor[i]%>"></span><%if(data.labels[i]){%><%=data.labels[i]%><%}%></li><%}%></ul>')
+                                            })
   chartjs$x$enableLegend <- TRUE
   chartjs$x$options$legendTemplate <- template
   chartjs
