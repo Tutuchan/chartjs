@@ -7,7 +7,7 @@ chartjs(mtcars, mpg, qsec, labels = row.names(mtcars), title = "mpg and qsec in 
               cornerRadius = 0) %>%
   cjsLegend(title = "Variables")
 
-chartjs(data, labels) %>%
+chartjs(mtcars, mpg, qsec, labels = row.names(mtcars)) %>%
   barChart(stacked = TRUE)
 
 chartjs(mtcars[1,], mpg, qsec) %>%
@@ -15,5 +15,5 @@ chartjs(mtcars[1,], mpg, qsec) %>%
   cjsLegend(title = "Variables")
 
 dataScatter <- list(y = matrix(round(runif(20),2), ncol = 2), z =matrix(round(runif(20),2), ncol = 2))
-chartjs(dataScatter) %>%
+chartjs(mtcars, mpg, qsec) %>%
   scatterChart

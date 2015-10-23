@@ -84,12 +84,15 @@ HTMLWidgets.widget({
         }
         break;
     }
-
+    // Final chart data
     data  = {
       labels: x.labels,
       datasets: datasets
     };
+
+    // Get element in page
     var canvas = document.getElementById(el.id);
+    var ctx = canvas.getContext("2d");
 
     // If a previous chart exists, destroy it
     if (instance.cjs) {
@@ -107,64 +110,25 @@ HTMLWidgets.widget({
       canvas.parentNode.parentNode.insertBefore(titleHolder, canvas.parentNode.parentNode.childNodes[0]);
     }
 
-
-    var ctx = canvas.getContext("2d");
+    // Handle options
     var chartOptions = x.options;
+    if (x.stacked){
+      chartOptions.scales = {
+        xAxes: [{
+          stacked: true
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      };
+    }
 
-
-
-    switch(x.type){
-      case "Bar":
-        if (x.stacked){
-          chartOptions.scales = {
-             xAxes: [{
-               stacked: true,
-               }],
-               yAxes: [{
-                 stacked: true
-                 }]
-          };
-        }
-        instance.cjs = new Chart(ctx, {
-          type: 'bar',
+    // Create actual chart
+    instance.cjs = new Chart(ctx, {
+          type: x.type.toLowerCase(),
           data: data,
           options: chartOptions
           });
-      break;
-      case "Line":
-        instance.cjs = new Chart(ctx, {
-          type: 'line',
-          data: data,
-          options: chartOptions
-        });
-      break;
-      case "Radar":
-        instance.cjs = new Chart(ctx, {
-          type: 'radar',
-          data: data,
-          options: chartOptions
-        });
-      break;
-      case "Pie":
-        instance.cjs = new Chart(ctx, {
-          type: 'pie',
-          data: data,
-          options: chartOptions
-        });
-      break;
-      case "PolarArea":
-        instance.cjs = new Chart(ctx, {
-          type: 'polararea',
-          data: data,
-          options: chartOptions
-        });
-      break;
-      case "Scatter":
-        instance.cjs = Chart.Scatter(ctx, {
-          data: data,
-          options: chartOptions
-        });
-    }
 
 
 

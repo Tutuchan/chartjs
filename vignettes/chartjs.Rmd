@@ -1,0 +1,82 @@
+---
+title: "chartjs"
+author: "Pierre Formont"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_document:
+    highlight: tango
+    theme: cosmo
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    css: styles/styles.css
+vignette: >
+  %\VignetteIndexEntry{chartjs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r Knitr init}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+
+```{r Load data}
+library(chartjs)
+library(dplyr)
+library(nycflights13)
+```
+
+
+# A simple chart
+
+```{r Simple chart}
+dfFlights <- flights %>% 
+  group_by(month) %>% 
+  summarise_each(funs(round(mean(., na.rm = TRUE), 1)), dep_delay, arr_delay)
+
+chartjs(dfFlights, dep_delay, arr_delay, labels = month.name[dfFlights$month]) %>% 
+  barChart
+```
+
+# Comparison with ggplot2
+
+```{r ggplot2 chart}
+library(tidyr)
+library(ggplot2)
+
+dfFlightsP <- dfFlights %>% 
+  gather(type, value, -month)
+  
+ggplot(dfFlightsP, aes(factor(month.name[month], levels = month.name), value, fill = type)) + 
+  geom_bar(stat = 'identity', position = "dodge")
+```
+
+# Customization
+
+## Legends
+
+```{r Titles and legends}
+chartjs(dfFlights, dep_delay, arr_delay, labels = month.name[dfFlights$month], title = "Flight delays in NYC airports in 2013") %>% 
+  barChart %>% 
+  cjsLegend(title = "Type of delays")
+```
+
+## Data labels
+
+```{r Data labels}
+chartjs(dfFlights, dep_delay, arr_delay, labels = month.name[dfFlights$month], dataLabels = c("Departure", "Arrival"), title = "Flight delays in NYC airports in 2013") %>% 
+  barChart %>% 
+  cjsLegend(title = "Type of delays")
+```
+
+## Tooltips
+
+```{r Tooltips}
+chartjs(dfFlights, dep_delay, arr_delay, labels = month.name[dfFlights$month], dataLabels = c("Departure", "Arrival"), title = "Flight delays in NYC airports in 2013") %>% 
+  barChart %>% 
+  cjsLegend(title = "Type of delays") %>% 
+  cjsTooltips(titleFontColor = "#AAAAAA", fontFamily = "serif", titleFontFamily = "serif", cornerRadius = 20,
+              xPadding = 20)
+```
+

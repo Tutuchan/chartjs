@@ -8,8 +8,9 @@
 #' @param dataframe a dataframe,
 #' @param ... unquoted names of the columns to plot,
 #' @param data a dataframe;
-#' @param labels a vector of numerics or characters : the labels of the data points.
+#' @param labels a vector of numerics or characters : the labels on the x-axis.
 #' Not needed for Pie, Doughnut and PolarArea charts,
+#' @param dataLabels a vector of characters : the labels of the data series,
 #' @param title the title of the chart,
 #' @param width the width of the widget,
 #' @param height the height of the widget,
@@ -21,25 +22,28 @@
 #' @name chartjs
 #' @export
 
-chartjs <- function(dataframe, ..., labels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL){
+chartjs <- function(dataframe, ..., labels = NULL, dataLabels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL){
   ldots <- lazyeval::lazy_dots(...)
   chartjs:::chartjs_(data = dataframe %>% dplyr::select_(.dots = ldots),
-           labels, title, width, height, chartOptions)
+           labels, dataLabels, title, width, height, chartOptions)
 }
 
 #' @rdname chartjs
 #' @export
-chartjs_ <- function(data, labels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL) {
+chartjs_ <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL) {
 
   # Get data
   len <- ncol(data)
   if (len > 6) stop("Too many series. Please plot 6 or less.")
 
   # Handle dataLabels
-  if (is.null(names(data))) names(data) <- paste0("var", 1:len) else {
-    if (any(is.na(data))) names(data)[is.na(names(data))] <- paste0("var", 1:len)[is.na(names(data))]
+  if (is.null(dataLabels)){
+    if (is.null(names(data))) names(data) <- paste0("var", 1:len) else {
+      if (any(is.na(data))) names(data)[is.na(names(data))] <- paste0("var", 1:len)[is.na(names(data))]
+    }
+    dataLabels <- names(data)
   }
-  dataLabels <- names(data)
+
 
   # Handle labels
   if (is.null(labels)){

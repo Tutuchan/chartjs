@@ -13,12 +13,21 @@
 [class$="-legend"] {
   list-style: none;
   position: relative;
-  width: 10%;
+  width: 12%;
   font-family:  Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+}
+
+[class$="-legend"] li {
+  margin-left: -40px;
 }
 
 [class$="-legend"] li span {
   border-radius: 0;
+}
+
+[class$="-legend"] li:first-child {
+  padding: 2px 8px 2px 2px;
+  text-align: center;
 }
 
 .chart-title {
