@@ -139,7 +139,8 @@ HTMLWidgets.widget({
         legendHolder.innerHTML = instance.cjs.generateLegend();
         canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
       } else {
-        canvas.parentNode.nextSibling.innerHTML = instance.cjs.generateLegend();
+        canvas.parentNode.nextElementSibling.className = x.type.toLowerCase().concat('-legend');
+        canvas.parentNode.nextElementSibling.innerHTML = instance.cjs.generateLegend();
       }
     }
 

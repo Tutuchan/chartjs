@@ -10,7 +10,7 @@ chartjs(mtcars, mpg, qsec, labels = row.names(mtcars), title = "mpg and qsec in 
 chartjs(mtcars, mpg, qsec, labels = row.names(mtcars)) %>%
   barChart(stacked = TRUE)
 
-chartjs(mtcars[1,], mpg, qsec) %>%
+chartjs(mtcars[1,], mpg, qsec, title = "is this title aligned with the chart ? looks like it !") %>%
   doughnutChart %>%
   cjsLegend(title = "Variables")
 

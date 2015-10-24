@@ -75,6 +75,7 @@ chartjs_ <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width
     x = x,
     width = width,
     height = height,
+    sizingPolicy = htmlwidgets::sizingPolicy(browser.fill = TRUE),
     package = 'chartjs'
   )
 }

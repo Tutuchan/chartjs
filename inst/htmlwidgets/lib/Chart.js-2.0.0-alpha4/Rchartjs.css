@@ -42,7 +42,6 @@
 .htmlwidget_container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
   align-items: center;
 }
 
@@ -53,7 +52,7 @@
 
 .chart-title {
   position: relative;
-  width: 80%;
+  width: 85%;
   font-weight: bold;
   font-family:  Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
   text-align: center;
