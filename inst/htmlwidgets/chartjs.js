@@ -133,7 +133,7 @@ HTMLWidgets.widget({
 
 
     // Generate legend. If it already exists, only modify the HTML.
-    if (x.enableLegend){
+    if (x.showLegend){
       if (canvas.parentNode.parentNode.children.length == 2){
         var legendHolder = document.createElement('div');
         legendHolder.innerHTML = instance.cjs.generateLegend();

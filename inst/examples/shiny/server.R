@@ -9,7 +9,7 @@ shinyServer(function(input, output) {
     } else {
       chartjs(mtcars[1,], mpg, qsec, title = mainTitle)
     }
-    # chartjs:::baseChart(type = input$chartType) %>%
+    # This is horrible code
     eval(expr = parse(text = paste0(tolower(input$chartType), "Chart(cjs)"))) %>%
       cjsLegend(title = "Variables")
   })

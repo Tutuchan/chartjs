@@ -10,11 +10,11 @@
 #' @param data a dataframe;
 #' @param labels a vector of numerics or characters : the labels on the x-axis.
 #' Not needed for Pie, Doughnut and PolarArea charts,
-#' @param dataLabels a vector of characters : the labels of the data series,
+#' @param dataLabels a vector of characters : the names of the data series,
 #' @param title the title of the chart,
 #' @param width the width of the widget,
 #' @param height the height of the widget,
-#' @param chartOptions a list of chartOptions to customize the graph,
+#' @param chartOptions a list of options to customize the graph, see the Chart.js documentation.
 #'
 #' @import htmlwidgets
 #' @import htmltools
@@ -22,9 +22,11 @@
 #' @name chartjs
 #' @export
 
-chartjs <- function(dataframe, ..., labels = NULL, dataLabels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL){
+chartjs <- function(data, ..., labels = NULL, dataLabels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL){
   ldots <- lazyeval::lazy_dots(...)
-  chartjs:::chartjs_(data = dataframe %>% dplyr::select_(.dots = ldots),
+  data <- data %>%
+    dplyr::select_(.dots = ldots)
+  chartjs:::chartjs_(data = data,
            labels, dataLabels, title, width, height, chartOptions)
 }
 
@@ -53,19 +55,14 @@ chartjs_ <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width
 
   #### Handle chartOptions
   baseOptions <- list(responsive = TRUE)
-  if(is.null(chartOptions)){
-    chartOptions <- baseOptions
-  } else {
-    commonNames <-  names(baseOptions) %in% names(chartOptions)
-    chartOptions <- c(chartOptions, baseOptions[!commonNames])
-  }
+  mergeLists(baseOptions, chartOptions)
 
   # forward data using x
   x = list(labels = labels,
            data = unname(data),
            dataLabels = dataLabels,
            options = chartOptions,
-           enableLegend = FALSE)
+           showLegend = FALSE)
 
   x$title <- if (!is.null(title)) title else "Title"
 

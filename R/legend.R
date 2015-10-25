@@ -27,7 +27,7 @@ cjsLegend <- function(chartjs, position = 'right', title = "", template = NULL){
                                             Pie = {
                                               paste0('<ul class="<%=config.type.toLowerCase()%>-legend"><li><b>', title, '</b></li><% for (var i = 0; i < data.datasets[0].data.length; i++){%><li><span style="background-color:<%=data.datasets[0].backgroundColor[i]%>"></span><%if(data.labels[i]){%><%=data.labels[i]%><%}%></li><%}%></ul>')
                                             })
-  chartjs$x$enableLegend <- TRUE
+  chartjs$x$showLegend <- TRUE
   chartjs$x$options$legendTemplate <- template
   chartjs
 }
