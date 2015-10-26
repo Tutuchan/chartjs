@@ -3,3 +3,5 @@
 .RData
 .Rprofile
 inst/doc
+libs/*
+*.tar.gz

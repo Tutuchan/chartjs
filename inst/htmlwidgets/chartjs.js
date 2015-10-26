@@ -9,6 +9,7 @@ HTMLWidgets.widget({
   },
 
   renderValue: function(el, x, instance) {
+    //console.log(instance.cjs.generateLegend());
     helpers = Chart.helpers;
 
     var datasets = [];
@@ -87,7 +88,8 @@ HTMLWidgets.widget({
     // Final chart data
     data  = {
       labels: x.labels,
-      datasets: datasets
+      datasets: datasets,
+      legendTitle: x.legendTitle
     };
 
     // Get element in page
@@ -130,14 +132,15 @@ HTMLWidgets.widget({
           options: chartOptions
           });
 
-
-
+    console.log(instance.cjs);
     // Generate legend. If it already exists, only modify the HTML.
     if (x.showLegend){
       if (canvas.parentNode.parentNode.children.length == 2){
         var legendHolder = document.createElement('div');
+        console.log(instance.cjs.generateLegend());
         legendHolder.innerHTML = instance.cjs.generateLegend();
         canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+        console.log(legendHolder);
       } else {
         canvas.parentNode.nextElementSibling.className = x.type.toLowerCase().concat('-legend');
         canvas.parentNode.nextElementSibling.innerHTML = instance.cjs.generateLegend();
