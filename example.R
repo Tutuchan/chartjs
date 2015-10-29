@@ -1,7 +1,10 @@
 library(chartjs)
 
 chartjs(mtcars, mpg, qsec, labels = row.names(mtcars), title = "mpg and qsec in the mtcars dataset") %>%
-  lineChart %>%
+  barChart(colours = list(borderColor = c("#000000", "#AAAAAA"),
+                          backgroundColor = c("#000000", "#AAAAAA"),
+                          hoverBorderColor = c("#999999", "#DDDDDD"),
+                          hoverBackgroundColor = c("#999999", "#DDDDDD")) ) %>%
   cjsTooltips(mode = "label") %>%
   cjsLegend(title = "Variables")
 
