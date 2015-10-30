@@ -36,7 +36,6 @@ chartjs_ <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width
 
   # Get data
   len <- ncol(data)
-  if (len > 6) stop("Too many series. Please plot 6 or less.")
 
   # Handle dataLabels
   if (is.null(dataLabels)){
@@ -55,7 +54,7 @@ chartjs_ <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width
 
   #### Handle chartOptions
   baseOptions <- list(responsive = TRUE)
-  mergeLists(baseOptions, chartOptions)
+  chartOptions <- mergeLists(baseOptions, chartOptions)
 
   # forward data using x
   x = list(labels = labels,

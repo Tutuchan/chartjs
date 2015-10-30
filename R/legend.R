@@ -53,24 +53,3 @@ cjsLegend <- function(chartjs, position = 'right', title = "", template = NULL){
 
 
 }
-
-
-
-"<ul class=\"<%chart.id%>-legend\">
-<li><b>Variables</b></li>
-<% for (var i = 0; i < chart.data.datasets.length; i++){%>
-<li>
-<span style=\"background-color:<%=chart.data.datasets[i].backgroundColor%>\"></span>
-<%if(chart.data.datasets[i].label){%><%=chart.data.datasets[i].label%><%}%>
-</li>
-<%}%>
-</ul>"
-
-
-
-
-
-
-
-
-
