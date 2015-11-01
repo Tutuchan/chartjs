@@ -8,7 +8,8 @@ Authors@R: as.person(c(
 Description: An implementation of the Chart.js visualization library.
 License: MIT
 LazyData: TRUE
-Suggests: testthat,
+Suggests:
+    testthat,
     knitr
 Imports:
   RColorBrewer,
@@ -16,3 +17,4 @@ Imports:
   htmlwidgets
 Depends: magrittr
 VignetteBuilder: knitr
+RoxygenNote: 5.0.0.9000

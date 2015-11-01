@@ -17,7 +17,7 @@ HTMLWidgets.widget({
 
     console.log(x);
 
-    switch(x.type){
+    /*switch(x.type){
       case "Bar":
         for (i = 0, len = x.data.length; i < len; i ++){
           datasets.push({
@@ -84,13 +84,15 @@ HTMLWidgets.widget({
           });
         }
         break;
-    }
+    }*/
     // Final chart data
     data  = {
-      labels: x.labels,
-      datasets: datasets,
+      labels: x.data.labels,
+      datasets: x.data.datasets,
       legendTitle: x.legendTitle
     };
+
+    console.log(data);
 
     // Get element in page
     var canvas = document.getElementById(el.id);
@@ -114,6 +116,7 @@ HTMLWidgets.widget({
 
     // Handle options
     var chartOptions = x.options;
+    console.log(chartOptions);
     if (x.stacked){
       chartOptions.scales = {
         xAxes: [{

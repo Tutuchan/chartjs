@@ -1,18 +1,16 @@
-#' Bar chart
+#' Line chart
 #'
 #' This function takes a \code{chartjs} object created by the \code{\link{chartjs}}
-#' function and draws a bar chart.
+#' function and draws a line chart.
 #'
 #' The \code{\link{chartjs}} object \code{data} parameter should be a named list
 #' of numeric vectors.
 #'
 #' @param chartjs a \code{\link{chartjs}} object
-#' @param stacked a logical, if FALSE (the defaults), bars will be dodged,
-#' else they will be stacked.
 #'
 #'@export
 
-cjsBar <- function(chartjs, stacked = FALSE){
+cjsLine <- function(chartjs){
 
   # Initialize colours
   cjsColours <- chartjs$x$colours
@@ -25,10 +23,12 @@ cjsBar <- function(chartjs, stacked = FALSE){
   datasets <- lapply(seq_along(chartjs$x$data), function(i) {
     listColors <- lapply(colorTypes,  function(colorType) if (!colorType %in% names(cjsColours)){
       switch(colorType,
-             borderColor = "#000000",
-             backgroundColor = vecColors[seq(1,lColors,2)][i],
-             hoverBorderColor =  "rgba(255,255,255,1)",
-             hoverBackgroundColor = vecColors[seq(2,lColors,2)][i]
+             borderColor = vecColors[seq(2,lColors,2)][i],
+             backgroundColor = "rgba(0,0,0,0)",
+             pointBorderColor = vecColors[seq(1,lColors,2)][i],
+             pointBackgroundColor = vecColors[seq(2,lColors,2)][i],
+             pointHoverBorderColor = vecColors[seq(2,lColors,2)][i],
+             pointHoverBackgroundColor = vecColors[seq(1,lColors,2)][i]
       )
     } else cjsColours[[colorType]])
     names(listColors) <- colorTypes
@@ -38,7 +38,7 @@ cjsBar <- function(chartjs, stacked = FALSE){
   })
 
   # Add type and data to pass to Chart.js
-  chartjs$x$type <- "bar"
+  chartjs$x$type <- "line"
   chartjs$x$data <- list(labels = chartjs$x$labels,
                          datasets = datasets)
   # Clean up

@@ -1,16 +1,14 @@
 #' chartjs
 #'
-#' Draw a graph using the Chart.js library. \code{chartjs} uses NSE to draw specific columns from a data.frame
-#' while \code{chartjs_} draws all columns from a data.frame.
+#' Draw a graph using the Chart.js library.
 #'
 #' See the documentation of Chart.js at \url{http://www.chartjs.org/docs}.
 #'
-#' @param dataframe a dataframe,
-#' @param ... unquoted names of the columns to plot,
-#' @param data a dataframe;
+#' @param data a named list, each element of this list is a dataset to be plotted
 #' @param labels a vector of numerics or characters : the labels on the x-axis.
 #' Not needed for Pie, Doughnut and PolarArea charts,
 #' @param dataLabels a vector of characters : the names of the data series,
+#' defaults to the names of \code{data}
 #' @param title the title of the chart,
 #' @param width the width of the widget,
 #' @param height the height of the widget,
@@ -19,23 +17,11 @@
 #' @import htmlwidgets
 #' @import htmltools
 #'
-#' @name chartjs
 #' @export
+chartjs <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL) {
 
-chartjs <- function(data, ..., labels = NULL, dataLabels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL){
-  ldots <- lazyeval::lazy_dots(...)
-  data <- data %>%
-    dplyr::select_(.dots = ldots)
-  chartjs:::chartjs_(data = data,
-           labels, dataLabels, title, width, height, chartOptions)
-}
-
-#' @rdname chartjs
-#' @export
-chartjs_ <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL) {
-
-  # Get data
-  len <- ncol(data)
+  # Base colours allow for 6 datasets to be plotted
+  if (length(data) > 6 & (is.null(colours))) stop("too many datasets, provide 6 or less ")
 
   # Handle dataLabels
   if (is.null(dataLabels)){
@@ -45,25 +31,19 @@ chartjs_ <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width
     dataLabels <- names(data)
   }
 
-
-  # Handle labels
-  if (is.null(labels)){
-    # Find out the longest series in data
-    labels <- rep("", max(sapply(data, length)))
-  }
-
   #### Handle chartOptions
   baseOptions <- list(responsive = TRUE)
   chartOptions <- mergeLists(baseOptions, chartOptions)
 
   # forward data using x
   x = list(labels = labels,
-           data = unname(data),
+           data = data,
            dataLabels = dataLabels,
            options = chartOptions,
+           colours = colours,
            showLegend = FALSE)
 
-  x$title <- if (!is.null(title)) title else "Title"
+  x$title <- if (!is.null(title)) title else ""
 
   # create widget
   htmlwidgets::createWidget(
