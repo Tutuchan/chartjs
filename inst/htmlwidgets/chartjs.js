@@ -14,8 +14,8 @@ HTMLWidgets.widget({
 
     var datasets = [];
     var data = [];
-
     console.log(x);
+
 
     /*switch(x.type){
       case "Bar":
@@ -116,7 +116,7 @@ HTMLWidgets.widget({
 
     // Handle options
     var chartOptions = x.options;
-    console.log(chartOptions);
+    //console.log(chartOptions);
     if (x.stacked){
       chartOptions.scales = {
         xAxes: [{
