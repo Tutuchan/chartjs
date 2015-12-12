@@ -2,7 +2,11 @@ Package: chartjs
 Type: Package
 Title: An implementation of the Chart.js library
 Version: 0.1.0.9010
+<<<<<<< HEAD
 Date: 2015-12-11
+=======
+Date: 2015-12-12
+>>>>>>> Pie and doughnuts
 Authors@R: as.person(c(
     "Pierre Formont <pierre.formont@gmail.com> [aut, cre]"))
 Description: An implementation of the Chart.js visualization library.
@@ -12,9 +16,17 @@ Suggests:
     testthat,
     knitr
 Imports:
+<<<<<<< HEAD
   RColorBrewer,
   dplyr,
   htmlwidgets
 Depends: magrittr
+=======
+    dplyr,
+    htmlwidgets,
+    RColorBrewer
+Depends:
+    magrittr
+>>>>>>> Pie and doughnuts
 VignetteBuilder: knitr
-RoxygenNote: 5.0.0.9000
+RoxygenNote: 5.0.1

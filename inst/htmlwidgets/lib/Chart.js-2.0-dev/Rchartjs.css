@@ -1,0 +1,60 @@
+[class$="-legend"] {
+  list-style: none;
+  position: relative;
+  width: 12%;
+  font-family:  Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+}
+
+[class$="-legend"] li {
+  display: block;
+  padding-left: 30px;
+  position: relative;
+  margin-left: -40px;
+  margin-bottom: 4px;
+  padding: 2px 8px 2px 28px;
+  font-size: 14px;
+  cursor: default;
+  -webkit-transition: background-color 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out;
+  -o-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+}
+
+[class$="-legend"] li:hover {
+  background-color: #fafafa;
+}
+
+[class$="-legend"] li span {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  border-radius: 0;
+}
+
+[class$="-legend"] li:first-child {
+  padding: 2px 8px 2px 2px;
+  text-align: center;
+}
+
+.htmlwidget_container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.chart-container {
+  position: relative;
+  width: 85%;
+}
+
+.chart-title {
+  position: relative;
+  width: 85%;
+  font-weight: bold;
+  font-family:  Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  text-align: center;
+  font-size: 200%;
+}

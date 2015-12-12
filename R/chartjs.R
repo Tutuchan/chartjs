@@ -20,8 +20,9 @@
 #' @export
 chartjs <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL) {
 
+  len <- length(data)
   # Base colours allow for 6 datasets to be plotted
-  if (length(data) > 6 & (is.null(colours))) stop("too many datasets, provide 6 or less ")
+  if (len > 6 & (is.null(colours))) stop("too many datasets, provide 6 or less ")
 
   # Handle dataLabels
   if (is.null(dataLabels)){
@@ -40,7 +41,6 @@ chartjs <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width 
            data = data,
            dataLabels = dataLabels,
            options = chartOptions,
-           colours = colours,
            showLegend = FALSE)
 
   x$title <- if (!is.null(title)) title else ""
