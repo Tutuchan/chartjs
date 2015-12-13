@@ -4,12 +4,10 @@
 #'
 #' See the documentation of Chart.js at \url{http://www.chartjs.org/docs}.
 #'
-#' @param data a named list, each element of this list is a dataset to be plotted
-#' @param labels a vector of numerics or characters : the labels on the x-axis.
-#' Not needed for Pie, Doughnut and PolarArea charts,
+#' @param data a named list or a vector of numerics, each element is a dataset to be plotted,
+#' @param labels a vector of numerics or characters : the labels on the x-axis,
 #' @param dataLabels a vector of characters : the names of the data series,
 #' defaults to the names of \code{data}
-#' @param title the title of the chart,
 #' @param width the width of the widget,
 #' @param height the height of the widget,
 #' @param chartOptions a list of options to customize the graph, see the Chart.js documentation.
@@ -57,19 +55,4 @@ chartjs <- function(data, labels = NULL, dataLabels = NULL, width = NULL, height
 #' @export
 chartjs_html <- function(id, style, class, ...){
   tags$div(class = "htmlwidget_container", tags$div(class = "chart-container", tags$canvas(id = id, class = class)))
-}
-
-#' Widget output function for use in Shiny
-#'
-#' @export
-chartjsOutput <- function(outputId, width = '100%', height = '400px'){
-  shinyWidgetOutput(outputId, 'chartjs', width, height, package = 'chartjs')
-}
-
-#' Widget render function for use in Shiny
-#'
-#' @export
-renderChartjs <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  shinyRenderWidget(expr, chartjsOutput, env, quoted = TRUE)
 }

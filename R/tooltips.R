@@ -2,6 +2,9 @@
 #'
 #' Allows editing of the default tooltips.
 #'
+#' @param chartjs a \code{\link{chartjs}} object
+#' @param ... named arguments, see Details
+#'
 #' The allowed values in \code{...} are :
 #'
 #' \tabular{ll}{

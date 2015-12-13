@@ -7,8 +7,8 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       selectInput("chartType", label = "Chart Type",
-                  choices = c("Bar", "Line", "Pie", "Doughnut"),
-                  selected = "Bar")),
+                  choices = c("bar", "line", "pie", "doughnut"),
+                  selected = "bar")),
     mainPanel(
       chartjsOutput("cjs")
     )

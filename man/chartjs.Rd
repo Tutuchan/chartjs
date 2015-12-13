@@ -8,10 +8,9 @@ chartjs(data, labels = NULL, dataLabels = NULL, width = NULL,
   height = NULL, chartOptions = NULL)
 }
 \arguments{
-\item{data}{a named list, each element of this list is a dataset to be plotted}
+\item{data}{a named list or a vector of numerics, each element is a dataset to be plotted,}
 
-\item{labels}{a vector of numerics or characters : the labels on the x-axis.
-Not needed for Pie, Doughnut and PolarArea charts,}
+\item{labels}{a vector of numerics or characters : the labels on the x-axis,}
 
 \item{dataLabels}{a vector of characters : the names of the data series,
 defaults to the names of \code{data}}
@@ -21,8 +20,6 @@ defaults to the names of \code{data}}
 \item{height}{the height of the widget,}
 
 \item{chartOptions}{a list of options to customize the graph, see the Chart.js documentation.}
-
-\item{title}{the title of the chart,}
 }
 \description{
 Draw a graph using the Chart.js library.

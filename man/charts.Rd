@@ -7,8 +7,6 @@
 \alias{cjsLine}
 \alias{cjsPie}
 \alias{cjsRadar}
-\alias{polarAreaChart}
-\alias{scatterChart}
 \title{Draw charts}
 \usage{
 cjsBar(chartjs, stacked = FALSE)
@@ -19,11 +17,7 @@ cjsPie(chartjs)
 
 cjsDoughnut(chartjs, cutout = 50)
 
-cjsRadar(chartjs, colours = NULL)
-
-polarAreaChart(chartjs, colours = NULL)
-
-scatterChart(chartjs, colours = NULL)
+cjsRadar(chartjs)
 }
 \arguments{
 \item{chartjs}{a \code{\link{chartjs}} object}
@@ -31,7 +25,7 @@ scatterChart(chartjs, colours = NULL)
 \item{stacked}{a logical, defaults to FALSE. If TRUE, bars will be stacked
 at each x value.}
 
-\item{inner}{the optional percentage of the inner cutout for Doughnut
+\item{cutout}{the optional percentage of the inner cutout for Doughnut
 charts (defaults to 50)}
 }
 \description{
@@ -58,8 +52,8 @@ chartjs(data, labels = row.names(mtcars)) \%>\%
   cjsLine
 
 # Draw a radar chart
-chartjs(mtcars, mpg, qsec, labels = labels) \%>\%
-  radarChart
+chartjs(data, labels = row.names(mtcars)) \%>\%
+  cjsRadar
 
 # Draw a pie chart
 chartjs(data = data$mpg[c(1:6)], labels = row.names(mtcars)[c(1:6)]) \%>\%
@@ -69,8 +63,5 @@ chartjs(data = data$mpg[c(1:6)], labels = row.names(mtcars)[c(1:6)]) \%>\%
 chartjs(data = data$mpg[c(1:6)], labels = row.names(mtcars)[c(1:6)]) \%>\%
   cjsDoughnut(cutout = 80)
 
-# Draw a scatter chart
-chartjs(dataScatter) \%>\%
-  scatterChart
 }
 

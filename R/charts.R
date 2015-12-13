@@ -24,8 +24,8 @@
 #'   cjsLine
 #'
 #' # Draw a radar chart
-#' chartjs(mtcars, mpg, qsec, labels = labels) %>%
-#'   radarChart
+#' chartjs(data, labels = row.names(mtcars)) %>%
+#'   cjsRadar
 #'
 #' # Draw a pie chart
 #' chartjs(data = data$mpg[c(1:6)], labels = row.names(mtcars)[c(1:6)]) %>%
@@ -35,9 +35,6 @@
 #' chartjs(data = data$mpg[c(1:6)], labels = row.names(mtcars)[c(1:6)]) %>%
 #'   cjsDoughnut(cutout = 80)
 #'
-#' # Draw a scatter chart
-#' chartjs(dataScatter) %>%
-#'   scatterChart
 NULL
 
 #' @rdname charts
@@ -63,7 +60,7 @@ cjsPie <- function(chartjs){
 
 
 #' @rdname charts
-#' @param inner the optional percentage of the inner cutout for Doughnut
+#' @param cutout the optional percentage of the inner cutout for Doughnut
 #' charts (defaults to 50)
 #' @export
 cjsDoughnut <- function(chartjs, cutout = 50){
@@ -73,20 +70,6 @@ cjsDoughnut <- function(chartjs, cutout = 50){
 
 #' @rdname charts
 #' @export
-cjsRadar <- function(chartjs, colours = NULL){
+cjsRadar <- function(chartjs){
   baseChart(chartjs, "radar")
-}
-
-#' @rdname charts
-#' @export
-polarAreaChart <- function(chartjs, colours = NULL){
-  stop("not implemented yet")
-  baseChart(chartjs, "polararea")
-}
-
-#' @rdname charts
-#' @export
-scatterChart <- function(chartjs, colours = NULL){
-  stop("not implemented yet")
-  baseChart(chartjs, "scatter")
 }

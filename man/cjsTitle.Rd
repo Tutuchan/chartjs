@@ -10,12 +10,6 @@ cjsTitle(chartjs, text)
 \item{chartjs}{a \code{\link{chartjs}} object}
 
 \item{text}{a character}
-
-\item{direction}{a character to specify if the legend extends horizontally or vertically. Not implemented yet.}
-
-\item{title}{a character, the title of the legend.}
-
-\item{template}{a Javascript template for the legend. If NULL (the default), the standard Chart.js template is used}
 }
 \description{
 Add title

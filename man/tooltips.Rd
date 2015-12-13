@@ -7,10 +7,11 @@
 \usage{
 cjsTooltips(chartjs, ...)
 }
-\description{
-Allows editing of the default tooltips.
-}
-\details{
+\arguments{
+\item{chartjs}{a \code{\link{chartjs}} object}
+
+\item{...}{named arguments, see Details
+
 The allowed values in \code{...} are :
 
 \tabular{ll}{
@@ -33,7 +34,10 @@ The allowed values in \code{...} are :
   template \tab character, defaults to "<\% if(label){ \%><\%=label \%>: <\% } \%><\%=value \%>" \cr
   multiTemplate \tab character, defaults to "<\%if (datasetLabel){ \%><\%=datasetLabel \%>: <\% } \%><\%=value \%>" \cr
   multiKeyBackground \tab character, defaults to '#fff' \cr
+}}
 }
+\description{
+Allows editing of the default tooltips.
 }
 \examples{
 labels <- row.names(mtcars)

@@ -3,14 +3,13 @@ library(magrittr)
 
 shinyServer(function(input, output) {
   output$cjs <- renderChartjs({
-    mainTitle <- "mpg and qsec in the mtcars dataset"
-    cjs <- if (input$chartType %in% c("Bar", "Line")){
-      chartjs(mtcars, mpg, qsec, labels = row.names(mtcars), title = mainTitle)
+    mainTitle <- "mpg"
+    cjs <- if (input$chartType %in% c("bar", "line", "radar")){
+      chartjs(list(mpg = mtcars$mpg), labels = row.names(mtcars))
     } else {
-      chartjs(mtcars[1,], mpg, qsec, title = mainTitle)
+      chartjs(mtcars$mpg[1:6], labels = row.names(mtcars)[1:6])
     }
     # This is horrible code
-    eval(expr = parse(text = paste0(tolower(input$chartType), "Chart(cjs)"))) %>%
-      cjsLegend(title = "Variables")
+    eval(expr = parse(text = paste0("cjs", Hmisc::capitalize(input$chartType), "(cjs)")))
   })
 })
