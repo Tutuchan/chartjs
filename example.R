@@ -3,7 +3,7 @@ library(chartjs)
 df <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
 chartjs(df, labels = row.names(mtcars)) %>%
   cjsBar %>%
-  cjsTooltips(titleFontSize = 30)
+  cjsTooltips(titleFontSize = 20)
 
 
 chartjs(df, labels = row.names(mtcars)) %>%
