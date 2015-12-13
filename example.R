@@ -1,8 +1,13 @@
 library(chartjs)
 
-df <- list(mpg = mtcars$mpg)
+df <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
 chartjs(df, labels = row.names(mtcars)) %>%
-  cjsBar
+  cjsBar %>%
+  cjsTooltips(titleFontSize = 30)
 
-chartjs(data = c(10, 12, 20), labels = row.names(mtcars)[c(1:3)], title = "topkek") %>%
+
+chartjs(df, labels = row.names(mtcars)) %>%
+  cjsRadar
+
+chartjs(data = df$mpg[c(1:6)], labels = row.names(mtcars)[c(1:6)]) %>%
   cjsDoughnut(cutout = 80)

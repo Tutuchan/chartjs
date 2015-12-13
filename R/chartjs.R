@@ -18,7 +18,7 @@
 #' @import htmltools
 #'
 #' @export
-chartjs <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width = NULL, height = NULL, chartOptions = NULL) {
+chartjs <- function(data, labels = NULL, dataLabels = NULL, width = NULL, height = NULL, chartOptions = NULL) {
 
   len <- length(data)
   # Base colours allow for 6 datasets to be plotted
@@ -42,8 +42,6 @@ chartjs <- function(data, labels = NULL, dataLabels = NULL, title = NULL, width 
            dataLabels = dataLabels,
            options = chartOptions,
            showLegend = FALSE)
-
-  x$title <- if (!is.null(title)) title else ""
 
   # create widget
   htmlwidgets::createWidget(

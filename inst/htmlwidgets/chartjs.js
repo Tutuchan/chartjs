@@ -35,16 +35,6 @@ HTMLWidgets.widget({
       instance.cjs = null;
     }
 
-    // Generate title if necessary
-    if (canvas.parentNode.parentNode.firstChild.className === "chart-title"){
-      canvas.parentNode.parentNode.firstChild.innerHTML = x.title;
-    } else {
-      var titleHolder = document.createElement('div');
-      titleHolder.innerHTML = x.title;
-      titleHolder.className = "chart-title";
-      canvas.parentNode.parentNode.insertBefore(titleHolder, canvas.parentNode.parentNode.childNodes[0]);
-    }
-
     // Handle options
     var chartOptions = x.options;
     //console.log(chartOptions);

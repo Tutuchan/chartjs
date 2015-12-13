@@ -24,7 +24,7 @@ The allowed values in \code{...} are :
   titleFontFamily \tab character, defaults to "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif" \cr
   titleFontSize \tab numeric, defaults to 12 \cr
   titleFontStyle \tab character, defaults to "bold" \cr
-  titleFontColor \tab character, defaults to "#fff" \cr
+  titleColor \tab character, defaults to "#fff" \cr
   yPadding \tab numeric, defaults to 6 \cr
   xPadding \tab numeric, defaults to 6 \cr
   caretSize \tab numeric, defaults to 8 \cr
@@ -41,7 +41,7 @@ data <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
 
 # Change tooltip title color
 chartjs(data, labels) \%>\%
-  barChart \%>\%
+  cjsBar \%>\%
   cjsTooltips(titleFontColor = "#f0f")
 }
 

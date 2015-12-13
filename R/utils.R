@@ -4,3 +4,18 @@ mergeLists <- function(l1, l2){
     c(l2, l1[!commonNames])
   }
 }
+
+baseColors <- function(){
+  RColorBrewer::brewer.pal(12, "Paired")
+}
+
+baseTypes <- function(){
+  c("borderColor", "backgroundColor",
+    "pointBorderColor", "pointBackgroundColor",
+    "hoverBorderColor", "hoverBackgroundColor",
+    "pointHoverBorderColor", "pointHoverBackgroundColor")
+}
+
+baseOptions <- function(){
+  list(responsive = TRUE)
+}

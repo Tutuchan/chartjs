@@ -4,8 +4,8 @@
 \alias{chartjs}
 \title{chartjs}
 \usage{
-chartjs(data, labels = NULL, dataLabels = NULL, title = NULL,
-  width = NULL, height = NULL, chartOptions = NULL)
+chartjs(data, labels = NULL, dataLabels = NULL, width = NULL,
+  height = NULL, chartOptions = NULL)
 }
 \arguments{
 \item{data}{a named list, each element of this list is a dataset to be plotted}
@@ -16,13 +16,13 @@ Not needed for Pie, Doughnut and PolarArea charts,}
 \item{dataLabels}{a vector of characters : the names of the data series,
 defaults to the names of \code{data}}
 
-\item{title}{the title of the chart,}
-
 \item{width}{the width of the widget,}
 
 \item{height}{the height of the widget,}
 
 \item{chartOptions}{a list of options to customize the graph, see the Chart.js documentation.}
+
+\item{title}{the title of the chart,}
 }
 \description{
 Draw a graph using the Chart.js library.
