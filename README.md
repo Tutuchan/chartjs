@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Tutuchan/chartjs.svg)](https://travis-ci.org/Tutuchan/chartjs)
+
 # chartjs
 
 This is an implementation of the [Chart.js](http://www.chartjs.org/) library in R using the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) framework.

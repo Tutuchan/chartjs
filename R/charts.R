@@ -70,6 +70,12 @@ cjsDoughnut <- function(chartjs, cutout = 50){
 
 #' @rdname charts
 #' @export
+cjsPolar <- function(chartjs){
+  baseChart(chartjs, "polarArea")
+}
+
+#' @rdname charts
+#' @export
 cjsRadar <- function(chartjs){
   baseChart(chartjs, "radar")
 }

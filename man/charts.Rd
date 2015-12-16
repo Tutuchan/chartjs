@@ -6,6 +6,7 @@
 \alias{cjsDoughnut}
 \alias{cjsLine}
 \alias{cjsPie}
+\alias{cjsPolar}
 \alias{cjsRadar}
 \title{Draw charts}
 \usage{
@@ -16,6 +17,8 @@ cjsLine(chartjs)
 cjsPie(chartjs)
 
 cjsDoughnut(chartjs, cutout = 50)
+
+cjsPolar(chartjs)
 
 cjsRadar(chartjs)
 }

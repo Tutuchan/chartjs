@@ -4,7 +4,8 @@
 #'
 #' See the documentation of Chart.js at \url{http://www.chartjs.org/docs}.
 #'
-#' @param data a named list or a vector of numerics, each element is a dataset to be plotted,
+#' @param data a data.frame,
+#' @param ... the columns of the data.frame to plot,
 #' @param labels a vector of numerics or characters : the labels on the x-axis,
 #' @param dataLabels a vector of characters : the names of the data series,
 #' defaults to the names of \code{data}
@@ -16,7 +17,17 @@
 #' @import htmltools
 #'
 #' @export
-chartjs <- function(data, labels = NULL, dataLabels = NULL, width = NULL, height = NULL, chartOptions = NULL) {
+chartjs <- function(data, ..., labels = NULL, dataLabels = NULL, width = NULL, height = NULL, chartOptions = NULL) {
+
+  # Handle labels
+  if (is.null(labels)){
+    if (is.null(row.names(data))) row.names(data) <- paste0("row", 1:nrow(data))
+    labels <- row.names(data)
+  }
+  # Select the correct rows
+  data <- data %>%
+    dplyr::select(...) %>%
+    as.list
 
   len <- length(data)
   # Base colours allow for 6 datasets to be plotted
@@ -34,14 +45,14 @@ chartjs <- function(data, labels = NULL, dataLabels = NULL, width = NULL, height
   baseOptions <- list(responsive = TRUE)
   chartOptions <- mergeLists(baseOptions, chartOptions)
 
-  # forward data using x
+  # Forward data using x
   x = list(labels = labels,
            data = data,
            dataLabels = dataLabels,
            options = chartOptions,
            showLegend = FALSE)
 
-  # create widget
+  # Create widget
   htmlwidgets::createWidget(
     name = 'chartjs',
     x = x,

@@ -4,11 +4,13 @@
 \alias{chartjs}
 \title{chartjs}
 \usage{
-chartjs(data, labels = NULL, dataLabels = NULL, width = NULL,
+chartjs(data, ..., labels = NULL, dataLabels = NULL, width = NULL,
   height = NULL, chartOptions = NULL)
 }
 \arguments{
-\item{data}{a named list or a vector of numerics, each element is a dataset to be plotted,}
+\item{data}{a data.frame,}
+
+\item{...}{the columns of the data.frame to plot,}
 
 \item{labels}{a vector of numerics or characters : the labels on the x-axis,}
 

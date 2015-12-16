@@ -10,7 +10,9 @@
 #' @keywords internal
 
 baseChart <- function(chartjs, type){
-  if(!type %in% c("bar", "line", "pie", "polararea", "radar", "scatter")) stop("incorrect type")
+  if(!type %in% c("bar", "line", "pie", "polarArea", "radar", "scatter")) stop("incorrect type")
+  if (type %in% c("pie", "polarArea")) chartjs$x$data <- chartjs$x$data[[1]]
+
   # Initialize colours
   cjsColours <- chartjs$x$colours
   vecColors <- baseColors()
@@ -19,8 +21,8 @@ baseChart <- function(chartjs, type){
   lColors <- length(vecColors)
 
   # Create the datasets part
-  # Pie charts behave differently
-  datasets <- if (type == "pie"){
+  # Pie and polar charts behave differently
+  datasets <- if (type %in% c("pie", "polarArea")){
     len <- length(chartjs$x$data)
     listColors <- lapply(colorTypes,  function(colorType) if (!colorType %in% names(cjsColours)){
       switch(colorType,
@@ -32,7 +34,7 @@ baseChart <- function(chartjs, type){
     } else cjsColours[[colorType]])
     names(listColors) <- colorTypes
     list(c(list(data = unname(chartjs$x$data)),
-                       listColors[!sapply(listColors, is.null)]))
+           listColors[!sapply(listColors, is.null)]))
   } else {
     lapply(seq_along(chartjs$x$data), function(i) {
       listColors <- lapply(colorTypes,  function(colorType) if (!colorType %in% names(cjsColours)){
