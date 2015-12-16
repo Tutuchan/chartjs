@@ -15,6 +15,6 @@ lhs \%>\% rhs
 Imports the pipe operator from magrittr.
 }
 \examples{
-chartjs(list(mpg = mtcars$mpg), labels = row.names(mtcars)) \%>\% cjsLine
+chartjs(mtcars, mpg) \%>\% cjsLine
 }
 

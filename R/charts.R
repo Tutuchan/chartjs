@@ -9,8 +9,6 @@
 #' @param chartjs a \code{\link{chartjs}} object
 #' @name charts
 #' @examples
-#' data <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
-#'
 #' # Draw a bar chart
 #' chartjs(mtcars, mpg, qsec) %>%
 #'   cjsBar
@@ -24,7 +22,7 @@
 #'   cjsLine
 #'
 #' # Draw a radar chart
-#' cchartjs(mtcars, mpg, qsec) %>%
+#' chartjs(mtcars, mpg, qsec) %>%
 #'   cjsRadar
 #'
 #' # Draw a pie chart

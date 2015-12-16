@@ -8,5 +8,5 @@
 #' @param rhs a charting function
 #' @rdname pipe
 #' @examples
-#' chartjs(list(mpg = mtcars$mpg), labels = row.names(mtcars)) %>% cjsLine
+#' chartjs(mtcars, mpg) %>% cjsLine
 `%>%` <- magrittr::`%>%`

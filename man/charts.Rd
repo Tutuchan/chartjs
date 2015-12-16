@@ -40,8 +40,6 @@ The default colours are obtained from the \strong{Paired} palette from the
 \code{\link[RColorBrewer]{RColorBrewer}} package.
 }
 \examples{
-data <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
-
 # Draw a bar chart
 chartjs(mtcars, mpg, qsec) \%>\%
   cjsBar
@@ -55,7 +53,7 @@ chartjs(mtcars, mpg, qsec) \%>\%
   cjsLine
 
 # Draw a radar chart
-cchartjs(mtcars, mpg, qsec) \%>\%
+chartjs(mtcars, mpg, qsec) \%>\%
   cjsRadar
 
 # Draw a pie chart
