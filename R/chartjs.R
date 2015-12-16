@@ -2,10 +2,10 @@
 #'
 #' Draw a graph using the Chart.js library.
 #'
-#' See the documentation of Chart.js at \url{http://www.chartjs.org/docs}.
+#' See the documentation of Chart.js at \url{http://nnnick.github.io/Chart.js/docs-v2/}.
 #'
 #' @param data a data.frame,
-#' @param ... the columns of the data.frame to plot,
+#' @param ... the columns of \code{data} to plot,
 #' @param labels a vector of numerics or characters : the labels on the x-axis,
 #' @param dataLabels a vector of characters : the names of the data series,
 #' defaults to the names of \code{data}
@@ -24,7 +24,7 @@ chartjs <- function(data, ..., labels = NULL, dataLabels = NULL, width = NULL, h
     if (is.null(row.names(data))) row.names(data) <- paste0("row", 1:nrow(data))
     labels <- row.names(data)
   }
-  # Select the correct rows
+  # Select the correct columns
   data <- data %>%
     dplyr::select(...) %>%
     as.list

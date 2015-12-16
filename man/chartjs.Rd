@@ -10,7 +10,7 @@ chartjs(data, ..., labels = NULL, dataLabels = NULL, width = NULL,
 \arguments{
 \item{data}{a data.frame,}
 
-\item{...}{the columns of the data.frame to plot,}
+\item{...}{the columns of \code{data} to plot,}
 
 \item{labels}{a vector of numerics or characters : the labels on the x-axis,}
 
@@ -27,6 +27,6 @@ defaults to the names of \code{data}}
 Draw a graph using the Chart.js library.
 }
 \details{
-See the documentation of Chart.js at \url{http://www.chartjs.org/docs}.
+See the documentation of Chart.js at \url{http://nnnick.github.io/Chart.js/docs-v2/}.
 }
 

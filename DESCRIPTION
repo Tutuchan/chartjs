@@ -1,7 +1,7 @@
 Package: chartjs
 Type: Package
 Title: An Implementation of the Chart.js Library
-Version: 0.1.0.9014
+Version: 0.2.0
 Date: 2015-12-16
 Authors@R: person("Pierre", "Formont", email = "pierre.formont@gmail.com",
                   role = c("aut", "cre"))
