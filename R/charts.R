@@ -12,28 +12,32 @@
 #' data <- list(mpg = mtcars$mpg, qsec = mtcars$qsec)
 #'
 #' # Draw a bar chart
-#' chartjs(data, labels = row.names(mtcars)) %>%
+#' chartjs(mtcars, mpg, qsec) %>%
 #'   cjsBar
 #'
 #' # Draw a stacked bar chart
-#' chartjs(data, labels = row.names(mtcars)) %>%
+#' chartjs(mtcars, mpg, qsec) %>%
 #'   cjsBar(stacked = TRUE)
 #'
 #' # Draw a line chart
-#' chartjs(data, labels = row.names(mtcars)) %>%
+#' chartjs(mtcars, mpg, qsec) %>%
 #'   cjsLine
 #'
 #' # Draw a radar chart
-#' chartjs(data, labels = row.names(mtcars)) %>%
+#' cchartjs(mtcars, mpg, qsec) %>%
 #'   cjsRadar
 #'
 #' # Draw a pie chart
-#' chartjs(data = data$mpg[c(1:6)], labels = row.names(mtcars)[c(1:6)]) %>%
+#' chartjs(mtcars[1:6,], mpg) %>%
 #'   cjsPie
 #'
 #' # Draw a doughnut chart
-#' chartjs(data = data$mpg[c(1:6)], labels = row.names(mtcars)[c(1:6)]) %>%
+#' chartjs(mtcars[1:6,], mpg) %>%
 #'   cjsDoughnut(cutout = 80)
+#'
+#' # Draw a polar area chart
+#' chartjs(mtcars[1:6,], mpg) %>%
+#'   cjsPolar
 #'
 NULL
 

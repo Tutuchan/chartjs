@@ -51,7 +51,7 @@ HTMLWidgets.widget({
 
     // Create actual chart
     instance.cjs = new Chart(ctx, {
-          type: x.type.toLowerCase(),
+          type: x.type,
           data: data,
           options: chartOptions
           });
