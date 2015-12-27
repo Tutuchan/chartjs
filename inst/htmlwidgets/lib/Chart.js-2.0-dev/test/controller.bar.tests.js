@@ -52,11 +52,10 @@ describe('Bar controller tests', function() {
 		var chart = {
 			data: {
 				datasets: [{
-					type: 'line'
 				}, {
-					type: 'bar'
+					bar: true
 				}, {
-					// no type, defaults to bar
+					bar: true
 				}]
 			},
 			config: {
@@ -82,13 +81,13 @@ describe('Bar controller tests', function() {
 		var chart = {
 			data: {
 				datasets: [{
-					
+					bar: true,
 				}, {
+					bar: true,
 					hidden: true
 				}, {
-					type: 'line'
 				}, {
-					
+					bar: true,
 				}]
 			},
 			config: {
@@ -142,40 +141,14 @@ describe('Bar controller tests', function() {
 		expect(chart.data.datasets[1].metaData[3] instanceof Chart.elements.Rectangle).toBe(true);
 	});
 
-	it('should remove elements', function() {
-		var chart = {
-			data: {
-				datasets: [{}, {
-					data: [10, 15, 0, -4]
-				}]
-			},
-			config: {
-				type: 'bar'
-			},
-			options: {
-				scales: {
-					xAxes: [{
-						id: 'firstXScaleID'
-					}],
-					yAxes: [{
-						id: 'firstYScaleID'
-					}]
-				}
-			}
-		};
-
-		var controller = new Chart.controllers.bar(chart, 1);
-		controller.removeElement(1);
-		expect(chart.data.datasets[1].metaData.length).toBe(3);
-	});
-
 	it('should update elements', function() {
 		var data = {
 			datasets: [{
 				data: [1, 2],
 				label: 'dataset1',
 				xAxisID: 'firstXScaleID',
-				yAxisID: 'firstYScaleID'
+				yAxisID: 'firstYScaleID',
+				bar: true
 			}, {
 				data: [10, 15, 0, -4],
 				label: 'dataset2'

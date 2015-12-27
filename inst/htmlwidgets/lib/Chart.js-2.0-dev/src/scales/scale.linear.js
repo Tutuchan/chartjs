@@ -36,8 +36,7 @@
 	};
 
 	var LinearScale = Chart.Scale.extend({
-		buildTicks: function() {
-
+		determineDataLimits: function() {
 			// First Calculate the range
 			this.min = null;
 			this.max = null;
@@ -114,6 +113,41 @@
 				}, this);
 			}
 
+			// If we are forcing it to begin at 0, but 0 will already be rendered on the chart,
+			// do nothing since that would make the chart weird. If the user really wants a weird chart
+			// axis, they can manually override it
+			if (this.options.ticks.beginAtZero) {
+				var minSign = helpers.sign(this.min);
+				var maxSign = helpers.sign(this.max);
+
+				if (minSign < 0 && maxSign < 0) {
+					// move the top up to 0
+					this.max = 0;
+				} else if (minSign > 0 && maxSign > 0) {
+					// move the botttom down to 0
+					this.min = 0;
+				}
+			}
+
+			if (this.options.ticks.min !== undefined) {
+				this.min = this.options.ticks.min;
+			} else if (this.options.ticks.suggestedMin !== undefined) {
+				this.min = Math.min(this.min, this.options.ticks.suggestedMin);
+			}
+
+			if (this.options.ticks.max !== undefined) {
+				this.max = this.options.ticks.max;
+			} else if (this.options.ticks.suggestedMax !== undefined) {
+				this.max = Math.max(this.max, this.options.ticks.suggestedMax);
+			}
+
+			if (this.min === this.max) {
+				this.min--;
+				this.max++;
+			}
+		},
+		buildTicks: function() {
+
 			// Then calulate the ticks
 			this.ticks = [];
 
@@ -140,35 +174,6 @@
 			// "nice number" algorithm. See http://stackoverflow.com/questions/8506881/nice-label-algorithm-for-charts-with-minimum-ticks
 			// for details.
 
-			// If we are forcing it to begin at 0, but 0 will already be rendered on the chart,
-			// do nothing since that would make the chart weird. If the user really wants a weird chart
-			// axis, they can manually override it
-			if (this.options.ticks.beginAtZero) {
-				var minSign = helpers.sign(this.min);
-				var maxSign = helpers.sign(this.max);
-
-				if (minSign < 0 && maxSign < 0) {
-					// move the top up to 0
-					this.max = 0;
-				} else if (minSign > 0 && maxSign > 0) {
-					// move the botttom down to 0
-					this.min = 0;
-				}
-			}
-
-			if (this.options.ticks.suggestedMin) {
-				this.min = Math.min(this.min, this.options.ticks.suggestedMin);
-			}
-
-			if (this.options.ticks.suggestedMax) {
-				this.max = Math.max(this.max, this.options.ticks.suggestedMax);
-			}
-
-			if (this.min === this.max) {
-				this.min--;
-				this.max++;
-			}
-
 			var niceRange = helpers.niceNum(this.max - this.min, false);
 			var spacing = helpers.niceNum(niceRange / (maxTicks - 1), true);
 			var niceMin = Math.floor(this.min / spacing) * spacing;
@@ -177,9 +182,11 @@
 			var numSpaces = Math.ceil((niceMax - niceMin) / spacing);
 
 			// Put the values into the ticks array
-			for (var j = 0; j <= numSpaces; ++j) {
+			this.ticks.push(this.options.ticks.min !== undefined ? this.options.ticks.min : niceMin);
+			for (var j = 1; j < numSpaces; ++j) {
 				this.ticks.push(niceMin + (j * spacing));
 			}
+			this.ticks.push(this.options.ticks.max !== undefined ? this.options.ticks.max : niceMax);
 
 			if (this.options.position == "left" || this.options.position == "right") {
 				// We are in a vertical orientation. The top value is the highest. So reverse the array
@@ -190,6 +197,7 @@
 			// range of the scale
 			this.max = helpers.max(this.ticks);
 			this.min = helpers.min(this.ticks);
+			this.ticksAsNumbers = this.ticks.slice();
 
 			if (this.options.ticks.reverse) {
 				this.ticks.reverse();
@@ -217,7 +225,6 @@
 			var range = this.end - this.start;
 
 			if (this.isHorizontal()) {
-
 				var innerWidth = this.width - (this.paddingLeft + this.paddingRight);
 				pixel = this.left + (innerWidth / range * (rightValue - this.start));
 				return Math.round(pixel + this.paddingLeft);
@@ -226,6 +233,9 @@
 				pixel = (this.bottom - this.paddingBottom) - (innerHeight / range * (rightValue - this.start));
 				return Math.round(pixel);
 			}
+		},
+		getPixelForTick: function(index, includeOffset) {
+			return this.getPixelForValue(this.ticksAsNumbers[index], null, null, includeOffset);
 		},
 	});
 	Chart.scaleService.registerScaleType("linear", LinearScale, defaultConfig);

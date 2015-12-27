@@ -46,6 +46,8 @@
 			padding: 10,
 			reverse: false,
 			display: true,
+			autoSkip: true,
+		    autoSkipPadding: 20,
 			callback: function(value) {
 				return '' + value;
 			},
@@ -58,7 +60,9 @@
 		// Any function defined here is inherited by all scale types.
 		// Any function can be extended by the scale type
 
-		beforeUpdate: helpers.noop,
+		beforeUpdate: function() {
+			helpers.callCallback(this.options.beforeUpdate, [this]);
+		},
 		update: function(maxWidth, maxHeight, margins) {
 
 			// Update Lifecycle - Probably don't want to ever extend or overwrite this function ;)
@@ -78,6 +82,12 @@
 			this.beforeSetDimensions();
 			this.setDimensions();
 			this.afterSetDimensions();
+
+			// Data min/max
+			this.beforeDataLimits();
+			this.determineDataLimits();
+			this.afterDataLimits();
+
 			// Ticks
 			this.beforeBuildTicks();
 			this.buildTicks();
@@ -101,11 +111,15 @@
 			return this.minSize;
 
 		},
-		afterUpdate: helpers.noop,
+		afterUpdate: function() {
+			helpers.callCallback(this.options.afterUpdate, [this]);
+		},
 
 		//
 
-		beforeSetDimensions: helpers.noop,
+		beforeSetDimensions: function() {
+			helpers.callCallback(this.options.beforeSetDimensions, [this]);
+		},
 		setDimensions: function() {
 			// Set the unconstrained dimension before label rotation
 			if (this.isHorizontal()) {
@@ -127,15 +141,31 @@
 			this.paddingRight = 0;
 			this.paddingBottom = 0;
 		},
-		afterSetDimensions: helpers.noop,
+		afterSetDimensions: function() {
+			helpers.callCallback(this.options.afterSetDimensions, [this]);
+		},
+
+		// Data limits
+		beforeDataLimits: function() {
+			helpers.callCallback(this.options.beforeDataLimits, [this]);
+		},
+		determineDataLimits: helpers.noop,
+		afterDataLimits: function() {
+			helpers.callCallback(this.options.afterDataLimits, [this]);
+		},
 
 		//
-
-		beforeBuildTicks: helpers.noop,
+		beforeBuildTicks: function() {
+			helpers.callCallback(this.options.beforeBuildTicks, [this]);
+		},
 		buildTicks: helpers.noop,
-		afterBuildTicks: helpers.noop,
+		afterBuildTicks: function() {
+			helpers.callCallback(this.options.afterBuildTicks, [this]);
+		},
 
-		beforeTickToLabelConversion: helpers.noop,
+		beforeTickToLabelConversion: function() {
+			helpers.callCallback(this.options.beforeTickToLabelConversion, [this]);
+		},
 		convertTicksToLabels: function() {
 			// Convert ticks to strings
 			this.ticks = this.ticks.map(function(numericalTick, index, ticks) {
@@ -146,11 +176,15 @@
 				},
 				this);
 		},
-		afterTickToLabelConversion: helpers.noop,
+		afterTickToLabelConversion: function() {
+			helpers.callCallback(this.options.afterTickToLabelConversion, [this]);
+		},
 
 		//
 
-		beforeCalculateTickRotation: helpers.noop,
+		beforeCalculateTickRotation: function() {
+			helpers.callCallback(this.options.beforeCalculateTickRotation, [this]);
+		},
 		calculateTickRotation: function() {
 			//Get the width of each grid by calculating the difference
 			//between x offsets between 0 and 1.
@@ -180,7 +214,7 @@
 				var tickWidth = this.getPixelForTick(1) - this.getPixelForTick(0) - 6;
 
 				//Max label rotation can be set or default to 90 - also act as a loop counter
-				while (this.labelWidth > tickWidth && this.labelRotation <= this.options.ticks.maxRotation) {
+				while (this.labelWidth > tickWidth && this.labelRotation < this.options.ticks.maxRotation) {
 					cosRotation = Math.cos(helpers.toRadians(this.labelRotation));
 					sinRotation = Math.sin(helpers.toRadians(this.labelRotation));
 
@@ -218,11 +252,15 @@
 				this.paddingRight = Math.max(this.paddingRight, 0);
 			}
 		},
-		afterCalculateTickRotation: helpers.noop,
+		afterCalculateTickRotation: function() {
+			helpers.callCallback(this.options.afterCalculateTickRotation, [this]);
+		},
 
 		//
 
-		beforeFit: helpers.noop,
+		beforeFit: function() {
+			helpers.callCallback(this.options.beforeFit, [this]);
+		},
 		fit: function() {
 
 			this.minSize = {
@@ -261,10 +299,10 @@
 
 				if (this.isHorizontal()) {
 					// A horizontal axis is more constrained by the height.
-					var longestLabelWidth = helpers.longestText(this.ctx, labelFont, this.ticks);
+					this.longestLabelWidth = helpers.longestText(this.ctx, labelFont, this.ticks);
 
 					// TODO - improve this calculation
-					var labelHeight = (Math.sin(helpers.toRadians(this.labelRotation)) * longestLabelWidth) + 1.5 * this.options.ticks.fontSize;
+					var labelHeight = (Math.sin(helpers.toRadians(this.labelRotation)) * this.longestLabelWidth) + 1.5 * this.options.ticks.fontSize;
 
 					this.minSize.height = Math.min(this.maxHeight, this.minSize.height + labelHeight);
 
@@ -319,7 +357,9 @@
 			this.height = this.minSize.height;
 
 		},
-		afterFit: helpers.noop,
+		afterFit: function() {
+			helpers.callCallback(this.options.afterFit, [this]);
+		},
 
 		// Shared Methods
 		isHorizontal: function() {
@@ -403,10 +443,16 @@
 				var skipRatio;
 				var scaleLabelX;
 				var scaleLabelY;
+				var useAutoskipper = this.options.ticks.autoSkip;
 
 				// Make sure we draw text in the correct color and font
 				this.ctx.fillStyle = this.options.ticks.fontColor;
 				var labelFont = helpers.fontString(this.options.ticks.fontSize, this.options.ticks.fontStyle, this.options.ticks.fontFamily);
+
+				var cosRotation = Math.cos(helpers.toRadians(this.labelRotation));
+				var sinRotation = Math.sin(helpers.toRadians(this.labelRotation));
+				var longestRotatedLabel = this.longestLabelWidth * cosRotation;
+				var rotatedLabelHeight = this.options.ticks.fontSize * sinRotation;
 
 				if (this.isHorizontal()) {
 					setContextLineSettings = true;
@@ -414,10 +460,14 @@
 					var yTickEnd = this.options.position === "bottom" ? this.top + 10 : this.bottom;
 					skipRatio = false;
 
-					if ((this.options.ticks.fontSize + 4) * this.ticks.length > (this.width - (this.paddingLeft + this.paddingRight))) {
-						skipRatio = 1 + Math.floor(((this.options.ticks.fontSize + 4) * this.ticks.length) / (this.width - (this.paddingLeft + this.paddingRight)));
+					if (((longestRotatedLabel / 2) + this.options.ticks.autoSkipPadding) * this.ticks.length > (this.width - (this.paddingLeft + this.paddingRight))) {
+					    skipRatio = 1 + Math.floor((((longestRotatedLabel / 2) + this.options.ticks.autoSkipPadding) * this.ticks.length) / (this.width - (this.paddingLeft + this.paddingRight)));
 					}
 
+					if (!useAutoskipper) {
+						skipRatio = false;
+					}
+					
 					helpers.each(this.ticks, function(label, index) {
 						// Blank ticks
 						if ((skipRatio > 1 && index % skipRatio > 0) || (label === undefined || label === null)) {

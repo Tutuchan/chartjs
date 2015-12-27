@@ -41,6 +41,8 @@ describe('Logarithmic Scale tests', function() {
 				reverse: false,
 				display: true,
 				callback: defaultConfig.ticks.callback, // make this nicer, then check explicitly below
+				autoSkip: true,
+				autoSkipPadding: 20
 			},
 		});
 
@@ -81,7 +83,7 @@ describe('Logarithmic Scale tests', function() {
 
 		scale.update(400, 400);
 		expect(scale.min).toBe(1);
-		expect(scale.max).toBe(10000);
+		expect(scale.max).toBe(5000);
 	});
 
 	it('Should correctly determine the max & min of string data values', function() {
@@ -117,7 +119,7 @@ describe('Logarithmic Scale tests', function() {
 
 		scale.update(400, 400);
 		expect(scale.min).toBe(1);
-		expect(scale.max).toBe(10000);
+		expect(scale.max).toBe(5000);
 	});
 
 	it('Should correctly determine the max & min data values when there are hidden datasets', function() {
@@ -154,7 +156,7 @@ describe('Logarithmic Scale tests', function() {
 
 		scale.update(400, 400);
 		expect(scale.min).toBe(1);
-		expect(scale.max).toBe(10000);
+		expect(scale.max).toBe(5000);
 	});
 
 	it('Should correctly determine the max & min for scatter data', function() {
@@ -194,7 +196,7 @@ describe('Logarithmic Scale tests', function() {
 
 		verticalScale.update(400, 400);
 		expect(verticalScale.min).toBe(1);
-		expect(verticalScale.max).toBe(1000);
+		expect(verticalScale.max).toBe(200);
 
 		var horizontalConfig = Chart.helpers.clone(config);
 		horizontalConfig.position = 'bottom';
@@ -250,7 +252,7 @@ describe('Logarithmic Scale tests', function() {
 
 		scale.update(400, 400);
 		expect(scale.min).toBe(10);
-		expect(scale.max).toBe(1000);
+		expect(scale.max).toBe(200);
 	});
 
 	it('Should correctly determine the min and max data values when stacked mode is turned on ignoring hidden datasets', function() {
@@ -293,7 +295,7 @@ describe('Logarithmic Scale tests', function() {
 
 		scale.update(400, 400);
 		expect(scale.min).toBe(10);
-		expect(scale.max).toBe(1000);
+		expect(scale.max).toBe(200);
 	});
 
 	it('Should ensure that the scale has a max and min that are not equal', function() {
@@ -329,6 +331,41 @@ describe('Logarithmic Scale tests', function() {
 		expect(scale.max).toBe(1);
 	});
 
+
+	it('Should use the min and max options', function() {
+		var scaleID = 'myScale';
+
+		var mockData = {
+			datasets: [{
+				yAxisID: scaleID,
+				data: [1, 1, 1, 2, 1, 0]
+			}]
+		};
+
+		var mockContext = window.createMockContext();
+		var config = Chart.helpers.clone(Chart.scaleService.getScaleDefaults('logarithmic'));
+
+		config.ticks.min = 10;
+		config.ticks.max = 1010;
+
+		var Constructor = Chart.scaleService.getScaleConstructor('logarithmic');
+		var scale = new Constructor({
+			ctx: mockContext,
+			options: config,
+			chart: {
+				data: mockData
+			},
+			id: scaleID
+		});
+
+		scale.update(400, 00);
+		scale.buildTicks();
+		expect(scale.min).toBe(10);
+		expect(scale.max).toBe(1010);
+		expect(scale.ticks[0]).toBe(1010);
+		expect(scale.ticks[scale.ticks.length - 1]).toBe(10);
+	});
+
 	it('Should generate tick marks', function() {
 		var scaleID = 'myScale';
 
@@ -354,12 +391,13 @@ describe('Logarithmic Scale tests', function() {
 		scale.width = 50;
 		scale.height = 400;
 
+		scale.determineDataLimits();
 		scale.buildTicks();
 
 		// Counts down because the lines are drawn top to bottom
-		expect(scale.ticks).toEqual([100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+		expect(scale.ticks).toEqual([80, 70, 60, 50, 40, 30, 20, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
 		expect(scale.start).toBe(1);
-		expect(scale.end).toBe(100);
+		expect(scale.end).toBe(80);
 	});
 
 	it('Should generate tick marks in the correct order in reversed mode', function() {
@@ -389,11 +427,12 @@ describe('Logarithmic Scale tests', function() {
 		scale.width = 50;
 		scale.height = 400;
 
+		scale.determineDataLimits();
 		scale.buildTicks();
 
 		// Counts down because the lines are drawn top to bottom
-		expect(scale.ticks).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]);
-		expect(scale.start).toBe(100);
+		expect(scale.ticks).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80]);
+		expect(scale.start).toBe(80);
 		expect(scale.end).toBe(1);
 	});
 
@@ -421,7 +460,7 @@ describe('Logarithmic Scale tests', function() {
 
 		scale.update(400, 400);
 
-		expect(scale.ticks).toEqual(['1e+2', '', '', '', '', '5e+1', '', '', '2e+1', '1e+1', '', '', '', '', '5e+0', '', '', '2e+0', '1e+0']);
+		expect(scale.ticks).toEqual(['8e+1', '', '', '5e+1', '', '', '2e+1', '1e+1', '', '', '', '', '5e+0', '', '', '2e+0', '1e+0']);
 	});
 
 	it('Should build labels using the user supplied callback', function() {
@@ -453,7 +492,7 @@ describe('Logarithmic Scale tests', function() {
 		scale.update(400, 400);
 
 		// Just the index
-		expect(scale.ticks).toEqual(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18']);
+		expect(scale.ticks).toEqual(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16']);
 	});
 
 	it('Should get the correct pixel value for a point', function() {
@@ -491,9 +530,9 @@ describe('Logarithmic Scale tests', function() {
 		verticalScale.width = 50;
 		verticalScale.height = 110;
 
-		expect(verticalScale.getPixelForValue(100, 0, 0)).toBe(5); // top + paddingTop
+		expect(verticalScale.getPixelForValue(80, 0, 0)).toBe(5); // top + paddingTop
 		expect(verticalScale.getPixelForValue(1, 0, 0)).toBe(105); // bottom - paddingBottom
-		expect(verticalScale.getPixelForValue(10, 0, 0)).toBe(55); // halfway
+		expect(verticalScale.getPixelForValue(10, 0, 0)).toBeCloseTo(52.4, 1e-4); // halfway
 
 		var horizontalConfig = Chart.helpers.clone(config);
 		horizontalConfig.position = 'bottom';
@@ -518,8 +557,8 @@ describe('Logarithmic Scale tests', function() {
 		horizontalScale.width = 110;
 		horizontalScale.height = 50;
 
-		expect(horizontalScale.getPixelForValue(100, 0, 0)).toBe(105); // right - paddingRight
+		expect(horizontalScale.getPixelForValue(80, 0, 0)).toBe(105); // right - paddingRight
 		expect(horizontalScale.getPixelForValue(1, 0, 0)).toBe(5); // left + paddingLeft
-		expect(horizontalScale.getPixelForValue(10, 0, 0)).toBe(55); // halfway
+		expect(horizontalScale.getPixelForValue(10, 0, 0)).toBeCloseTo(57.5, 1e-4); // halfway
 	});
 });
