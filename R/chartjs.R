@@ -42,8 +42,7 @@ chartjs <- function(data, ..., labels = NULL, dataLabels = NULL, width = NULL, h
   }
 
   #### Handle chartOptions
-  baseOptions <- list(responsive = TRUE)
-  chartOptions <- mergeLists(baseOptions, chartOptions)
+  chartOptions <- mergeLists(baseOptions(), chartOptions)
 
   # Forward data using x
   x = list(labels = labels,

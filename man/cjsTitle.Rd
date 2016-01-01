@@ -4,12 +4,28 @@
 \alias{cjsTitle}
 \title{Add title}
 \usage{
-cjsTitle(chartjs, text)
+cjsTitle(chartjs, title, position = NULL, fullWidth = NULL,
+  fontColor = NULL, fontFamily = NULL, fontSize = NULL,
+  fontStyle = NULL, padding = NULL)
 }
 \arguments{
 \item{chartjs}{a \code{\link{chartjs}} object}
 
-\item{text}{a character}
+\item{title}{the title of the chart}
+
+\item{position}{"top" or "bottom", defaults to "top"}
+
+\item{fullWidth}{a logical, defaults to TRUE}
+
+\item{fontColor}{a character, defaults to "#666"}
+
+\item{fontFamily}{a character, defaults to "Helvetica Neue"}
+
+\item{fontSize}{an integer, defaults to 12}
+
+\item{fontStyle}{a character, defaults to "bold"}
+
+\item{padding}{a integer, defaults to 10 (in pixels)}
 }
 \description{
 Add title
