@@ -978,21 +978,6 @@ describe('Linear Scale', function() {
 		}, {
 			"name": "restore",
 			"args": []
-		}, {
-			"name": "setLineWidth",
-			"args": [1]
-		}, {
-			"name": "setStrokeStyle",
-			"args": ["rgba(0, 0, 0, 0.1)"]
-		}, {
-			"name": "moveTo",
-			"args": [0, 100.5]
-		}, {
-			"name": "lineTo",
-			"args": [200, 100.5]
-		}, {
-			"name": "stroke",
-			"args": []
 		}];
 		expect(mockContext.getCalls()).toEqual(expected);
 
@@ -1051,21 +1036,6 @@ describe('Linear Scale', function() {
 		}, {
 			"name": "fillText",
 			"args": ["myLabel", 100, 122]
-		}, {
-			"name": "setLineWidth",
-			"args": [1]
-		}, {
-			"name": "setStrokeStyle",
-			"args": ["rgba(0, 0, 0, 0.1)"]
-		}, {
-			"name": "moveTo",
-			"args": [0, 100.5]
-		}, {
-			"name": "lineTo",
-			"args": [200, 100.5]
-		}, {
-			"name": "stroke",
-			"args": []
 		}]);
 
 		// Turn off display
@@ -1510,21 +1480,6 @@ describe('Linear Scale', function() {
 		}, {
 			"name": "restore",
 			"args": []
-		}, {
-			"name": "setLineWidth",
-			"args": [1]
-		}, {
-			"name": "setStrokeStyle",
-			"args": ["rgba(0, 0, 0, 0.1)"]
-		}, {
-			"name": "moveTo",
-			"args": [30.5, 0]
-		}, {
-			"name": "lineTo",
-			"args": [30.5, 300]
-		}, {
-			"name": "stroke",
-			"args": []
 		}]);
 
 		// Turn off some drawing
@@ -1640,21 +1595,6 @@ describe('Linear Scale', function() {
 			"args": ["", 0, 0]
 		}, {
 			"name": "restore",
-			"args": []
-		}, {
-			"name": "setLineWidth",
-			"args": [1]
-		}, {
-			"name": "setStrokeStyle",
-			"args": ["rgba(0, 0, 0, 0.1)"]
-		}, {
-			"name": "moveTo",
-			"args": [30.5, 0]
-		}, {
-			"name": "lineTo",
-			"args": [30.5, 300]
-		}, {
-			"name": "stroke",
 			"args": []
 		}]);
 	});
@@ -1897,21 +1837,6 @@ describe('Linear Scale', function() {
 			"args": ["-4", 0, 0]
 		}, {
 			"name": "restore",
-			"args": []
-		}, {
-			"name": "setLineWidth",
-			"args": [1]
-		}, {
-			"name": "setStrokeStyle",
-			"args": ["rgba(0, 0, 0, 0.1)"]
-		}, {
-			"name": "moveTo",
-			"args": [30.5, 0]
-		}, {
-			"name": "lineTo",
-			"args": [30.5, 300]
-		}, {
-			"name": "stroke",
 			"args": []
 		}])
 	});
