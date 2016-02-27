@@ -2,10 +2,13 @@
 title: "Line Charts"
 ---
 
-```{r, warning=FALSE, error=FALSE, message=FALSE}
+```{r Libs, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 library(chartjs)
 library(magrittr)
-chartjs(data = list(mpg = mtcars$mpg, cyl = mtcars$cyl), labels = row.names(mtcars)) %>% 
-  lineChart
+```
+
+```{r Line chart, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars, mpg, qsec, labels = row.names(mtcars)) %>% 
+  cjsLine
 ```
 

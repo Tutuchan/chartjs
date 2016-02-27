@@ -1,0 +1,66 @@
+---
+title: "Titles and legends"
+---
+
+```{r Libs, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+library(chartjs)
+library(magrittr)
+```
+
+## Titles
+
+### Simple title
+
+Titles can be added thanks to the `cjsTitle` function:
+
+```{r Simple title, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars[1:10,], mpg, qsec) %>% 
+  cjsBar %>% 
+  cjsTitle(title = "mpg and qsec")
+```
+
+### Position
+
+```{r Position title, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars[1:10,], mpg, qsec) %>% 
+  cjsBar %>% 
+  cjsTitle(title = "mpg and qsec", position = "bottom")
+```
+
+### Styling
+
+```{r Styling title, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars[1:10,], mpg, qsec) %>% 
+  cjsBar %>% 
+  cjsTitle(title = "mpg and qsec", fontColor = "#FF00FC", fontFamily = "Times", fontSize = 15, fontStyle = "bold", padding = 20)
+```
+
+## Legends
+
+### Simple legend
+
+Legends can be added thanks to the `cjsLegend` function:
+
+```{r Simple legend, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars[1:10,], mpg, qsec) %>% 
+  cjsBar %>% 
+  cjsLegend
+```
+
+Clicking on a legend box removes this dataset from the plot.
+
+### Position
+
+```{r Position legend, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars[1:10,], mpg, qsec) %>% 
+  cjsBar %>% 
+  cjsLegend(position = "bottom")
+```
+
+### Styling
+
+```{r Styling legend, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars[1:10,], mpg, qsec) %>% 
+  cjsBar %>% 
+  cjsLegend(labels = list(boxWidth = 15, fontColor = "#FF00FC", fontFamily = "Times", fontSize = 15, fontStyle = "bold", padding = 20))
+```

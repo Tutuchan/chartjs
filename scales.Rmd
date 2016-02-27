@@ -1,0 +1,10 @@
+---
+title: "Scales"
+---
+
+```{r Libs, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+library(chartjs)
+library(magrittr)
+```
+
+Coming soon !

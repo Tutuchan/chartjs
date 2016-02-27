@@ -10,8 +10,8 @@ chartjs is an implementation of the popular JavaScript vizualisation library [**
 
 The package can be installed from GitHub *via* the **devtools** package: 
 
-```{r, eval=FALSE}
-devtools::install_github("tutuchan/chartjs")
+```{r Install, eval=FALSE}
+devtools::install_github("tutuchan/chartjs", ref = "dev")
 ```
 
 
@@ -39,17 +39,12 @@ RColorBrewer::display.brewer.pal(12, "Paired")
 
 ### Legends
 
-Legends are automatically generated and placed in a separate container next to the graph.
+The 2.0.0 version of Chart.js natively supports legends. Use `cjsLegend` to draw and customize them.
 
-### Future improvements
+### Scales
 
-There are several things on my todo list : 
+As of version 0.2.1, scales can be customized (see the [Chart.js documentation](http://nnnick.github.io/Chart.js/docs-v2/#scales) for a full list of options).
 
-+ I am currently working on implementing the v2.0 of Chart.js which is still under heavy development, 
-expect a lot of changes in the upcoming versions. This work can be seen in the *dev* branch,
-+ the legend for Bar Charts can be mouseovered to highlight the corresponding series, I would like to extend this functionality to the other graph types,
-+ make it possible to have a *subdue* mode for graphs where the strong color is present by default and highlighting turns the colors of the non-highlighted elements to the light color. This would make the elements stand out more in the default state,
-+ a better definition of the inputs for a graph, possibly using NSE.
 
 ## Acknowledgments
 
@@ -57,4 +52,3 @@ Many thanks to :
 
 + the RStudio team and Ramnath Vaidyanathan for the [htmlwidgets](http://www.htmlwidgets.org/) framework,
 + Nick Downie for the [Chart.js](http://www.chartjs.org) library
-+ the RStudio team for the [rmarkdown](http://rmarkdown.rstudio.com/) package and the website template that I shamelessly ripped.

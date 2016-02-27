@@ -1,6 +1,6 @@
 html_document:
   self_contained: false
-  theme: cosmo
+  theme: yeti
   highlight: espresso
   mathjax: null
   toc_depth: 2

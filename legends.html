@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Titles and legends</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/htmlwidgets-0.6/htmlwidgets.js"></script>
+<script src="libs/Chart.js-2.0.0/Chart.js"></script>
+<script src="libs/Chart.js-2.0.0/Chart.min.js"></script>
+<script src="libs/chartjs-binding-0.2.1/chartjs.js"></script>
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #2a211c; color: #bdae9d; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #2a211c; color: #bdae9d; border-right: 1px solid #bdae9d; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #bdae9d; background-color: #2a211c; }
+code > span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code > span.dt { text-decoration: underline; } /* DataType */
+code > span.dv { color: #44aa43; } /* DecVal */
+code > span.bn { color: #44aa43; } /* BaseN */
+code > span.fl { color: #44aa43; } /* Float */
+code > span.ch { color: #049b0a; } /* Char */
+code > span.st { color: #049b0a; } /* String */
+code > span.co { color: #0066ff; font-style: italic; } /* Comment */
+code > span.al { color: #ffff00; } /* Alert */
+code > span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code > span.er { color: #ffff00; font-weight: bold; } /* Error */
+code > span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+code > span.cn { } /* Constant */
+code > span.sc { color: #049b0a; } /* SpecialChar */
+code > span.vs { color: #049b0a; } /* VerbatimString */
+code > span.ss { color: #049b0a; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code > span.op { } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code > span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code > span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://github.com/Tutuchan/chartjs"><i class="fa fa-github fa-lg"></i> chartjs </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="charts" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Charts <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="bar_chart.html">Bar Charts</a></li>
+             <li><a href="line_chart.html">Line Charts</a></li>
+             <li><a href="pie_chart.html">Pie Charts</a></li>
+             <li><a href="doughnut_chart.html">Doughnut Charts</a></li>
+             <li><a href="radar_chart.html">Radar Charts</a></li>
+             <li><a href="polar_area_chart.html">Polar Area Charts</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="features" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Features<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="legends.html">Titles and legends</a></li>
+             <li><a href="scales.html">Scales</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Titles and legends</h1>
+
+</div>
+
+
+<div id="titles" class="section level2">
+<h2>Titles</h2>
+<div id="simple-title" class="section level3">
+<h3>Simple title</h3>
+<p>Titles can be added thanks to the <code>cjsTitle</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chartjs</span>(mtcars[<span class="dv">1</span>:<span class="dv">10</span>,], mpg, qsec) %&gt;%<span class="st"> </span>
+<span class="st">  </span>cjsBar %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">cjsTitle</span>(<span class="dt">title =</span> <span class="st">&quot;mpg and qsec&quot;</span>)</code></pre></div>
+<p><div class="htmlwidget_container">
+<div class="chart-container">
+<canvas id="htmlwidget-508" class="chartjs html-widget"></canvas>
+</div>
+</div>
+<script type="application/json" data-for="htmlwidget-508">{"x":{"data":{"labels":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280"],"datasets":[{"label":"mpg","data":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2],"borderColor":"#000000","backgroundColor":"#A6CEE3","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#1F78B4","pointHoverBorderColor":null,"pointHoverBackgroundColor":null},{"label":"qsec","data":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3],"borderColor":"#000000","backgroundColor":"#B2DF8A","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#33A02C","pointHoverBorderColor":null,"pointHoverBackgroundColor":null}]},"options":{"responsive":true,"legend":{"display":false},"title":{"display":true,"text":"mpg and qsec"}},"showLegend":false,"stacked":false,"type":"bar"},"evals":[],"jsHooks":[]}</script></p>
+</div>
+<div id="position" class="section level3">
+<h3>Position</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chartjs</span>(mtcars[<span class="dv">1</span>:<span class="dv">10</span>,], mpg, qsec) %&gt;%<span class="st"> </span>
+<span class="st">  </span>cjsBar %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">cjsTitle</span>(<span class="dt">title =</span> <span class="st">&quot;mpg and qsec&quot;</span>, <span class="dt">position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
+<p><div class="htmlwidget_container">
+<div class="chart-container">
+<canvas id="htmlwidget-7814" class="chartjs html-widget"></canvas>
+</div>
+</div>
+<script type="application/json" data-for="htmlwidget-7814">{"x":{"data":{"labels":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280"],"datasets":[{"label":"mpg","data":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2],"borderColor":"#000000","backgroundColor":"#A6CEE3","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#1F78B4","pointHoverBorderColor":null,"pointHoverBackgroundColor":null},{"label":"qsec","data":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3],"borderColor":"#000000","backgroundColor":"#B2DF8A","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#33A02C","pointHoverBorderColor":null,"pointHoverBackgroundColor":null}]},"options":{"responsive":true,"legend":{"display":false},"title":{"display":true,"text":"mpg and qsec","position":"bottom"}},"showLegend":false,"stacked":false,"type":"bar"},"evals":[],"jsHooks":[]}</script></p>
+</div>
+<div id="styling" class="section level3">
+<h3>Styling</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chartjs</span>(mtcars[<span class="dv">1</span>:<span class="dv">10</span>,], mpg, qsec) %&gt;%<span class="st"> </span>
+<span class="st">  </span>cjsBar %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">cjsTitle</span>(<span class="dt">title =</span> <span class="st">&quot;mpg and qsec&quot;</span>, <span class="dt">fontColor =</span> <span class="st">&quot;#FF00FC&quot;</span>, <span class="dt">fontFamily =</span> <span class="st">&quot;Times&quot;</span>, <span class="dt">fontSize =</span> <span class="dv">15</span>, <span class="dt">fontStyle =</span> <span class="st">&quot;bold&quot;</span>, <span class="dt">padding =</span> <span class="dv">20</span>)</code></pre></div>
+<p><div class="htmlwidget_container">
+<div class="chart-container">
+<canvas id="htmlwidget-7723" class="chartjs html-widget"></canvas>
+</div>
+</div>
+<script type="application/json" data-for="htmlwidget-7723">{"x":{"data":{"labels":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280"],"datasets":[{"label":"mpg","data":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2],"borderColor":"#000000","backgroundColor":"#A6CEE3","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#1F78B4","pointHoverBorderColor":null,"pointHoverBackgroundColor":null},{"label":"qsec","data":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3],"borderColor":"#000000","backgroundColor":"#B2DF8A","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#33A02C","pointHoverBorderColor":null,"pointHoverBackgroundColor":null}]},"options":{"responsive":true,"legend":{"display":false},"title":{"display":true,"text":"mpg and qsec","fontColor":"#FF00FC","fontFamily":"Times","fontSize":15,"fontStyle":"bold","padding":20}},"showLegend":false,"stacked":false,"type":"bar"},"evals":[],"jsHooks":[]}</script></p>
+</div>
+</div>
+<div id="legends" class="section level2">
+<h2>Legends</h2>
+<div id="simple-legend" class="section level3">
+<h3>Simple legend</h3>
+<p>Legends can be added thanks to the <code>cjsLegend</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chartjs</span>(mtcars[<span class="dv">1</span>:<span class="dv">10</span>,], mpg, qsec) %&gt;%<span class="st"> </span>
+<span class="st">  </span>cjsBar %&gt;%<span class="st"> </span>
+<span class="st">  </span>cjsLegend</code></pre></div>
+<p><div class="htmlwidget_container">
+<div class="chart-container">
+<canvas id="htmlwidget-2814" class="chartjs html-widget"></canvas>
+</div>
+</div>
+<script type="application/json" data-for="htmlwidget-2814">{"x":{"data":{"labels":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280"],"datasets":[{"label":"mpg","data":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2],"borderColor":"#000000","backgroundColor":"#A6CEE3","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#1F78B4","pointHoverBorderColor":null,"pointHoverBackgroundColor":null},{"label":"qsec","data":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3],"borderColor":"#000000","backgroundColor":"#B2DF8A","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#33A02C","pointHoverBorderColor":null,"pointHoverBackgroundColor":null}]},"options":{"responsive":true,"legend":{"display":true}},"showLegend":false,"stacked":false,"type":"bar"},"evals":[],"jsHooks":[]}</script></p>
+<p>Clicking on a legend box removes this dataset from the plot.</p>
+</div>
+<div id="position-1" class="section level3">
+<h3>Position</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chartjs</span>(mtcars[<span class="dv">1</span>:<span class="dv">10</span>,], mpg, qsec) %&gt;%<span class="st"> </span>
+<span class="st">  </span>cjsBar %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">cjsLegend</span>(<span class="dt">position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
+<p><div class="htmlwidget_container">
+<div class="chart-container">
+<canvas id="htmlwidget-8691" class="chartjs html-widget"></canvas>
+</div>
+</div>
+<script type="application/json" data-for="htmlwidget-8691">{"x":{"data":{"labels":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280"],"datasets":[{"label":"mpg","data":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2],"borderColor":"#000000","backgroundColor":"#A6CEE3","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#1F78B4","pointHoverBorderColor":null,"pointHoverBackgroundColor":null},{"label":"qsec","data":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3],"borderColor":"#000000","backgroundColor":"#B2DF8A","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#33A02C","pointHoverBorderColor":null,"pointHoverBackgroundColor":null}]},"options":{"responsive":true,"legend":{"display":true,"position":"bottom"}},"showLegend":false,"stacked":false,"type":"bar"},"evals":[],"jsHooks":[]}</script></p>
+</div>
+<div id="styling-1" class="section level3">
+<h3>Styling</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chartjs</span>(mtcars[<span class="dv">1</span>:<span class="dv">10</span>,], mpg, qsec) %&gt;%<span class="st"> </span>
+<span class="st">  </span>cjsBar %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">cjsLegend</span>(<span class="dt">labels =</span> <span class="kw">list</span>(<span class="dt">boxWidth =</span> <span class="dv">15</span>, <span class="dt">fontColor =</span> <span class="st">&quot;#FF00FC&quot;</span>, <span class="dt">fontFamily =</span> <span class="st">&quot;Times&quot;</span>, <span class="dt">fontSize =</span> <span class="dv">15</span>, <span class="dt">fontStyle =</span> <span class="st">&quot;bold&quot;</span>, <span class="dt">padding =</span> <span class="dv">20</span>))</code></pre></div>
+<p><div class="htmlwidget_container">
+<div class="chart-container">
+<canvas id="htmlwidget-8431" class="chartjs html-widget"></canvas>
+</div>
+</div>
+<script type="application/json" data-for="htmlwidget-8431">{"x":{"data":{"labels":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280"],"datasets":[{"label":"mpg","data":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2],"borderColor":"#000000","backgroundColor":"#A6CEE3","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#1F78B4","pointHoverBorderColor":null,"pointHoverBackgroundColor":null},{"label":"qsec","data":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3],"borderColor":"#000000","backgroundColor":"#B2DF8A","pointBorderColor":null,"pointBackgroundColor":null,"hoverBorderColor":"rgba(255,255,255,1)","hoverBackgroundColor":"#33A02C","pointHoverBorderColor":null,"pointHoverBackgroundColor":null}]},"options":{"responsive":true,"legend":{"display":true,"labels":{"boxWidth":15,"fontColor":"#FF00FC","fontFamily":"Times","fontSize":15,"fontStyle":"bold","padding":20}}},"showLegend":false,"stacked":false,"type":"bar"},"evals":[],"jsHooks":[]}</script></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

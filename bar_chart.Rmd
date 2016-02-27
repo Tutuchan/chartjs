@@ -2,15 +2,22 @@
 title: "Bar Charts"
 ---
 
-## Dodged bar charts
-
-**Chart.js** only allows the creation of dodged bar charts at the moment.
-
-```{r, warning=FALSE, error=FALSE, message=FALSE}
+```{r Libs, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 library(chartjs)
 library(magrittr)
-chartjs(data = list(mpg = mtcars$mpg, cyl = mtcars$cyl), labels = row.names(mtcars)) %>% 
-  barChart
 ```
 
+## Dodged bar charts
+
+```{r Dodged bar charts, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars, mpg, qsec, labels = row.names(mtcars)) %>% 
+  cjsBar
+```
+
+## Stacked bar charts
+
+```{r Stacked bar charts, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars, mpg, qsec, labels = row.names(mtcars)) %>% 
+  cjsBar(stacked = TRUE)
+```
 

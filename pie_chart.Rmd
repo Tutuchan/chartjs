@@ -2,13 +2,12 @@
 title: "Pie Charts"
 ---
 
-
-```{r, warning=FALSE, error=FALSE, message=FALSE}
+```{r Libs, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 library(chartjs)
 library(magrittr)
-cyls <- dplyr::count(mtcars, cyl)
-listCyls <- as.list(cyls$n)
-names(listCyls) <- cyls$cyl
-chartjs(listCyls) %>% 
-  pieChart
+```
+
+```{r Pie charts, warning=FALSE, error=FALSE, message=FALSE}
+chartjs(mtcars[1:6,], mpg, qsec) %>% 
+  cjsPie
 ```
