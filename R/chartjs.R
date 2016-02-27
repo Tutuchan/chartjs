@@ -4,15 +4,15 @@
 #'
 #' See the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}.
 #'
-#' @param data a data.frame,
-#' @param ... the columns of \code{data} to plot,
-#' @param labels a vector of numerics or characters : the labels on the x-axis,
-#' @param dataLabels a vector of characters : the names of the data series,
+#' @param data a data.frame
+#' @param ... the columns of \code{data} to plot
+#' @param labels a vector of numerics or characters : the labels on the x-axis
+#' @param dataLabels a vector of characters : the names of the data series
 #' defaults to the names of \code{data}
-#' @param width the width of the widget,
-#' @param height the height of the widget,
-#' @param chartOptions a list of options to customize the graph,
-#' see the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}.
+#' @param width the width of the widget
+#' @param height the height of the widget
+#' @param chartOptions a list of options to customize the graph
+#' see the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}
 #'
 #' @import htmlwidgets
 #' @import htmltools
@@ -63,7 +63,6 @@ chartjs <- function(data, ..., labels = NULL, dataLabels = NULL, width = NULL, h
   )
 }
 
-#' @export
-chartjs_html <- function(id, style, class, ...){
+chartjs_html <- function(id, class, ...){
   tags$div(class = "htmlwidget_container", tags$div(class = "chart-container", tags$canvas(id = id, class = class)))
 }

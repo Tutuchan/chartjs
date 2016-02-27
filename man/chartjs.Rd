@@ -8,21 +8,21 @@ chartjs(data, ..., labels = NULL, dataLabels = NULL, width = NULL,
   height = NULL, chartOptions = NULL)
 }
 \arguments{
-\item{data}{a data.frame,}
+\item{data}{a data.frame}
 
-\item{...}{the columns of \code{data} to plot,}
+\item{...}{the columns of \code{data} to plot}
 
-\item{labels}{a vector of numerics or characters : the labels on the x-axis,}
+\item{labels}{a vector of numerics or characters : the labels on the x-axis}
 
-\item{dataLabels}{a vector of characters : the names of the data series,
+\item{dataLabels}{a vector of characters : the names of the data series
 defaults to the names of \code{data}}
 
-\item{width}{the width of the widget,}
+\item{width}{the width of the widget}
 
-\item{height}{the height of the widget,}
+\item{height}{the height of the widget}
 
-\item{chartOptions}{a list of options to customize the graph,
-see the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}.}
+\item{chartOptions}{a list of options to customize the graph
+see the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}}
 }
 \description{
 Draw a graph using the Chart.js library.
