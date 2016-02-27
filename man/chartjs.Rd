@@ -21,12 +21,13 @@ defaults to the names of \code{data}}
 
 \item{height}{the height of the widget,}
 
-\item{chartOptions}{a list of options to customize the graph, see the Chart.js documentation.}
+\item{chartOptions}{a list of options to customize the graph,
+see the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}.}
 }
 \description{
 Draw a graph using the Chart.js library.
 }
 \details{
-See the documentation of Chart.js at \url{http://nnnick.github.io/Chart.js/docs-v2/}.
+See the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}.
 }
 

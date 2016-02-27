@@ -37,7 +37,7 @@ HTMLWidgets.widget({
 
     // Handle options
     var chartOptions = x.options;
-    //console.log(chartOptions);
+    console.log(chartOptions);
     if (x.stacked){
       chartOptions.scales = {
         xAxes: [{
@@ -70,54 +70,6 @@ HTMLWidgets.widget({
         canvas.parentNode.nextElementSibling.innerHTML = instance.cjs.generateLegend();
       }
     }
-
-
-    // When the series is mouseovered in the legend, highlight the corresponding elements
-    /*helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
-    	helpers.addEvent(legendNode, 'mouseover', function(){
-    	  switch(x.type){
-          case "Bar":
-    		    var activeBars = outChart.datasets[index].bars;
-      			  for (var barsIndex = 0; barsIndex < activeBars.length; barsIndex++) {
-        			  var activeBar = activeBars[barsIndex];
-        				activeBar.save();
-        				activeBar.fillColor = activeBar.highlightFill;
-        				activeBar.strokeColor = activeBar.highlightStroke;
-      				}
-      				outChart.draw();
-
-    			  break;
-    			case "Pie":
-    			case "PolarArea":
-    			  var activeSegment = outChart.segments[index];
-      		    activeSegment.save();
-      			  activeSegment.fillColor = activeSegment.highlightColor;
-      			  outChart.showTooltip([activeSegment]);
-      			  activeSegment.restore();
-      		break;
-        }
-    	});
-    });
-    		// Remove highlight after mouseout
-    helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
-        helpers.addEvent(legendNode, 'mouseout', function(){
-    	  switch(x.type){
-          case "Bar":
-      			var activeBars = outChart.datasets[index].bars;
-      			for (var barsIndex = 0; barsIndex < activeBars.length; barsIndex++) {
-        			var activeBar = activeBars[barsIndex];
-        			activeBar.restore();
-      			}
-      			outChart.draw();
-      			break;
-    	  }
-      });
-    });
-
-    canvas.parentNode.appendChild(legendHolder.firstChild);*/
-
-
-
 
   },
 

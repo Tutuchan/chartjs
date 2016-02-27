@@ -2,7 +2,7 @@
 #'
 #' Draw a graph using the Chart.js library.
 #'
-#' See the documentation of Chart.js at \url{http://nnnick.github.io/Chart.js/docs-v2/}.
+#' See the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}.
 #'
 #' @param data a data.frame,
 #' @param ... the columns of \code{data} to plot,
@@ -11,7 +11,8 @@
 #' defaults to the names of \code{data}
 #' @param width the width of the widget,
 #' @param height the height of the widget,
-#' @param chartOptions a list of options to customize the graph, see the Chart.js documentation.
+#' @param chartOptions a list of options to customize the graph,
+#' see the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}.
 #'
 #' @import htmlwidgets
 #' @import htmltools

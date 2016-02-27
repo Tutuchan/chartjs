@@ -4,12 +4,15 @@
 \alias{cjsLegend}
 \title{Add legends}
 \usage{
-cjsLegend(chartjs, position = NULL, fullWidth = NULL, labels = NULL)
+cjsLegend(chartjs, position = NULL, onClick = NULL, fullWidth = NULL,
+  labels = NULL)
 }
 \arguments{
 \item{chartjs}{a \code{\link{chartjs}} object}
 
 \item{position}{"top" or "bottom", defaults to "top"}
+
+\item{onClick}{a JS function as a character}
 
 \item{fullWidth}{a logical, defaults to TRUE}
 
