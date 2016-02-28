@@ -1,6 +1,6 @@
 library(chartjs)
 
-chartjs(mtcars, mpg, qsec, labels = row.names(mtcars)) %>%
+chartjs(mtcars, mpg, colour = "am", labels = row.names(mtcars)) %>%
   cjsBar %>%
   cjsTitle(title = "mtcars") %>%
   cjsLegend(position = "bottom", labels = list(boxWidth = 20, fontSize = 25))

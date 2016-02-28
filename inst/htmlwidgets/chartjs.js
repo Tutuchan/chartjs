@@ -57,19 +57,7 @@ HTMLWidgets.widget({
           });
 
     console.log(instance.cjs);
-    // Generate legend. If it already exists, only modify the HTML.
-    if (x.showLegend){
-      if (canvas.parentNode.parentNode.children.length == 2){
-        var legendHolder = document.createElement('div');
-        console.log(instance.cjs.generateLegend());
-        legendHolder.innerHTML = instance.cjs.generateLegend();
-        canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
-        console.log(legendHolder);
-      } else {
-        canvas.parentNode.nextElementSibling.className = x.type.toLowerCase().concat('-legend');
-        canvas.parentNode.nextElementSibling.innerHTML = instance.cjs.generateLegend();
-      }
-    }
+
 
   },
 
