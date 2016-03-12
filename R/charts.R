@@ -44,20 +44,26 @@ NULL
 #' at each x value.
 #' @export
 cjsBar <- function(chartjs, stacked = FALSE){
+  class(chartjs) <- c(class(chartjs), "cjs_bar")
+  chartjs$x$type <- "bar"
   chartjs$x$stacked <- stacked
-  baseChart(chartjs, "bar")
+  chartjs
 }
 
 #' @rdname charts
 #' @export
 cjsLine <- function(chartjs){
-  baseChart(chartjs, "line")
+  class(chartjs) <- c(class(chartjs), "cjs_line")
+  chartjs$x$type <- "line"
+  chartjs
 }
 
 #' @rdname charts
 #' @export
 cjsPie <- function(chartjs){
-  baseChart(chartjs, "pie")
+  class(chartjs) <- c(class(chartjs), "cjs_pie")
+  chartjs$x$type <- "pie"
+  chartjs
 }
 
 
@@ -79,5 +85,7 @@ cjsPolar <- function(chartjs){
 #' @rdname charts
 #' @export
 cjsRadar <- function(chartjs){
-  baseChart(chartjs, "radar")
+  class(chartjs) <- c(class(chartjs), "cjs_radar")
+  chartjs$x$type <- "radar"
+  chartjs
 }
