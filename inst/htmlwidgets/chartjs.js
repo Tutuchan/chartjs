@@ -38,16 +38,14 @@ HTMLWidgets.widget({
     // Handle options
     var chartOptions = x.options;
     console.log(chartOptions);
-    if (x.stacked){
-      chartOptions.scales = {
-        xAxes: [{
-          stacked: true
-        }],
-        yAxes: [{
-          stacked: true
-        }]
-      };
-    }
+
+    // Handle scales
+
+    var scales = x.scales;
+    chartOptions.scales = {
+      xAxes: jQuery.makeArray(scales.x),
+      yAxes: jQuery.makeArray(scales.y)
+    };
 
     // Create actual chart
     instance.cjs = new Chart(ctx, {

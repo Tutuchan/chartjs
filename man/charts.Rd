@@ -10,11 +10,11 @@
 \alias{cjsRadar}
 \title{Draw charts}
 \usage{
-cjsBar(chartjs, stacked = FALSE)
+cjsBar(chartjs, labels, ...)
 
-cjsLine(chartjs)
+cjsLine(chartjs, labels, ...)
 
-cjsPie(chartjs)
+cjsPie(chartjs, labels, ...)
 
 cjsDoughnut(chartjs, cutout = 50)
 
@@ -25,11 +25,11 @@ cjsRadar(chartjs)
 \arguments{
 \item{chartjs}{a \code{\link{chartjs}} object}
 
-\item{stacked}{a logical, defaults to FALSE. If TRUE, bars will be stacked
-at each x value.}
-
 \item{cutout}{the optional percentage of the inner cutout for Doughnut
 charts (defaults to 50)}
+
+\item{stacked}{a logical, defaults to FALSE. If TRUE, bars will be stacked
+at each x value.}
 }
 \description{
 These functions are used to draw the different types of graphs.

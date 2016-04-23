@@ -1,14 +1,27 @@
 #' @export
-cjsAxis <- function(x, ...){
-  UseMethod("cjsAxis")
+cjsAddScale <- function(x, ...){
+  UseMethod("cjsAddScale")
 }
 
 #' @export
-cjsAxis.cjs_bar <- function(cjs, labels){
-  cjs$x$data$labels <- labels
-  cjs
+cjsAddScale.cjs_bar <- function(cjs, axis = "x", type = "category", ...){
+  cjs %>%
+    add_scale(axis, type, ...)
 }
 
-cjsAxis.cjs_line <- cjsAxis.cjs_bar
-cjsAxis.cjs_radar <- cjsAxis.cjs_bar
-cjsAxis.cjs_pie <- cjsAxis.cjs_bar
+#' @export
+cjsAddScale.cjs_pie <- function(cjs, axis = "x", type = "radialLinear", ...){
+  cjs %>%
+    add_scale(axis, type, ...)
+}
+
+#' @export
+cjsAddScale.cjs_line <- cjsAddScale.cjs_bar
+#' @export
+cjsAddScale.cjs_radar <- cjsAddScale.cjs_pie
+
+
+add_scale <- function(cjs, axis, type, ...){
+  cjs$x$scales[[axis]] <- list(type = type, ...)
+  cjs
+}

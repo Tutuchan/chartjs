@@ -1,0 +1,55 @@
+---
+title: "Untitled"
+author: "Tutuchan"
+date: "23 avril 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(chartjs)
+```
+
+## Bar
+
+```{r bar}
+chartjs(height = "500px") %>%
+  cjsBar(labels = LETTERS[1:10], scaleLabel = list(display = TRUE, labelString = "topkek")) %>%
+  cjsAddScale("y", type = "linear") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 1") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 2") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 3") %>% 
+  cjsLegend() %>% 
+  cjsTooltips(fontSize = 20, fontColor = "#F00000")
+```
+
+## Line
+
+```{r line}
+chartjs(height = "500px") %>%
+  cjsLine(labels = seq.Date(as.Date("2011-01-01"), as.Date("2011-01-08"), by = 1), type = "time") %>%
+  cjsAddScale("y", type = "logarithmic") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 1") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 2") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 3") %>% 
+  cjsLegend() %>% 
+  cjsTooltips(fontSize = 20, fontColor = "#F00000")
+```
+
+
+## Pie 
+
+```{r pie}
+chartjs() %>%
+  cjsPie(labels = LETTERS[1:4]) %>%
+  cjsAddSeries(data = c(1:4))
+```
+
+## Doughnut 
+
+```{r doughnut}
+# chartjs(chartOptions = list(animation = list(animateScale = FALSE, animateRotate = FALSE))) %>%
+#   cjsDoughnut(cutout = 80) %>%
+#   cjsAxis(labels = LETTERS[1:4]) %>%
+#   cjsAddSeries(data = c(1:4))
+```
+

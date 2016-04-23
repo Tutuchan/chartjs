@@ -19,33 +19,9 @@
 #'
 #' @export
 chartjs <- function(chartOptions = NULL, width = NULL, height = NULL) {
-
-  # # Handle labels
-  # if (is.null(labels)){
-  #   if (is.null(row.names(data))) row.names(data) <- paste0("row", 1:nrow(data))
-  #   labels <- row.names(data)
-  # }
-  # # Select the correct columns
-  # data <- data %>%
-  #   dplyr::select(...) %>%
-  #   as.list
-  #
-  # len <- length(data)
-  # # Base colours allow for 6 datasets to be plotted
-  # if (len > 6 & (is.null(colours))) stop("too many datasets, provide 6 or less ")
-  #
-  # # Handle dataLabels
-  # if (is.null(dataLabels)){
-  #   if (is.null(names(data))) names(data) <- paste0("var", 1:len) else {
-  #     if (any(is.na(data))) names(data)[is.na(names(data))] <- paste0("var", 1:len)[is.na(names(data))]
-  #   }
-  #   dataLabels <- names(data)
-  # }
-
   #### Handle chartOptions
   chartOptions <- mergeLists(baseOptions(), chartOptions)
 
-  # Forward data using x
   x = list(options = chartOptions,
            showLegend = FALSE)
 
@@ -61,5 +37,5 @@ chartjs <- function(chartOptions = NULL, width = NULL, height = NULL) {
 }
 
 chartjs_html <- function(id, class, ...){
-  tags$div(class = "htmlwidget_container", tags$div(class = "chart-container", tags$canvas(id = id, class = class)))
+  tags$div(class = "htmlwidget_container", tags$div(class = "chart-container", tags$canvas(id = id, class = class, ...)))
 }

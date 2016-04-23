@@ -43,27 +43,32 @@ NULL
 #' @param stacked a logical, defaults to FALSE. If TRUE, bars will be stacked
 #' at each x value.
 #' @export
-cjsBar <- function(chartjs, stacked = FALSE){
+cjsBar <- function(chartjs, labels, ...){
   class(chartjs) <- c(class(chartjs), "cjs_bar")
   chartjs$x$type <- "bar"
-  chartjs$x$stacked <- stacked
-  chartjs
+  chartjs$x$data$labels <- labels
+  chartjs %>%
+    cjsAddScale(...)
 }
 
 #' @rdname charts
 #' @export
-cjsLine <- function(chartjs){
+cjsLine <- function(chartjs, labels, ...){
   class(chartjs) <- c(class(chartjs), "cjs_line")
   chartjs$x$type <- "line"
-  chartjs
+  chartjs$x$data$labels <- labels
+  chartjs %>%
+    cjsAddScale(...)
 }
 
 #' @rdname charts
 #' @export
-cjsPie <- function(chartjs){
+cjsPie <- function(chartjs, labels, ...){
   class(chartjs) <- c(class(chartjs), "cjs_pie")
   chartjs$x$type <- "pie"
-  chartjs
+  chartjs$x$data$labels <- labels
+  chartjs %>%
+    cjsAddScale(...)
 }
 
 
