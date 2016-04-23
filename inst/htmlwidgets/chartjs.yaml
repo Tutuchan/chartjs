@@ -1,7 +1,11 @@
 dependencies:
-  - name: Chart.js
-    version: 2.0.0
-    src: htmlwidgets/lib/Chart.js-2.0.0-beta2
+  - name: Moment.js
+    version: 2.13.0
+    src: htmlwidgets/lib/Moment.js-2.0.13
     script:
-      - Chart.js
+      - moment-with-locales.min.js
+  - name: Chart.js
+    version: 2.0.2
+    src: htmlwidgets/lib/Chart.js-2.0.2
+    script:
       - Chart.min.js
