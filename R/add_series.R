@@ -2,14 +2,14 @@
 #'
 #' Use this function to add a series to a chart.
 #'
-#' @param cjs a chartjs object
+#' @param cjs a \code{\link{chartjs}} object
 #' @param data a vector of data
 #' @param type a character or NULL, the representation of the data,
 #' @param color an optional list of colours, see \link{colortypes}
 #' @param label a character, the name of the series
 #' @param scale an integer, the numeric position of the scale to attach the series to
 #' @export
-cjsAddSeries <- function(x, ...){
+cjsAddSeries <- function(cjs, data, type, color, label, scale){
   UseMethod("cjsAddSeries")
 }
 

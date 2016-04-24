@@ -4,6 +4,7 @@
 #'
 #' See the \href{http://nnnick.github.io/Chart.js/docs-v2/#scales}{Charts.js documentation} for values in ...
 #'
+#' @param cjs a \code{\link{chartjs}} object
 #' @param axis the axis on which the scale lives
 #' @param type the type of scale to add
 #' @param ... additional parameters

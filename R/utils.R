@@ -7,8 +7,6 @@
 #' @param lhs a \code{\link{chartjs}} object
 #' @param rhs a charting function
 #' @rdname pipe
-#' @examples
-#' chartjs(mtcars, mpg) %>% cjsLine
 `%>%` <- magrittr::`%>%`
 
 # Merge two lists

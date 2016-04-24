@@ -9,7 +9,7 @@
 \alias{cjsAddSeries.cjs_radar}
 \title{Add a series to a chart}
 \usage{
-cjsAddSeries(x, ...)
+cjsAddSeries(cjs, data, type, color, label, scale)
 
 \method{cjsAddSeries}{cjs_bar}(cjs, data, type = "bar", color = NULL,
   label = NULL, scale = NULL)
@@ -25,7 +25,7 @@ cjsAddSeries(x, ...)
 \method{cjsAddSeries}{cjs_polarArea}(cjs, data, color = NULL)
 }
 \arguments{
-\item{cjs}{a chartjs object}
+\item{cjs}{a \code{\link{chartjs}} object}
 
 \item{data}{a vector of data}
 

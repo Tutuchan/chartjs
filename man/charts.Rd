@@ -25,6 +25,8 @@ cjsRadar(chartjs, labels)
 \arguments{
 \item{chartjs}{a \code{\link{chartjs}} object}
 
+\item{labels}{a vector of characters}
+
 \item{stacked}{a logical, defaults to FALSE. If TRUE, bars will be stacked
 at each x value.}
 
@@ -33,35 +35,5 @@ charts (defaults to 50)}
 }
 \description{
 These functions are used to draw the different types of graphs.
-}
-\examples{
-# Draw a bar chart
-chartjs(mtcars, mpg, qsec) \%>\%
-  cjsBar
-
-# Draw a stacked bar chart
-chartjs(mtcars, mpg, qsec) \%>\%
-  cjsBar(stacked = TRUE)
-
-# Draw a line chart
-chartjs(mtcars, mpg, qsec) \%>\%
-  cjsLine
-
-# Draw a radar chart
-chartjs(mtcars, mpg, qsec) \%>\%
-  cjsRadar
-
-# Draw a pie chart
-chartjs(mtcars[1:6,], mpg) \%>\%
-  cjsPie
-
-# Draw a doughnut chart
-chartjs(mtcars[1:6,], mpg) \%>\%
-  cjsDoughnut(cutout = 80)
-
-# Draw a polar area chart
-chartjs(mtcars[1:6,], mpg) \%>\%
-  cjsPolar
-
 }
 

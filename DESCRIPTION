@@ -12,7 +12,6 @@ Suggests:
     testthat,
     knitr
 Imports:
-    dplyr,
     htmltools,
     htmlwidgets,
     magrittr,

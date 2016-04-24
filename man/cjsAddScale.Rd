@@ -7,6 +7,8 @@
 cjsAddScale(cjs, axis = c("x", "y", NULL), type = "category", ...)
 }
 \arguments{
+\item{cjs}{a \code{\link{chartjs}} object}
+
 \item{axis}{the axis on which the scale lives}
 
 \item{type}{the type of scale to add}

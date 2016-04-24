@@ -7,6 +7,8 @@
 cjsEditScale(cjs, axis = c("x", "y", NULL), scale, ...)
 }
 \arguments{
+\item{cjs}{a \code{\link{chartjs}} object}
+
 \item{axis}{the axis on which the scale lives}
 
 \item{scale}{the numeric position of the scale}
