@@ -43,54 +43,52 @@ NULL
 #' @param stacked a logical, defaults to FALSE. If TRUE, bars will be stacked
 #' at each x value.
 #' @export
-cjsBar <- function(chartjs, labels, ...){
-  class(chartjs) <- c(class(chartjs), "cjs_bar")
-  chartjs$x$type <- "bar"
-  chartjs$x$data$labels <- labels
-  chartjs %>%
-    cjsAddScale(...)
+cjsBar <- function(chartjs, labels){
+  cjs_base_chart(chartjs, labels, "bar") %>%
+    cjsAddScale("x", "category") %>%
+    cjsAddScale("y", "linear")
 }
 
 #' @rdname charts
 #' @export
-cjsLine <- function(chartjs, labels, ...){
-  class(chartjs) <- c(class(chartjs), "cjs_line")
-  chartjs$x$type <- "line"
-  chartjs$x$data$labels <- labels
-  chartjs %>%
-    cjsAddScale(...)
+cjsLine <- function(chartjs, labels){
+  cjs_base_chart(chartjs, labels, "line") %>%
+    cjsAddScale("x", "category") %>%
+    cjsAddScale("y", "linear")
 }
 
 #' @rdname charts
 #' @export
-cjsPie <- function(chartjs, labels, ...){
-  class(chartjs) <- c(class(chartjs), "cjs_pie")
-  chartjs$x$type <- "pie"
-  chartjs$x$data$labels <- labels
-  chartjs %>%
-    cjsAddScale(...)
+cjsPie <- function(chartjs, labels){
+  cjs_base_chart(chartjs, labels, "pie")
 }
-
 
 #' @rdname charts
 #' @param cutout the optional percentage of the inner cutout for Doughnut
 #' charts (defaults to 50)
 #' @export
-cjsDoughnut <- function(chartjs, cutout = 50){
+cjsDoughnut <- function(chartjs, labels, cutout = 50){
   chartjs$x$options$cutoutPercentage <- cutout
-  cjsPie(chartjs = chartjs)
+  cjs_base_chart(chartjs, labels, "pie")
 }
 
 #' @rdname charts
 #' @export
-cjsPolar <- function(chartjs){
-  baseChart(chartjs, "polarArea")
+cjsPolar <- function(chartjs, labels){
+  cjs_base_chart(chartjs, labels, "polarArea") %>%
+    cjsAddScale(NULL, "radialLinear")
 }
 
 #' @rdname charts
 #' @export
-cjsRadar <- function(chartjs){
-  class(chartjs) <- c(class(chartjs), "cjs_radar")
-  chartjs$x$type <- "radar"
+cjsRadar <- function(chartjs, labels){
+  cjs_base_chart(chartjs, labels, "radar") %>%
+    cjsAddScale(NULL, "radialLinear")
+}
+
+cjs_base_chart <- function(chartjs, labels, type){
+  class(chartjs) <- c(class(chartjs), paste0("cjs_", type))
+  chartjs$x$type <- type
+  chartjs$x$data$labels <- labels
   chartjs
 }

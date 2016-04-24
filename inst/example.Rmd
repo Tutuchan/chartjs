@@ -2,7 +2,8 @@
 title: "Untitled"
 author: "Tutuchan"
 date: "23 avril 2016"
-output: html_document
+output: 
+  html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -13,8 +14,8 @@ library(chartjs)
 
 ```{r bar}
 chartjs(height = "500px") %>%
-  cjsBar(labels = LETTERS[1:10], scaleLabel = list(display = TRUE, labelString = "topkek")) %>%
-  cjsAddScale("y", type = "linear") %>%
+  cjsBar(labels = LETTERS[1:10]) %>%
+  # cjsAddScale("y", type = "linear") %>%
   cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 1") %>%
   cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 2") %>%
   cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 3") %>% 
@@ -26,8 +27,9 @@ chartjs(height = "500px") %>%
 
 ```{r line}
 chartjs(height = "500px") %>%
-  cjsLine(labels = seq.Date(as.Date("2011-01-01"), as.Date("2011-01-08"), by = 1), type = "time") %>%
-  cjsAddScale("y", type = "logarithmic") %>%
+  cjsLine(labels = seq.Date(as.Date("2011-01-01"), as.Date("2011-01-08"), by = 1)) %>%
+  cjsEditScale("x", 1, type = "time") %>% 
+  cjsEditScale("y", 1, type = "logarithmic") %>%
   cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 1") %>%
   cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 2") %>%
   cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 3") %>% 
@@ -47,9 +49,50 @@ chartjs() %>%
 ## Doughnut 
 
 ```{r doughnut}
-# chartjs(chartOptions = list(animation = list(animateScale = FALSE, animateRotate = FALSE))) %>%
-#   cjsDoughnut(cutout = 80) %>%
-#   cjsAxis(labels = LETTERS[1:4]) %>%
-#   cjsAddSeries(data = c(1:4))
+chartjs(chartOptions = list(animation = list(animateScale = TRUE, animateRotate = FALSE))) %>%
+  cjsDoughnut(cutout = 80, labels = LETTERS[1:4]) %>%
+  cjsAddSeries(data = c(1:4))
 ```
 
+## Radar
+
+```{r radar}
+chartjs() %>%
+  cjsRadar(labels = LETTERS[1:4]) %>%
+  cjsAddSeries(data = round(abs(c(rnorm(4))), 2)) %>% 
+  cjsEditScale(axis = NULL, ticks = list(beginAtZero = TRUE))
+```
+
+## Polar Area
+
+```{r polararea}
+chartjs() %>%
+  cjsPolar(labels = LETTERS[1:4]) %>%
+  cjsAddSeries(data = round(abs(c(rnorm(4))), 2)) %>% 
+  cjsEditScale(axis = NULL, ticks = list(beginAtZero = TRUE))
+```
+
+## Multiple y scales
+
+```{r bar dual scales}
+chartjs(height = "500px") %>%
+  cjsBar(labels = LETTERS[1:10]) %>%
+  cjsAddScale("y", type = "linear", position = "right") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 1") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 2") %>%
+  cjsAddSeries(data = -abs(c(rnorm(8))), label = "Series 3", scale = 2) %>%
+  cjsLegend() %>% 
+  cjsTooltips(fontSize = 20, fontColor = "#F00000")
+```
+
+## Combo bar line
+
+```{r combo bar line}
+chartjs(height = "500px") %>%
+  cjsBar(labels = LETTERS[1:8]) %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 1") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 2") %>%
+  cjsAddSeries(data = abs(c(rnorm(8))), label = "Series 3", type = "line") %>%
+  cjsLegend() %>% 
+  cjsTooltips(fontSize = 20, fontColor = "#F00000")
+```

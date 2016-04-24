@@ -10,17 +10,17 @@
 \alias{cjsRadar}
 \title{Draw charts}
 \usage{
-cjsBar(chartjs, labels, ...)
+cjsBar(chartjs, labels)
 
-cjsLine(chartjs, labels, ...)
+cjsLine(chartjs, labels)
 
-cjsPie(chartjs, labels, ...)
+cjsPie(chartjs, labels)
 
-cjsDoughnut(chartjs, cutout = 50)
+cjsDoughnut(chartjs, labels, cutout = 50)
 
-cjsPolar(chartjs)
+cjsPolar(chartjs, labels)
 
-cjsRadar(chartjs)
+cjsRadar(chartjs, labels)
 }
 \arguments{
 \item{chartjs}{a \code{\link{chartjs}} object}

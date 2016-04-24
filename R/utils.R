@@ -1,3 +1,17 @@
+#' Pipe operator
+#'
+#' Imports the pipe operator from magrittr.
+#'
+#' @importFrom magrittr %>%
+#' @export
+#' @param lhs a \code{\link{chartjs}} object
+#' @param rhs a charting function
+#' @rdname pipe
+#' @examples
+#' chartjs(mtcars, mpg) %>% cjsLine
+`%>%` <- magrittr::`%>%`
+
+# Merge two lists
 mergeLists <- function(l1, l2){
   if(is.null(l2)) l1 else {
     commonNames <- names(l1) %in% names(l2)
@@ -5,24 +19,7 @@ mergeLists <- function(l1, l2){
   }
 }
 
-# Find the default and actual values of a function call
-createOptions <- function(fun = sys.function(sys.parent()), envir = sys.parent()){
-  fm <- formals(fun)
-  fm <- fm[sapply(fm, is.null)]
-  fm <- sapply(names(fm), function(nm) eval(parse(text = nm), envir = envir))
-  fm[!sapply(fm, is.null)]
-}
-
-# Base values
-baseColors <- function(){
-  RColorBrewer::brewer.pal(12, "Paired")
-}
-baseTypes <- function(){
-  c("borderColor", "backgroundColor",
-    "pointBorderColor", "pointBackgroundColor",
-    "hoverBorderColor", "hoverBackgroundColor",
-    "pointHoverBorderColor", "pointHoverBackgroundColor")
-}
+# Base options
 baseOptions <- function(){
   list(responsive = TRUE, legend = list(display = FALSE))
 }

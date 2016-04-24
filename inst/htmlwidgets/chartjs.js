@@ -40,12 +40,21 @@ HTMLWidgets.widget({
     console.log(chartOptions);
 
     // Handle scales
+    if (x.scales != null){
+      chartOptions.scales = {};
+      if (x.scales.x != null) {
+        chartOptions.scales.xAxes = jQuery.makeArray(x.scales.x);
+      }
+      if (x.scales.y != null) {
+        chartOptions.scales.yAxes = jQuery.makeArray(x.scales.y);
+      }
+    }
 
-    var scales = x.scales;
-    chartOptions.scales = {
-      xAxes: jQuery.makeArray(scales.x),
-      yAxes: jQuery.makeArray(scales.y)
-    };
+    if (x.scale != null){
+      chartOptions.scale = x.scale;
+    }
+
+
 
     // Create actual chart
     instance.cjs = new Chart(ctx, {
