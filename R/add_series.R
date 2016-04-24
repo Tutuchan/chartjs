@@ -44,7 +44,7 @@ cjsAddSeries.cjs_radar <- function(cjs, data, type = NULL, color = NULL, label =
 #' @keywords internal
 #' @keywords internal
 #' @export
-cjsAddSeries.cjs_pie <- function(cjs, data, color = NULL){
+cjsAddSeries.cjs_pie <- function(cjs, data, type = NULL, color = NULL, label = NULL, scale = NULL){
   n <- length(data)
   colours <- cjs %>% cjs_get_colours(color, n)
   dataset <- list(c(data = list(data), colours))

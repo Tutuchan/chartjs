@@ -20,9 +20,11 @@ cjsAddSeries(cjs, data, type, color, label, scale)
 \method{cjsAddSeries}{cjs_radar}(cjs, data, type = NULL, color = NULL,
   label = NULL, scale = NULL)
 
-\method{cjsAddSeries}{cjs_pie}(cjs, data, color = NULL)
+\method{cjsAddSeries}{cjs_pie}(cjs, data, type = NULL, color = NULL,
+  label = NULL, scale = NULL)
 
-\method{cjsAddSeries}{cjs_polarArea}(cjs, data, color = NULL)
+\method{cjsAddSeries}{cjs_polarArea}(cjs, data, type = NULL, color = NULL,
+  label = NULL, scale = NULL)
 }
 \arguments{
 \item{cjs}{a \code{\link{chartjs}} object}
