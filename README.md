@@ -17,4 +17,4 @@ devtools::install_github("tutuchan/chartjs", ref = "dev")
 
 The Chart.js team has updated the documentation for v2.0 at [this adress](http://nnnick.github.io/Chart.js/docs-v2/).
 
-Some examples are available in the inst/examples directory.
+Some examples are available in the inst directory.

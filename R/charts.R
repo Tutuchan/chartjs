@@ -2,10 +2,6 @@
 #'
 #' These functions are used to draw the different types of graphs.
 #'
-#' For \code{colours}, the names of the list must be among those in \code{\link{colortypes}}.
-#' The default colours are obtained from the \strong{Paired} palette from the
-#' \code{\link[RColorBrewer]{RColorBrewer}} package.
-#'
 #' @param chartjs a \code{\link{chartjs}} object
 #' @name charts
 #' @examples
@@ -43,10 +39,10 @@ NULL
 #' @param stacked a logical, defaults to FALSE. If TRUE, bars will be stacked
 #' at each x value.
 #' @export
-cjsBar <- function(chartjs, labels){
+cjsBar <- function(chartjs, labels, stacked = FALSE){
   cjs_base_chart(chartjs, labels, "bar") %>%
-    cjsAddScale("x", "category") %>%
-    cjsAddScale("y", "linear")
+    cjsAddScale("x", "category", stacked = stacked) %>%
+    cjsAddScale("y", "linear", stacked = stacked)
 }
 
 #' @rdname charts

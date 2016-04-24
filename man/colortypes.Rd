@@ -23,4 +23,18 @@
 \description{
 Allowed color types
 }
+\details{
+When adding custom colours to a chart, the color argument should have the structure displayed in
+the example and \strong{ALL} necessary colors must be given.
+}
+\examples{
+color <- list(background = "#FF0000",
+              border = "#00FF00",
+              hover = list(background = "#FF0000",
+                           border = "#00FF00"),
+              point = list(background = "#FF0000",
+                           border = "#00FF00",
+                           hover = list(background = "#FF0000",
+                                        border = "#00FF00")))
+}
 

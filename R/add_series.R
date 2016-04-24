@@ -1,8 +1,20 @@
+#' Add a series to a chart
+#'
+#' Use this function to add a series to a chart.
+#'
+#' @param cjs a chartjs object
+#' @param data a vector of data
+#' @param type a character or NULL, the representation of the data,
+#' @param color an optional list of colours, see \link{colortypes}
+#' @param label a character, the name of the series
+#' @param scale an integer, the numeric position of the scale to attach the series to
 #' @export
 cjsAddSeries <- function(x, ...){
   UseMethod("cjsAddSeries")
 }
 
+#' @describeIn cjsAddSeries Add series to a bar chart
+#' @keywords internal
 #' @export
 cjsAddSeries.cjs_bar <- function(cjs, data, type = "bar", color = NULL, label = NULL, scale = NULL){
   n <- length(cjs$x$data$datasets)
@@ -14,16 +26,23 @@ cjsAddSeries.cjs_bar <- function(cjs, data, type = "bar", color = NULL, label = 
   cjs
 }
 
+#' @describeIn cjsAddSeries Add series to a line chart
+#' @keywords internal
 #' @export
 cjsAddSeries.cjs_line <- function(cjs, data, type = "line", color = NULL, label = NULL, scale = NULL){
   cjsAddSeries.cjs_bar(cjs, data, type, color, label, scale)
 }
 
+#' @describeIn cjsAddSeries Add series to a radar chart
+#' @keywords internal
 #' @export
 cjsAddSeries.cjs_radar <- function(cjs, data, type = NULL, color = NULL, label = NULL, scale = NULL){
   cjsAddSeries.cjs_bar(cjs, data, type, color, label, scale)
 }
 
+#' @describeIn cjsAddSeries Add series to a pie chart
+#' @keywords internal
+#' @keywords internal
 #' @export
 cjsAddSeries.cjs_pie <- function(cjs, data, color = NULL){
   n <- length(data)
@@ -32,5 +51,8 @@ cjsAddSeries.cjs_pie <- function(cjs, data, color = NULL){
   cjs$x$data$datasets <- if (is.null(cjs$x$data$datasets)) dataset else c(cjs$x$data$datasets, dataset)
   cjs
 }
+
+#' @describeIn cjsAddSeries Add series to a polarArea chart
+#' @keywords internal
 #' @export
 cjsAddSeries.cjs_polarArea <- cjsAddSeries.cjs_pie

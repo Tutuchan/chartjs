@@ -2,6 +2,9 @@
 #'
 #' Allowed color types
 #'
+#' When adding custom colours to a chart, the color argument should have the structure displayed in
+#' the example and \strong{ALL} necessary colors must be given.
+#'
 #' @param borderColor for all charts
 #' @param backgroundColor for all charts
 #' @param pointBorderColor for Line, Radar and Scatter charts
@@ -11,6 +14,15 @@
 #' @param pointHoverBorderColor for Line, Radar and Scatter charts
 #' @param pointHoverBackgroundColor for Line, Radar and Scatter charts
 #' @name colortypes
+#'
+#' @examples color <- list(background = "#FF0000",
+#'               border = "#00FF00",
+#'               hover = list(background = "#FF0000",
+#'                            border = "#00FF00"),
+#'               point = list(background = "#FF0000",
+#'                            border = "#00FF00",
+#'                            hover = list(background = "#FF0000",
+#'                                         border = "#00FF00")))
 NULL
 
 # Format a list of colours for a type of graph and possible existing series

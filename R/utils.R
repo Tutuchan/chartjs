@@ -23,3 +23,11 @@ mergeLists <- function(l1, l2){
 baseOptions <- function(){
   list(responsive = TRUE, legend = list(display = FALSE))
 }
+
+# Find the default and actual values of a function call
+createOptions <- function(fun = sys.function(sys.parent()), envir = sys.parent()){
+  fm <- formals(fun)
+  fm <- fm[sapply(fm, is.null)]
+  fm <- sapply(names(fm), function(nm) eval(parse(text = nm), envir = envir))
+  fm[!sapply(fm, is.null)]
+}

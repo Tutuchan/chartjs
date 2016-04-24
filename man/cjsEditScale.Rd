@@ -17,6 +17,6 @@ cjsEditScale(cjs, axis = c("x", "y", NULL), scale, ...)
 \code{cjsEditScale} allows the editing of an existing scale.
 }
 \details{
-See the \href{Charts.js documentation}{http://nnnick.github.io/Chart.js/docs-v2/#scales} for values in ...
+See the \href{http://nnnick.github.io/Chart.js/docs-v2/#scales}{Charts.js documentation} for values in ...
 }
 

@@ -17,6 +17,6 @@ cjsAddScale(cjs, axis = c("x", "y", NULL), type = "category", ...)
 \code{cjsAddScale} adds a scale to an axis.
 }
 \details{
-See the \href{Charts.js documentation}{http://nnnick.github.io/Chart.js/docs-v2/#scales} for values in ...
+See the \href{http://nnnick.github.io/Chart.js/docs-v2/#scales}{Charts.js documentation} for values in ...
 }
 

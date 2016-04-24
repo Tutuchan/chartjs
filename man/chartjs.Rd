@@ -4,29 +4,14 @@
 \alias{chartjs}
 \title{chartjs}
 \usage{
-chartjs(chartOptions = NULL, width = NULL, height = NULL)
+chartjs(width = NULL, height = NULL)
 }
 \arguments{
-\item{chartOptions}{a list of options to customize the graph
-see the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}}
-
 \item{width}{the width of the widget}
 
 \item{height}{the height of the widget}
-
-\item{data}{a data.frame}
-
-\item{...}{the columns of \code{data} to plot}
-
-\item{labels}{a vector of numerics or characters : the labels on the x-axis}
-
-\item{dataLabels}{a vector of characters : the names of the data series
-defaults to the names of \code{data}}
 }
 \description{
 Draw a graph using the Chart.js library.
-}
-\details{
-See the \href{http://nnnick.github.io/Chart.js/docs-v2/}{Chart.js documentation}.
 }
 

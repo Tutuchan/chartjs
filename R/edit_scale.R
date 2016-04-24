@@ -2,7 +2,7 @@
 #'
 #' \code{cjsEditScale} allows the editing of an existing scale.
 #'
-#' See the \href{Charts.js documentation}{http://nnnick.github.io/Chart.js/docs-v2/#scales} for values in ...
+#' See the \href{http://nnnick.github.io/Chart.js/docs-v2/#scales}{Charts.js documentation} for values in ...
 #'
 #' @param axis the axis on which the scale lives
 #' @param scale the numeric position of the scale
