@@ -1,0 +1,40 @@
+---
+title: "Flex Dashboard"
+output: 
+  flexdashboard::flex_dashboard
+---
+
+<!-- Learn more about flexdashboard at https://rstudio.github.io/flexdashboard -->
+
+
+```{r setup, include=FALSE}
+# Load packages and initialize data here
+library(flexdashboard)
+library(chartjs)
+library(quantmod)
+library(dygraphs)
+
+getSymbols(c("MSFT", "HPQ", "INTC"), from = "2014-01-01", auto.assign=TRUE)
+```
+
+### Bar Chart
+
+```{r}
+chartjs() %>%
+  cjsBar(labels = LETTERS[1:10]) %>%
+  cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 2") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 3") %>% 
+  cjsLegend()
+```
+
+### Line Chart
+
+```{r}
+chartjs() %>%
+  cjsLine(labels = LETTERS[1:10]) %>%
+  cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 2") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 3") %>% 
+  cjsLegend()
+```

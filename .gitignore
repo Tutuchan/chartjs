@@ -5,4 +5,6 @@
 inst/doc
 libs/*
 *.tar.gz
-inst/example.html
+inst/*.html
+inst/rsconnect
+rsconnect

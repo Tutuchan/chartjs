@@ -9,3 +9,9 @@ dependencies:
     src: htmlwidgets/lib/Chart.js-2.0.2
     script:
       - Chart.min.js
+  - name: chartjs
+    version: 0.3.1
+    src: htmlwidgets
+    stylesheet:
+      - chartjs.css
+
