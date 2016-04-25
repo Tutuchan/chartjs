@@ -1,7 +1,10 @@
 ---
 title: "Flex Dashboard"
 output: 
-  flexdashboard::flex_dashboard
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    social: menu
+    source_code: embed
 ---
 
 <!-- Learn more about flexdashboard at https://rstudio.github.io/flexdashboard -->
@@ -11,10 +14,6 @@ output:
 # Load packages and initialize data here
 library(flexdashboard)
 library(chartjs)
-library(quantmod)
-library(dygraphs)
-
-getSymbols(c("MSFT", "HPQ", "INTC"), from = "2014-01-01", auto.assign=TRUE)
 ```
 
 ### Bar Chart
@@ -36,5 +35,14 @@ chartjs() %>%
   cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1") %>%
   cjsSeries(data = abs(c(rnorm(10))), label = "Series 2") %>%
   cjsSeries(data = abs(c(rnorm(10))), label = "Series 3") %>% 
+  cjsLegend()
+```
+
+### Pie Chart
+
+```{r}
+chartjs() %>%
+  cjsPie(labels = LETTERS[1:4]) %>%
+  cjsSeries(data = abs(c(rnorm(4)))) %>% 
   cjsLegend()
 ```

@@ -27,5 +27,5 @@ chartjs <- function(width = NULL, height = NULL) {
 }
 
 chartjs_html <- function(id, class, ...){
-  tags$div(class = "htmlwidget_container", tags$div(class = "chart-container", tags$canvas(id = id, class = class, ...)))
+  tags$div(id = paste0(id, "-container"), class = "htmlwidget_container", tags$div(class = "chart-container", tags$canvas(id = id, class = class, ...)))
 }
