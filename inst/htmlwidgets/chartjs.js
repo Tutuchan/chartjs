@@ -9,12 +9,10 @@ HTMLWidgets.widget({
   },
 
   renderValue: function(el, x, instance) {
-    //console.log(instance.cjs.generateLegend());
     helpers = Chart.helpers;
 
     var datasets = [];
     var data = [];
-    console.log(x);
 
     // Final chart data
     data  = {
@@ -22,8 +20,6 @@ HTMLWidgets.widget({
       datasets: x.data.datasets,
       legendTitle: x.legendTitle
     };
-
-    console.log(data);
 
     // Get element in page
     var canvas = document.getElementById(el.id);
@@ -37,16 +33,15 @@ HTMLWidgets.widget({
 
     // Handle options
     var chartOptions = x.options;
-    console.log(chartOptions);
 
     // Handle scales
     if (x.scales != null){
       chartOptions.scales = {};
       if (x.scales.x != null) {
-        chartOptions.scales.xAxes = jQuery.makeArray(x.scales.x);
+        chartOptions.scales.xAxes = x.scales.x;
       }
       if (x.scales.y != null) {
-        chartOptions.scales.yAxes = jQuery.makeArray(x.scales.y);
+        chartOptions.scales.yAxes = x.scales.y;
       }
     }
 
@@ -54,18 +49,12 @@ HTMLWidgets.widget({
       chartOptions.scale = x.scale;
     }
 
-
-
     // Create actual chart
     instance.cjs = new Chart(ctx, {
           type: x.type,
           data: data,
           options: chartOptions
           });
-
-    console.log(instance.cjs);
-
-
   },
 
   resize: function(el, width, height, instance) {

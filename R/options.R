@@ -6,7 +6,7 @@
 #' @param ... named arguments, see Details
 #'
 #' @details The allowed values in \code{...} can be found in the
-#' \href{http://nnnick.github.io/Chart.js/docs-v2/#getting-started-global-chart-configuration}{Chart.js documentation}
+#' \href{http://www.chartjs.org/docs/#getting-started-global-chart-configuration}{Chart.js documentation}
 #' under \code{Charts.default.global}. You can also use this function to edit the \code{animation} and \code{elements}
 #' options by passing them as a list, or to edit the chart-specific options.
 #' To edit tooltips, legends or titles, use the corresponding functions.

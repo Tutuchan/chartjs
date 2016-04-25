@@ -1,8 +1,8 @@
 Package: chartjs
 Type: Package
 Title: An Implementation of the Chart.js Library
-Version: 0.3.0
-Date: 2016-04-24
+Version: 0.3.1
+Date: 2016-04-25
 Authors@R: person("Pierre", "Formont", email = "pierre.formont@gmail.com",
                   role = c("aut", "cre"))
 Description: An implementation of the Chart.js visualization library.
@@ -17,4 +17,4 @@ Imports:
     magrittr,
     RColorBrewer
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.1.9000
