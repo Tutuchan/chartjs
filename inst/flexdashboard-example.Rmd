@@ -11,6 +11,7 @@ output:
 # Load packages and initialize data here
 library(flexdashboard)
 library(chartjs)
+custom_palette <- RColorBrewer::brewer.pal(8, "Dark2")
 ```
 
 Row 1
@@ -22,9 +23,21 @@ Row 1
 chartjs() %>%
   cjsOptions(responsive = TRUE, maintainAspectRatio = FALSE) %>% 
   cjsBar(labels = LETTERS[1:10]) %>%
-  cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1") %>%
-  cjsSeries(data = abs(c(rnorm(10))), label = "Series 2") %>%
-  cjsSeries(data = abs(c(rnorm(10))), label = "Series 3") %>% 
+  cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1", 
+            color = list(background = custom_palette[1],
+                         border = "#000000",
+                         hover = list(border = "#ffffff",
+                                      background = custom_palette[2]))) %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 2",
+            color = list(background = custom_palette[3],
+                         border = "#000000",
+                         hover = list(border = "#ffffff",
+                                      background = custom_palette[4]))) %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 3", 
+            color = list(background = custom_palette[5],
+                         border = "#000000",
+                         hover = list(border = "#ffffff",
+                                      background = custom_palette[6]))) %>% 
   cjsLegend()
 ```
 

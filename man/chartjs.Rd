@@ -4,12 +4,14 @@
 \alias{chartjs}
 \title{chartjs}
 \usage{
-chartjs(width = NULL, height = NULL)
+chartjs(width = NULL, height = NULL, debug = FALSE)
 }
 \arguments{
 \item{width}{the width of the widget}
 
 \item{height}{the height of the widget}
+
+\item{debug}{if TRUE, prints information to the JS console}
 }
 \description{
 Draw a graph using the Chart.js library.

@@ -4,6 +4,7 @@
 #'
 #' @param width the width of the widget
 #' @param height the height of the widget
+#' @param debug if TRUE, prints information to the JS console
 #'
 #' @import htmlwidgets
 #' @import htmltools
