@@ -10,7 +10,7 @@ dependencies:
     script:
       - Chart.min.js
   - name: chartjs
-    version: 0.3.1
+    version: 0.3.3
     src: htmlwidgets
     stylesheet:
       - chartjs.css

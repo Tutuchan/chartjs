@@ -9,11 +9,11 @@
 #' @import htmltools
 #'
 #' @export
-chartjs <- function(width = NULL, height = NULL) {
+chartjs <- function(width = NULL, height = NULL, debug = FALSE) {
   chartOptions <- baseOptions()
 
   x = list(options = chartOptions,
-           showLegend = FALSE)
+           debug = debug)
 
   # Create widget
   htmlwidgets::createWidget(
@@ -21,11 +21,11 @@ chartjs <- function(width = NULL, height = NULL) {
     x = x,
     width = width,
     height = height,
-    sizingPolicy = htmlwidgets::sizingPolicy(browser.fill = TRUE),
     package = 'chartjs'
   )
 }
 
 chartjs_html <- function(id, class, ...){
-  tags$div(id = paste0(id, "-container"), class = "htmlwidget_container", tags$div(class = "chart-container", tags$canvas(id = id, class = class, ...)))
+  # Inside a div to ensure flexdashboards sees the widget
+  tags$div(id = paste0(id, "-container"), class = "htmlwidget_container", tags$canvas(id = id, class = class, ...))
 }

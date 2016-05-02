@@ -13,8 +13,8 @@
 #' @export
 cjsEditScale <- function(cjs, axis = c("x", "y", NULL), scale, ...){
   if (!is.null(axis)) {
-    cjs$x$scales[[axis]][[scale]] <- list(...)
-  } else cjs$x$scale <- list(...)
+    cjs$x$scales[[axis]][[scale]] <- mergeLists(cjs$x$scales[[axis]][[scale]], list(...))
+  } else cjs$x$scale <- mergeLists(cjs$x$scale, list(...))
   cjs
 }
 

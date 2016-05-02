@@ -4,13 +4,11 @@
 
 This is an implementation of the [Chart.js](http://www.chartjs.org/) library in R using the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) framework.
 
-WARNING : This work in progress is an implementation of the 2.0 version of Chart.js that is still under heavy development.
-Things are subject to change.
 
 ## Installation
 
 ```r
-devtools::install_github("tutuchan/chartjs", ref = "dev")
+devtools::install_github("tutuchan/chartjs")
 ```
 
 ## Documentation
@@ -18,3 +16,8 @@ devtools::install_github("tutuchan/chartjs", ref = "dev")
 The Chart.js team has updated the documentation for v2.0 at [this adress](http://www.chartjs.org/docs/).
 
 Some examples are available in the inst directory.
+
+## Known bugs
+
++ Polar Area charts should be drawn when the page is first loaded, meaning they can't be inside tabs for example
++ in flexdashboard documents, use the following options: `cjsOptions(responsive = FALSE, maintainAspectRatio = FALSE)` to ensure that the charts are correctly sized 

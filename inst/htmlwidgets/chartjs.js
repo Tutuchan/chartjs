@@ -9,6 +9,7 @@ HTMLWidgets.widget({
   },
 
   renderValue: function(el, x, instance) {
+    if (x.debug) console.log(x);
     helpers = Chart.helpers;
 
     var datasets = [];
@@ -55,6 +56,7 @@ HTMLWidgets.widget({
           data: data,
           options: chartOptions
           });
+    if (x.debug) console.log(instance.cjs);
   },
 
   resize: function(el, width, height, instance) {

@@ -19,7 +19,7 @@ mergeLists <- function(l1, l2){
 
 # Base options
 baseOptions <- function(){
-  list(responsive = TRUE, maintainAspectRatio = FALSE, legend = list(display = FALSE))
+  list(responsive = TRUE, maintainAspectRatio = TRUE, legend = list(display = FALSE))
 }
 
 # Find the default and actual values of a function call
