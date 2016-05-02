@@ -9,22 +9,22 @@
 \alias{cjsSeries.cjs_radar}
 \title{Add a series to a chart}
 \usage{
-cjsSeries(cjs, data, type, color, label, scale)
+cjsSeries(cjs, data, type, label, scale)
 
-\method{cjsSeries}{cjs_bar}(cjs, data, type = "bar", color = NULL,
-  label = NULL, scale = NULL)
+\method{cjsSeries}{cjs_bar}(cjs, data, type = "bar", label = NULL,
+  scale = NULL)
 
-\method{cjsSeries}{cjs_line}(cjs, data, type = "line", color = NULL,
-  label = NULL, scale = NULL)
+\method{cjsSeries}{cjs_line}(cjs, data, type = "line", label = NULL,
+  scale = NULL)
 
-\method{cjsSeries}{cjs_radar}(cjs, data, type = NULL, color = NULL,
-  label = NULL, scale = NULL)
+\method{cjsSeries}{cjs_radar}(cjs, data, type = NULL, label = NULL,
+  scale = NULL)
 
-\method{cjsSeries}{cjs_pie}(cjs, data, type = NULL, color = NULL,
-  label = NULL, scale = NULL)
+\method{cjsSeries}{cjs_pie}(cjs, data, type = NULL, label = NULL,
+  scale = NULL)
 
-\method{cjsSeries}{cjs_polarArea}(cjs, data, type = NULL, color = NULL,
-  label = NULL, scale = NULL)
+\method{cjsSeries}{cjs_polarArea}(cjs, data, type = NULL, label = NULL,
+  scale = NULL)
 }
 \arguments{
 \item{cjs}{a \code{\link{chartjs}} object}
@@ -33,11 +33,13 @@ cjsSeries(cjs, data, type, color, label, scale)
 
 \item{type}{a character or NULL, the representation of the data,}
 
-\item{color}{an optional list of colours, see \link{colortypes}}
-
 \item{label}{a character, the name of the series}
 
 \item{scale}{an integer, the numeric position of the scale to attach the series to}
+
+\item{color}{an optional list of colours, see \link{colortypes}}
+
+\item{palette}{an optional RColorBrewer palette, defaults to Paired, see \code{\link[RColorBrewer]{display.brewer.all}}}
 }
 \description{
 Use this function to add a series to a chart.

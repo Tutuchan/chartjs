@@ -26,11 +26,11 @@
 NULL
 
 # Format a list of colours for a type of graph and possible existing series
-cjs_get_colours <- function(chartjs, listColors, n){
-  if (is.null(listColors)) {
-    vecColors <- baseColors()
+cjs_get_colours <- function(chartjs, n){
+  # if (is.null(listColors)) {
+    vecColors <- chartjs$x$palette
     chartjs %>% cjs_get_chart_colours(vecColors, n)
-  } else cjs_get_custom_colours(listColors)
+  # } else cjs_get_custom_colours(listColors)
 }
 
 cjs_get_chart_colours <- function(x, ...){
@@ -87,7 +87,7 @@ cjs_get_custom_colours <- function(listColors){
 }
 
 # Base colors
-baseColors <- function(){
+baseColors <- function(palette){
   RColorBrewer::brewer.pal(12, "Paired")
 }
 
