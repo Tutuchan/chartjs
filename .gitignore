@@ -2,3 +2,9 @@
 .Rhistory
 .RData
 .Rprofile
+inst/doc
+libs/*
+*.tar.gz
+inst/*.html
+inst/rsconnect
+rsconnect

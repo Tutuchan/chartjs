@@ -2,53 +2,61 @@
 #'
 #' These functions are used to draw the different types of graphs.
 #'
-#' For \code{colours}, the names of the list must be among those in \code{\link{colortypes}}.
-#' The base colours are obtained from the \strong{Paired} palette from the \code{\link[RColorBrewer]{RColorBrewer}} package.
-#'
 #' @param chartjs a \code{\link{chartjs}} object
-#' @param colours an optional list of colours.
-#' @param inner the optional percentage of the inner cutout for Pie and Doughnut charts (default 0 for Pie and 50 for Doughnuts)
+#' @param labels a vector of characters
 #' @name charts
 NULL
 
 #' @rdname charts
+#' @param stacked a logical, defaults to FALSE. If TRUE, bars will be stacked
+#' at each x value.
 #' @export
-barChart <- function(chartjs, colours = NULL){
-  chartjs <- baseChart(chartjs, "Bar", colours)
-  chartjs
+cjsBar <- function(chartjs, labels, stacked = FALSE){
+  cjs_base_chart(chartjs, labels, "bar") %>%
+    cjsAddScale("x", "category", stacked = stacked) %>%
+    cjsAddScale("y", "linear", stacked = stacked)
 }
 
 #' @rdname charts
 #' @export
-lineChart <- function(chartjs, colours = NULL){
-  chartjs <- baseChart(chartjs, "Line", colours)
-  chartjs
+cjsLine <- function(chartjs, labels){
+  cjs_base_chart(chartjs, labels, "line") %>%
+    cjsAddScale("x", "category") %>%
+    cjsAddScale("y", "linear")
 }
 
 #' @rdname charts
 #' @export
-pieChart <- function(chartjs, colours = NULL, inner = 0){
-  chartjs <- baseChart(chartjs, "Pie", colours)
-  chartjs$x$options$percentageInnerCutout <- inner
-  chartjs
+cjsPie <- function(chartjs, labels){
+  cjs_base_chart(chartjs, labels, "pie")
+}
+
+#' @rdname charts
+#' @param cutout the optional percentage of the inner cutout for Doughnut
+#' charts (defaults to 50)
+#' @export
+cjsDoughnut <- function(chartjs, labels, cutout = 50){
+  chartjs$x$options$cutoutPercentage <- cutout
+  cjs_base_chart(chartjs, labels, "pie")
 }
 
 #' @rdname charts
 #' @export
-doughnutChart <- function(chartjs, colours = NULL, inner = 50){
-  pieChart(chartjs, colours, inner)
+cjsPolar <- function(chartjs, labels){
+  cjs_base_chart(chartjs, labels, "polarArea") %>%
+    cjsAddScale(NULL, "radialLinear")
 }
 
 #' @rdname charts
 #' @export
-radarChart <- function(chartjs, colours = NULL){
-  chartjs <- baseChart(chartjs, "Radar", colours)
-  chartjs
+cjsRadar <- function(chartjs, labels){
+  cjs_base_chart(chartjs, labels, "radar") %>%
+    cjsAddScale(NULL, "radialLinear")
 }
 
-#' @rdname charts
-#' @export
-polarAreaChart <- function(chartjs, colours = NULL){
-  chartjs <- baseChart(chartjs, "PolarArea", colours)
+cjs_base_chart <- function(chartjs, labels, type){
+  class(chartjs) <- c(class(chartjs), paste0("cjs_", type))
+  chartjs$x$type <- type
+  chartjs$x$data$labels <- labels
   chartjs
 }

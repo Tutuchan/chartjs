@@ -9,128 +9,59 @@ HTMLWidgets.widget({
   },
 
   renderValue: function(el, x, instance) {
-
+    if (x.debug) console.log(x);
     helpers = Chart.helpers;
 
     var datasets = [];
     var data = [];
-    switch(x.type){
-      case "Bar":
-      case "Line":
-      case "Radar":
-        for (i = 0, len = x.data.length; i < len; i ++){
-          datasets.push({
-              label: x.dataLabels[i],
-              strokeColor: x.colors.strokeColor[i],
-              fillColor: x.colors.fillColor[i],
-              highlightStroke: x.colors.highlightStroke[i],
-              highlightFill: x.colors.highlightFill[i],
-              pointColor: x.colors.pointColor[i],
-              pointStrokeColor: x.colors.pointStrokeColor[i],
-              pointHighlightFill: x.colors.pointHighlightFill[i],
-              pointHighlightStroke: x.colors.pointHighlightStroke[i],
-              data: x.data[i]
-          });
-        }
-        data  = {
-          labels: x.labels,
-          datasets: datasets
-        };
-        break;
-      case "Pie":
-      case "Doughnut":
-      case "PolarArea":
-        for (i = 0, len = x.data.length; i < len; i ++){
-          datasets.push({
-              label: x.dataLabels[i],
-              color: x.colors.color[i],
-              highlight: x.colors.highlight[i],
-              value: x.data[i]
-          });
-        }
-        data = datasets;
-        break;
-    }
 
-    console.log(data);
+    // Final chart data
+    data  = {
+      labels: x.data.labels,
+      datasets: x.data.datasets,
+      legendTitle: x.legendTitle
+    };
+
+    // Get element in page
     var canvas = document.getElementById(el.id);
     var ctx = canvas.getContext("2d");
-    var chartOptions = x.options
 
-    switch(x.type){
-      case "Bar":
-        outChart = new Chart(ctx).Bar(data, chartOptions);
-      break;
-      case "Line":
-        outChart = new Chart(ctx).Line(data, chartOptions);
-      break;
-      case "Radar":
-        outChart = new Chart(ctx).Radar(data, chartOptions);
-      break;
-      case "Pie":
-        outChart = new Chart(ctx).Pie(data, chartOptions);
-      break;
-      case "PolarArea":
-        outChart = new Chart(ctx).PolarArea(data, chartOptions);
-      break;
+    // If a previous chart exists, destroy it
+    if (instance.cjs) {
+      instance.cjs.destroy();
+      instance.cjs = null;
     }
 
-    // Generate legend and add mouseover event
-    var legendHolder = document.createElement('div');
-    legendHolder.innerHTML = outChart.generateLegend();
+    // Handle options
+    var chartOptions = x.options;
 
-    // When the series is mouseovered in the legend, highlight the corresponding elements
-    helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
-    	helpers.addEvent(legendNode, 'mouseover', function(){
-    	  switch(x.type){
-          case "Bar":
-    		    var activeBars = outChart.datasets[index].bars;
-      			  for (var barsIndex = 0; barsIndex < activeBars.length; barsIndex++) {
-        			  var activeBar = activeBars[barsIndex];
-        				activeBar.save();
-        				activeBar.fillColor = activeBar.highlightFill;
-        				activeBar.strokeColor = activeBar.highlightStroke;
-      				}
-      				outChart.draw();
+    // Handle scales
+    if (x.scales != null){
+      chartOptions.scales = {};
+      if (x.scales.x != null) {
+        chartOptions.scales.xAxes = x.scales.x;
+      }
+      if (x.scales.y != null) {
+        chartOptions.scales.yAxes = x.scales.y;
+      }
+    }
 
-    			  break;
-    			case "Pie":
-    			case "PolarArea":
-    			  var activeSegment = outChart.segments[index];
-      		    activeSegment.save();
-      			  activeSegment.fillColor = activeSegment.highlightColor;
-      			  outChart.showTooltip([activeSegment]);
-      			  activeSegment.restore();
-      		break;
-        }
-    	});
-    });
-    		// Remove highlight after mouseout
-    helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
-        helpers.addEvent(legendNode, 'mouseout', function(){
-    	  switch(x.type){
-          case "Bar":
-      			var activeBars = outChart.datasets[index].bars;
-      			for (var barsIndex = 0; barsIndex < activeBars.length; barsIndex++) {
-        			var activeBar = activeBars[barsIndex];
-        			activeBar.restore();
-      			}
-      			outChart.draw();
-      			break;
-    	  }
-      });
-    });
+    if (x.scale != null){
+      chartOptions.scale = x.scale;
+    }
 
-    canvas.parentNode.appendChild(legendHolder.firstChild);
-
-
-
-
+    // Create actual chart
+    instance.cjs = new Chart(ctx, {
+          type: x.type,
+          data: data,
+          options: chartOptions
+          });
+    if (x.debug) console.log(instance.cjs);
   },
 
   resize: function(el, width, height, instance) {
-    if (outChart)
-      outChart.resize();
+    if (instance.cjs)
+      instance.cjs.resize();
   }
 
 });

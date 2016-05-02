@@ -1,0 +1,66 @@
+---
+title: "Flex Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+# Load packages and initialize data here
+library(flexdashboard)
+library(chartjs)
+```
+
+Row 1
+-------------------------------------
+
+### Bar Chart
+
+```{r}
+chartjs() %>%
+  cjsOptions(responsive = TRUE, maintainAspectRatio = FALSE) %>% 
+  cjsBar(labels = LETTERS[1:10]) %>%
+  cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 2") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 3") %>% 
+  cjsLegend()
+```
+
+### Line Chart
+
+```{r}
+chartjs() %>%
+  cjsOptions(responsive = FALSE, maintainAspectRatio = FALSE) %>% 
+  cjsLine(labels = LETTERS[1:10]) %>%
+  cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 2") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 3") %>% 
+  cjsLegend()
+```
+
+Row 2
+-------------------------------------
+
+### Pie Chart
+
+```{r}
+chartjs() %>%
+  cjsOptions(responsive = FALSE, maintainAspectRatio = FALSE) %>% 
+  cjsPie(labels = LETTERS[1:4]) %>%
+  cjsSeries(data = abs(c(rnorm(4)))) %>% 
+  cjsLegend()
+```
+
+
+### Polar Area Chart
+
+```{r}
+chartjs() %>%
+  cjsOptions(responsive = FALSE, maintainAspectRatio = FALSE) %>% 
+  cjsPolar(labels = LETTERS[1:4]) %>%
+  cjsEditScale(NULL, 1, ticks = list(beginAtZero = TRUE)) %>%
+  cjsSeries(data = c(1, 1.5, 0.75, 2)) %>% 
+  cjsLegend()
+```
