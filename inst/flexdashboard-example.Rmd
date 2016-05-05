@@ -28,15 +28,22 @@ chartjs() %>%
   cjsLegend()
 ```
 
-### Line Chart
+
+### Horizontal Bar Chart
 
 ```{r}
-chartjs(palette = RColorBrewer::brewer.pal(8, "BrBG")) %>%
+customColors = list(border = rep("#000000", 3),
+                    background = RColorBrewer::brewer.pal(6, "Paired")[c(3, 5, 1)],
+                    hover = list(border =  rep("rgba(255,255,255,1)", 3),
+                                 background = RColorBrewer::brewer.pal(6, "Paired")[c(4, 6, 2)]))
+
+chartjs(palette = customColors) %>%
   cjsOptions(responsive = FALSE, maintainAspectRatio = FALSE) %>% 
-  cjsLine(labels = LETTERS[1:10]) %>%
-  cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1") %>%
-  cjsSeries(data = abs(c(rnorm(10))), label = "Series 2") %>%
-  cjsSeries(data = abs(c(rnorm(10))), label = "Series 3") %>% 
+  cjsHorizontalBar(labels = LETTERS[1:10]) %>%
+  cjsEditScale(axis = "x", scale = 1, ticks = list(beginAtZero = TRUE)) %>% 
+  cjsSeries(data = 1:10, label = "Series 1") %>%
+  cjsSeries(data = seq(10, 1, -1), label = "Series 2") %>%
+  cjsSeries(data = rep(5, 10), label = "Series 3") %>% 
   cjsLegend()
 ```
 
@@ -46,7 +53,7 @@ Row 2
 ### Pie Chart
 
 ```{r}
-chartjs(palette = RColorBrewer::brewer.pal(8, "Set3")) %>%
+chartjs(palette = "Set3") %>%
   cjsOptions(responsive = FALSE, maintainAspectRatio = FALSE) %>% 
   cjsPie(labels = LETTERS[1:4]) %>%
   cjsSeries(data = abs(c(rnorm(4)))) %>% 
@@ -54,15 +61,14 @@ chartjs(palette = RColorBrewer::brewer.pal(8, "Set3")) %>%
 ```
 
 
-### Horizontal Bar Chart
+### Line Chart
 
 ```{r}
-chartjs() %>%
+chartjs(palette = "BrBG") %>%
   cjsOptions(responsive = FALSE, maintainAspectRatio = FALSE) %>% 
-  cjsHorizontalBar(labels = LETTERS[1:10]) %>%
-  cjsEditScale(axis = "x", scale = 1, ticks = list(beginAtZero = TRUE)) %>% 
-  cjsSeries(data = 1:10, label = "Series 1") %>%
-  cjsSeries(data = seq(10, 1, -1), label = "Series 2") %>%
-  cjsSeries(data = rep(5, 10), label = "Series 3") %>% 
+  cjsLine(labels = LETTERS[1:10]) %>%
+  cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 2") %>%
+  cjsSeries(data = abs(c(rnorm(10))), label = "Series 3") %>% 
   cjsLegend()
 ```

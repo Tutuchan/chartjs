@@ -4,15 +4,14 @@
 \alias{chartjs}
 \title{chartjs}
 \usage{
-chartjs(width = NULL, height = NULL,
-  palette = RColorBrewer::brewer.pal(12, "Paired"), debug = FALSE)
+chartjs(width = NULL, height = NULL, palette = "Paired", debug = FALSE)
 }
 \arguments{
 \item{width}{the width of the widget}
 
 \item{height}{the height of the widget}
 
-\item{palette}{a color palette}
+\item{palette}{either the name of a RColorBrewer palette or a list of custom colours as specified in \code{\link{colorTypes}}}
 
 \item{debug}{if TRUE, prints information to the JS console}
 }

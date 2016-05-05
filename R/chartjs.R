@@ -4,14 +4,14 @@
 #'
 #' @param width the width of the widget
 #' @param height the height of the widget
-#' @param palette a color palette
+#' @param palette either the name of a RColorBrewer palette or a list of custom colours as specified in \code{\link{colorTypes}}
 #' @param debug if TRUE, prints information to the JS console
 #'
 #' @import htmlwidgets
 #' @import htmltools
 #'
 #' @export
-chartjs <- function(width = NULL, height = NULL, palette = RColorBrewer::brewer.pal(12, "Paired"), debug = FALSE) {
+chartjs <- function(width = NULL, height = NULL, palette = "Paired", debug = FALSE) {
   chartOptions <- baseOptions()
 
   x = list(options = chartOptions,

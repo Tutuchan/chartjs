@@ -27,10 +27,11 @@ NULL
 
 # Format a list of colours for a type of graph and possible existing series
 cjs_get_colours <- function(chartjs, n){
-  # if (is.null(listColors)) {
-    vecColors <- chartjs$x$palette
+  if (!is.list(chartjs$x$palette)) {
+    vecColors <- baseColors(chartjs$x$palette)
     chartjs %>% cjs_get_chart_colours(vecColors, n)
-  # } else cjs_get_custom_colours(listColors)
+  } else chartjs %>% cjs_get_custom_colours(n)
+
 }
 
 cjs_get_chart_colours <- function(x, ...){
@@ -67,7 +68,7 @@ cjs_get_chart_colours.cjs_radar <- function(chartjs, vecColors, n) {
 
 cjs_get_chart_colours.cjs_pie <- function(chartjs, vecColors, n) {
   lColors <- length(vecColors)
-  list(borderColor = rep("rgba(255,255,255,1)", n),
+  list(borderColor = rep("rgba(255,255,255,0)", n),
        backgroundColor = vecColors[seq(1, lColors, 2)][1:n],
        hoverBorderColor =  rep("#000000", n),
        hoverBackgroundColor = vecColors[seq(2, lColors, 2)][1:n])
@@ -77,21 +78,27 @@ cjs_get_chart_colours.cjs_polarArea <- cjs_get_chart_colours.cjs_pie
 
 
 # Get custom colours
-cjs_get_custom_colours <- function(listColors){
-  res <- list(borderColor = listColors$border,
-              backgroundColor = listColors$background,
-              pointBorderColor = listColors$point$border,
-              pointBackgroundColor = listColors$point$background,
-              hoverBorderColor = listColors$hover$border,
-              hoverBackgroundColor = listColors$hover$background,
-              pointHoverBorderColor = listColors$point$hover$border,
-              pointHoverBackgroundColor = listColors$point$hover$background)
+cjs_get_custom_colours <- function(chartjs, n){
+  listColors <- chartjs$x$palette
+  n <- n + 1
+  res <- list(borderColor = listColors$border[n],
+              backgroundColor = listColors$background[n],
+              pointBorderColor = listColors$point$border[n],
+              pointBackgroundColor = listColors$point$background[n],
+              hoverBorderColor = listColors$hover$border[n],
+              hoverBackgroundColor = listColors$hover$background[n],
+              pointHoverBorderColor = listColors$point$hover$border[n],
+              pointHoverBackgroundColor = listColors$point$hover$background[n])
   res[!sapply(res, is.null)]
 }
 
 # Base colors
 baseColors <- function(palette){
-  RColorBrewer::brewer.pal(12, "Paired")
+  if (!is.null(palette)){
+    info <- RColorBrewer::brewer.pal.info
+    info <- info[row.names(info) == palette,]
+    RColorBrewer::brewer.pal(info$maxcolors, palette)
+  }
 }
 
 # Base color types
