@@ -3,6 +3,7 @@
 \name{cjsSeries}
 \alias{cjsSeries}
 \alias{cjsSeries.cjs_bar}
+\alias{cjsSeries.cjs_horizontalBar}
 \alias{cjsSeries.cjs_line}
 \alias{cjsSeries.cjs_pie}
 \alias{cjsSeries.cjs_polarArea}
@@ -16,6 +17,9 @@ cjsSeries(cjs, data, type, label, scale)
 
 \method{cjsSeries}{cjs_line}(cjs, data, type = "line", label = NULL,
   scale = NULL)
+
+\method{cjsSeries}{cjs_horizontalBar}(cjs, data, type = "horizontalBar",
+  label = NULL, scale = NULL)
 
 \method{cjsSeries}{cjs_radar}(cjs, data, type = NULL, label = NULL,
   scale = NULL)
@@ -49,6 +53,8 @@ Use this function to add a series to a chart.
 \item \code{cjs_bar}: Add series to a bar chart
 
 \item \code{cjs_line}: Add series to a line chart
+
+\item \code{cjs_horizontalBar}: Add series to a horizontal bar chart
 
 \item \code{cjs_radar}: Add series to a radar chart
 

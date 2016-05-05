@@ -44,6 +44,9 @@ cjs_get_chart_colours.cjs_bar <- function(chartjs, vecColors, n) {
          hoverBackgroundColor = vecColors[2*(n+1)])
 }
 
+cjs_get_chart_colours.cjs_horizontalBar <- cjs_get_chart_colours.cjs_bar
+
+
 cjs_get_chart_colours.cjs_line <- function(chartjs, vecColors, n) {
   list(borderColor = vecColors[2* (n + 1)],
        backgroundColor = "rgba(0,0,0,0)",

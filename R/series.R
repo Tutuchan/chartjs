@@ -34,6 +34,13 @@ cjsSeries.cjs_line <- function(cjs, data, type = "line", label = NULL, scale = N
   cjsSeries.cjs_bar(cjs, data, type, label, scale)
 }
 
+#' @describeIn cjsSeries Add series to a horizontal bar chart
+#' @keywords internal
+#' @export
+cjsSeries.cjs_horizontalBar <- function(cjs, data, type = "horizontalBar", label = NULL, scale = NULL){
+  cjsSeries.cjs_bar(cjs, data, type, label, scale)
+}
+
 #' @describeIn cjsSeries Add series to a radar chart
 #' @keywords internal
 #' @export

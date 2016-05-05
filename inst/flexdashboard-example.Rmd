@@ -20,7 +20,7 @@ Row 1
 
 ```{r}
 chartjs() %>%
-  cjsOptions(responsive = TRUE, maintainAspectRatio = FALSE) %>% 
+  cjsOptions(responsive = FALSE, maintainAspectRatio = FALSE) %>% 
   cjsBar(labels = LETTERS[1:10]) %>%
   cjsSeries(data = c(abs(c(rnorm(8))), NA, 0.5), label = "Series 1") %>%
   cjsSeries(data = abs(c(rnorm(10))), label = "Series 2") %>%
@@ -54,13 +54,15 @@ chartjs(palette = RColorBrewer::brewer.pal(8, "Set3")) %>%
 ```
 
 
-### Polar Area Chart
+### Horizontal Bar Chart
 
 ```{r}
-chartjs(palette = RColorBrewer::brewer.pal(8, "Accent")) %>%
+chartjs() %>%
   cjsOptions(responsive = FALSE, maintainAspectRatio = FALSE) %>% 
-  cjsPolar(labels = LETTERS[1:4]) %>%
-  cjsEditScale(NULL, 1, ticks = list(beginAtZero = TRUE)) %>%
-  cjsSeries(data = c(1, 1.5, 0.75, 2)) %>% 
+  cjsHorizontalBar(labels = LETTERS[1:10]) %>%
+  cjsEditScale(axis = "x", scale = 1, ticks = list(beginAtZero = TRUE)) %>% 
+  cjsSeries(data = 1:10, label = "Series 1") %>%
+  cjsSeries(data = seq(10, 1, -1), label = "Series 2") %>%
+  cjsSeries(data = rep(5, 10), label = "Series 3") %>% 
   cjsLegend()
 ```
